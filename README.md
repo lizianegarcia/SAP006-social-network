@@ -356,14 +356,19 @@ Você verá que o servidor do Firebase está configurado para rodar seu projeto 
 
 Segue um 🎥 [vídeo](https://youtu.be/fTH-CUeuOc8) tutorial das etapas 8.1.2 até 8.1.5.
 
-#### 8.1.6. Configuração de autenticação Authentication
+#### 8.1.6. Firebase Authentication
 
-No [console do Firebase](https://console.firebase.google.com/), adicionar Authentication ao projeto Firebase.
+Os principais métodos de autenticação a serem usados neste projeto são:
+
+- [Autenticação com e-mail e senha](https://firebase.google.com/docs/auth/web/password-auth?authuser=0)
+- [Login com Google](https://firebase.google.com/docs/auth/web/google-signin?authuser=0)
+
+A configuração deve ser feita no [console do Firebase](https://console.firebase.google.com/):
 
 - Clique no menu lateral `Authentication` e em `Primeiros passos`
 - Na aba `Sign-in method`, escolher os métodos, `Ativar` e `Salvar`
 
-Segue um vídeo tutorial: [>>>>>>>>> VÍDEO AQUI!!!]()
+Segue um [vídeo](https://youtu.be/gvOjISEbOr8) tutorial.
 
 #### 8.1.7. Configuração de base de dados Firestore Database
 
