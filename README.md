@@ -297,8 +297,6 @@ Adicionar o Firebase ao seu aplicativo
 - `Registrar app`
 - `Adicionar o SDK do Firebase` no o arquivo `src/index.html` do projeto
 
-Segue um vídeo tutorial desta etapa: [>>>>>>>>> VÍDEO AQUI!!!]()
-
 #### 8.1.3. Instalação global de Firebase em sua máquina
 
 Esta etapa deve ser realizada por **TODAS integrantes**.
@@ -340,8 +338,6 @@ Esta etapa deverá ser realizada por apenas **UMA integrante** do trio.
 - Se der tudo certo, o Firebase vai criar o arquivo `.firebaserc` de configuração na pasta do projeto e estamos prontas pra continuar
 - Faça o `commit` com a adição dessa configuração para o repositório do seu grupo. Dessa forma, todas terão acesso às configurações do Firebase
 
-Segue um vídeo tutorial: [>>>>>>>>> VÍDEO AQUI!!!]()
-
 #### 8.1.5. Rodando a aplicação
 
 Após atualização de seu repositório contendo a configuração inicial do projeto Firebase (item 8.1.4. acima), você deve abrir o terminal na raiz do projeto para rodar o comando de instalação de dependências:
@@ -358,7 +354,9 @@ npm start
 
 Você verá que o servidor do Firebase está configurado para rodar seu projeto em [http://localhost:5000](http://localhost:5000).
 
-#### 8.1.5. Configuração de autenticação Authentication
+Segue um 🎥 [vídeo](https://youtu.be/fTH-CUeuOc8) tutorial das etapas 8.1.2 até 8.1.5.
+
+#### 8.1.6. Configuração de autenticação Authentication
 
 No [console do Firebase](https://console.firebase.google.com/), adicionar Authentication ao projeto Firebase.
 
@@ -367,7 +365,7 @@ No [console do Firebase](https://console.firebase.google.com/), adicionar Authen
 
 Segue um vídeo tutorial: [>>>>>>>>> VÍDEO AQUI!!!]()
 
-#### 8.1.6. Configuração de base de dados Firestore Database
+#### 8.1.7. Configuração de base de dados Firestore Database
 
 No [console do Firebase](https://console.firebase.google.com/), adicionar Firestore Database ao projeto Firebase.
 
