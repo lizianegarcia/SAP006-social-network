@@ -370,6 +370,8 @@ A configuração deve ser feita no [console do Firebase](https://console.firebas
 
 Segue um [vídeo](https://youtu.be/gvOjISEbOr8) tutorial.
 
+Documentação: [Authentication](https://firebase.google.com/docs/auth/web/start)
+
 #### 8.1.7. Configuração de base de dados Firestore Database
 
 No [console do Firebase](https://console.firebase.google.com/), adicionar Firestore Database ao projeto Firebase.
@@ -389,7 +391,7 @@ No [console do Firebase](https://console.firebase.google.com/), adicionar Firest
   }
   ```
 
-Segue um vídeo tutorial: [>>>>>>>>> VÍDEO AQUI!!!]()
+Documentação: [Cloud Firestore](https://firebase.google.com/docs/firestore)
 
 ### 8.2. Mobile first
 
