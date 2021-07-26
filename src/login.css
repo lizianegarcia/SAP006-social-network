@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Rosario:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap');
+
+:root {
+    --teal: #229e90;
+    --teal-hover: #39BCAC;;
+    --ultra-pink: #FF6585;
+    --space-cadet: #403E56;
+    --dark-gray: #444444;
+    --medium-gray: #ACACAC;
+    --light-gray: #f0f0f0;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, input {
+    font-family: 'Rosario', sans-serif;    
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+.forms-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.signin-signup {
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 2.2rem;
+    color: var(--dark-gray);
+}
+
+.input-field {
+    max-width: 380px;
+    width: 100%;
+    height: 55px;
+    background-color: var(--light-gray);
+    margin: 10px 0;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 .4rem;
+}
+
+.input-field i {
+    text-align: center;
+    line-height: 55px;
+    color: var(--medium-gray);
+    font-size: 1.1rem;
+}
+
+.input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--medium-gray);
+}
+
+.input-field input::placeholder {
+    color: var(--medium-gray);
+    font-weight: 500;
+}
+
+.btn {
+    width: 150px;
+    height: 49px;
+    border: none;
+    outline: none;
+    border-radius: 49px;
+    cursor: pointer;
+    background-color: var(--teal);
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    transition: .5s;
+}
+
+.btn:hover {
+    background-color: var(--teal-hover);
+}
+
+.social-text {
+    padding: .7rem 0;
+    font-size: 1rem;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+}
+
+.social-icon {
+    height: 46px;
+    width: 46px;
+    border: 1px solid var(--dark-gray);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--dark-gray);
+    font-size: 1.1rem;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.social-icon:hover {
+    color: var(--teal);
+    border-color: var(--teal);
+}
