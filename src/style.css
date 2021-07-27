@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
+:root {
+  --teal: #229e90;
+  --teal-hover: #39BCAC;;
+  --ultra-pink: #FF6585;
+  --space-cadet: #403E56;
+  --dark-gray: #444444;
+  --medium-gray: #ACACAC;
+  --light-gray: #f0f0f0;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -105,6 +116,25 @@ form.sign-in-form {
 .input-field input::placeholder {
   color: #aaa;
   font-weight: 500;
+}
+
+.toggle {
+  position: absolute;
+  right: 15px;
+  transform: translate(0, -50%);
+  top: 50%;
+}
+
+#show1 {
+  display: none;
+}
+
+#show2 {
+  display: none;
+}
+
+#show3 {
+  display: none;
 }
 
 .social-text {

@@ -34,7 +34,11 @@
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Senha" />
+              <input type="password" placeholder="Senha" id="password1" class="password"/>
+              <div class="toggle">
+                <i id="show1" class="fa fa-eye" aria-hidden="true" onclick="showHidePasswordOne()"></i>
+                <i id="hide1" class="fa fa-eye-slash" aria-hidden="true" onclick="showHidePasswordOne()"></i>
+              </div>
             </div>
             <input type="submit" value="Entrar" class="btn solid" />
             <p class="social-text">Ou entre com o Google</p>
@@ -56,7 +60,19 @@
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Senha" />
+              <input type="password" placeholder="Senha" id="password2" class="password"/>
+              <div class="toggle">
+                <i  id="show2" class="fa fa-eye" aria-hidden="true" onclick="showHidePasswordTwo()"></i>
+                <i  id="hide2" class="fa fa-eye-slash" aria-hidden="true" onclick="showHidePasswordTwo()"></i>
+              </div>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Confirme sua senha" id="password3" class="password">
+              <div class="toggle">
+                <i id="show3" class="fa fa-eye" aria-hidden="true" onclick="showHidePasswordThree()"></i>
+                <i id="hide3" class="fa fa-eye-slash" aria-hidden="true" onclick="showHidePasswordThree()"></i>
+              </div>
             </div>
             <input type="submit" class="btn" value="Cadastrar" />
             <p class="social-text">Ou cadastre-se com o Google</p>
@@ -72,7 +88,7 @@
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">
-            <h3>Nova aqui ?</h3>
+            <h3>Nova por aqui ?</h3>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
@@ -83,6 +99,7 @@
           </div>
           <img src="img/women.svg" class="image" alt="" />
         </div>
+
         <div class="panel right-panel">
           <div class="content">
             <h3>Já possui cadastro?</h3>
@@ -94,7 +111,7 @@
               Entrar
             </button>
           </div>
-          <img src="img/my universe.svg" class="image" alt="" />
+          <img src="img/social-interactions.svg" class="image" alt="" />
         </div>
       </div>
     </section>
