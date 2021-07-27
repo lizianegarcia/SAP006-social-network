@@ -1,5 +1,5 @@
-// Este é o ponto de entrada da sua aplicação
+// // Este é o ponto de entrada da sua aplicação
 
-import { myFunction } from './lib/index.js';
+// import { myFunction } from './lib/index.js';
 
-myFunction();
+// myFunction();
