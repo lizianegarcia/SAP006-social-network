@@ -29,16 +29,20 @@
           <h2 class="title">Login</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" id='sign-in-email' placeholder="E-mail" />
+            <input type="text" id='sign-in-email' placeholder="E-mail"  />
           </div>
+         
+
           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" placeholder="Senha" id="password1" class="password" />
             <div class="toggle">
-              <i id="show1" class="fa fa-eye" aria-hidden="true" "></i>
+              <i id="show1" class="fa fa-eye" aria-hidden="true"></i>
                 <i id=" hide1" class="fa fa-eye-slash" aria-hidden="true"></i>
             </div>
           </div>
+          
+
           <input type="submit" value="Entrar" class="btn solid" />
           <p class="social-text">Ou entre com o Google</p>
           <div class="social-media">
@@ -46,34 +50,35 @@
               <i class="fab fa-google"></i>
             </a>
           </div>
+
         </form>
-        <form action="#" class="sign-up-form">
+        <form action="#"  id="form-sign-up" class="sign-up-form">
           <h2 class="title">Criar uma Conta</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" id="sing-up-username" placeholder="Nome" />
+            <input type="text" id="sign-up-username" placeholder="Nome" >
           </div>
+          <span class='msg-erro msg-nome'></span>
+          
           <div class="input-field">
             <i class="fas fa-envelope"></i>
-            <input type="email" id="sing-up-email" placeholder="Email" />
+            <input type="email" id="sign-up-email" placeholder="Email"  />
           </div>
+          <span class='msg-erro msg-email'></span>
+
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Senha" id="password2" class="password" />
+            <input type="password" placeholder="Senha" id="password2" class="password"  >
             <div class="toggle">
               <i id="show2" class="fa fa-eye" aria-hidden="true"></i>
               <i id="hide2" class="fa fa-eye-slash" aria-hidden="true"></i>
             </div>
           </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Confirme sua senha" id="password3" class="password">
-            <div class="toggle">
-              <i id="show3" class="fa fa-eye" aria-hidden="true"></i>
-              <i id="hide3" class="fa fa-eye-slash" aria-hidden="true"></i>
-            </div>
-          </div>
-          <input type="submit" class="btn" value="Cadastrar" />
+          <span class='msg-erro msg-senha'></span>
+          <div id='msgError'></div>
+          <div id='msgSuccess'></div>
+
+          <input type="submit" class="btn" id="cadastrar" value="Cadastrar" />
           <p class="social-text">Ou cadastre-se com o Google</p>
           <div class="social-media">
             <a href="#" class="social-icon">
@@ -83,6 +88,7 @@
         </form>
       </div>
     </div>
+
 
     <div class="panels-container">
       <div class="panel left-panel">
@@ -95,7 +101,10 @@
           <button class="btn transparent" id="sign-up-btn">
             Cadastre-se
           </button>
+
         </div>
+        
+
         <img src="img/women.svg" class="image" alt="" />
       </div>
 
