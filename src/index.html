@@ -1,139 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="style.css" />
+    <title>Amitié</title>
+  </head>
 
-  <title>Amitié</title>
-</head>
+  <body>
+    <section class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="#" class="sign-in-form">
+            <img src="img/Amitié 1.png" alt="" class="logo" />
+            <h2 class="title">Login</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" id="sign-in-email" placeholder="E-mail" />
+            </div>
 
-<body>
-
-  <section class="container">
-    <div class="forms-container">
-      <div class="signin-signup">
-        <form action="#" class="sign-in-form">
-          <img src="img/Amitié 1.png" alt="" class="logo">
-          <h2 class="title">Login</h2>
-          <div class="input-field">
-            <i class="fas fa-user"></i>
-            <input type="text" id='sign-in-email' placeholder="E-mail"  />
-          </div>
-         
-
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Senha" id="password1" class="password" />
-            <div class="toggle">
-              <i id="show1" class="fa fa-eye" aria-hidden="true"></i>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                placeholder="Senha"
+                id="password1"
+                class="password"
+              />
+              <div class="toggle">
+                <i id="show1" class="fa fa-eye" aria-hidden="true"></i>
                 <i id=" hide1" class="fa fa-eye-slash" aria-hidden="true"></i>
+              </div>
             </div>
-          </div>
-          
 
-          <input type="submit" value="Entrar" id="entrar" class="btn solid" />
-          <p class="social-text">Ou entre com o Google</p>
-          <div class="social-media">
-            <a href="#" class="social-icon">
-              <i class="fab fa-google"></i>
-            </a>
-          </div>
-
-        </form>
-        <form action="#"  id="form-sign-up" class="sign-up-form">
-          <h2 class="title">Criar uma Conta</h2>
-          <div class="input-field">
-            <i class="fas fa-user"></i>
-            <input type="text" id="sign-up-username" placeholder="Nome" >
-          </div>
-          <span class='msg-erro msg-nome'></span>
-          
-          <div class="input-field">
-            <i class="fas fa-envelope"></i>
-            <input type="email" id="sign-up-email" placeholder="Email"  />
-          </div>
-          <span class='msg-erro msg-email'></span>
-
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Senha" id="password2" class="password"  >
-            <div class="toggle">
-              <i id="show2" class="fa fa-eye" aria-hidden="true"></i>
-              <i id="hide2" class="fa fa-eye-slash" aria-hidden="true"></i>
+            <input type="submit" value="Entrar" id="entrar" class="btn solid" />
+            <p class="social-text">Ou entre com o Google</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-google" id="google-login"></i>
+              </a>
             </div>
-          </div>
-          <span class='msg-erro msg-senha'></span>
-          <div id='msgError'></div>
-          <div id='msgSuccess'></div>
+          </form>
+          <form action="#" id="form-sign-up" class="sign-up-form">
+            <h2 class="title">Criar uma Conta</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" id="sign-up-username" placeholder="Nome" />
+            </div>
+            <span class="msg-erro msg-nome"></span>
 
-          <input type="submit" class="btn" id="register" value="Cadastrar" />
-          <p class="social-text">Ou cadastre-se com o Google</p>
-          <div class="social-media">
-            <a href="#" class="social-icon">
-              <i class="fab fa-google"></i>
-            </a>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="panels-container">
-      <div class="panel left-panel">
-        <div class="content">
-          <h3>Nova por aqui ?</h3>
-          <p>
-            Participe da nossa comunidade, que é exclusiva para mulheres e te permite fazer novas amizades em um
-            ambiente acolhedor e seguro! Clique abaixo e junte-se a nós!
-          </p>
-          <button class="btn transparent" id="sign-up-btn">
-            Cadastre-se
-          </button>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="sign-up-email" placeholder="Email" />
+            </div>
+            <span class="msg-erro msg-email"></span>
 
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                placeholder="Senha"
+                id="password2"
+                class="password"
+              />
+              <div class="toggle">
+                <i id="show2" class="fa fa-eye" aria-hidden="true"></i>
+                <i id="hide2" class="fa fa-eye-slash" aria-hidden="true"></i>
+              </div>
+            </div>
+            <span class="msg-erro msg-senha"></span>
+            <div id="msgError"></div>
+            <div id="msgSuccess"></div>
+
+            <input type="submit" class="btn" id="register" value="Cadastrar" />
+            <input type="submit" class="btn" id="logout" value="Sair" hidden />
+            <p class="social-text">Ou cadastre-se com o Google</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-google" id="google-register"></i>
+              </a>
+            </div>
+          </form>
         </div>
-        <img src="img/women.svg" class="image" alt="" />
       </div>
-
-      <div class="panel right-panel">
-        <div class="content">
-          <h3>Já possui cadastro?</h3>
-          <p>
-            Clique baixo em <strong>Entrar</strong>, juntas somos mais fortes!
-          </p>
-          <button class="btn transparent" id="sign-in-btn">
-            Entrar
-          </button>
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>Nova por aqui ?</h3>
+            <p>
+              Participe da nossa comunidade, que é exclusiva para mulheres e te
+              permite fazer novas amizades em um ambiente acolhedor e seguro!
+              Clique abaixo e junte-se a nós!
+            </p>
+            <button class="btn transparent" id="sign-up-btn">
+              Cadastre-se
+            </button>
+          </div>
+          <img src="img/women.svg" class="image" alt="" />
         </div>
-        <img src="img/social-interactions.svg" class="image" alt="" />
+
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>Já possui cadastro?</h3>
+            <p>
+              Clique baixo em <strong>Entrar</strong>, juntas somos mais fortes!
+            </p>
+            <button class="btn transparent" id="sign-in-btn">Entrar</button>
+          </div>
+          <img src="img/social-interactions.svg" class="image" alt="" />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
-  
-  
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
-  
-  <script>
-    // Your web app's Firebase configuration
-    let firebaseConfig = {
-      apiKey: "AIzaSyBvTFecff2LbfwWW0CEhWs3waFtDzUM_n4",
-      authDomain: "amitie-f30ce.firebaseapp.com",
-      projectId: "amitie-f30ce",
-      storageBucket: "amitie-f30ce.appspot.com",
-      messagingSenderId: "545232759130",
-      appId: "1:545232759130:web:5e26b0bcf4ec9f2563eb63"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-  </script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
 
-  <script src="./pages/login/validation.js"></script>
-  <script src="./lib/index.js"></script>
-  <!-- <script type="module" src="main.js"></script> -->
-</body>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
 
+    <script>
+      // Your web app's Firebase configuration
+      let firebaseConfig = {
+        apiKey: 'AIzaSyBvTFecff2LbfwWW0CEhWs3waFtDzUM_n4',
+        authDomain: 'amitie-f30ce.firebaseapp.com',
+        projectId: 'amitie-f30ce',
+        storageBucket: 'amitie-f30ce.appspot.com',
+        messagingSenderId: '545232759130',
+        appId: '1:545232759130:web:5e26b0bcf4ec9f2563eb63'
+      }
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig)
+    </script>
+
+    <script src="./pages/login/validation.js"></script>
+    <script src="./lib/index.js"></script>
+    <!-- <script type="module" src="main.js"></script> -->
+  </body>
 </html>
