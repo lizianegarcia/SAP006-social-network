@@ -13,7 +13,9 @@
 
 <body>
 
-  <section class="container">
+  <div id="root"></div>
+
+  <!-- <section class="container">
     <div class="forms-container">
       <div class="signin-signup">
         <form action="#" class="sign-in-form">
@@ -109,12 +111,13 @@
         <img src="img/social-interactions.svg" class="image" alt="" />
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
   
-  
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
   <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
   
   <script>
@@ -131,9 +134,11 @@
     firebase.initializeApp(firebaseConfig);
   </script>
 
-  <script src="./pages/login/validation.js"></script>
-  <script src="./lib/index.js"></script>
-  <!-- <script type="module" src="main.js"></script> -->
+  <!-- <script src="./pages/login/index.js"></script> -->
+  <!-- <script src="./lib/index.js"></script> -->
+  <script type="module" src="main.js"></script>
+
+  
 </body>
 
 </html>
