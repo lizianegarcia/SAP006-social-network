@@ -1,3 +1,6 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable import/no-cycle */
 import loginPage from './pages/login/index.js';
 import homePage from './pages/home/index.js';
 import feedPage from './pages/feed/index.js';
@@ -28,9 +31,10 @@ const routes = {
   },
 };
 
+// eslint-disable-next-line consistent-return
 const printPage = (page) => {
   let route = routes[page];
-  if(!route) {
+  if (!route) {
     route = routes['/notFound'];
   }
 
@@ -45,8 +49,7 @@ const printPage = (page) => {
   document.title = route.title;
   main.innerHTML = route.functions.createHTML();
   route.functions.registerListeners();
-}
-
+};
 
 export const initiate = () => {
   window.addEventListener('popstate', () => {
@@ -57,7 +60,7 @@ export const initiate = () => {
 };
 
 export const changePage = (page) => {
-  const route = routes[page]
+  const route = routes[page];
   const title = route.title;
   history.pushState({}, title, page);
   window.dispatchEvent(new PopStateEvent('popstate'));

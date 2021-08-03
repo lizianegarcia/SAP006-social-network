@@ -1,106 +1,103 @@
+/* eslint-disable import/no-cycle */
 import {
-  login
-} from "./login.js";
+  login,
+} from './login.js';
 
-const createHTML = () => {
-  return `
-<section class="container">
-<div class="forms-container">
-  <div class="signin-signup">
-    <form action="#" class="sign-in-form">
-      <img src="img/Amitié 1.png" alt="" class="logo">
-      <h2 class="title">Login</h2>
-      <div class="input-field">
-        <i class="fas fa-user"></i>
-        <input type="text" id='sign-in-email' placeholder="E-mail" />
+const createHTML = () => `
+<section class='container'>
+<div class='forms-container'>
+  <div class='signin-signup'>
+    <form action='#' class='sign-in-form'>
+      <img src='img/Amitié 1.png' alt='' class='logo'>
+      <h2 class='title'>Login</h2>
+      <div class='input-field'>
+        <i class='fas fa-user'></i>
+        <input type='text' id='sign-in-email' placeholder='E-mail' />
       </div>
-      <p id="email-error"></p>
-      <div class="input-field">
-        <i class="fas fa-lock"></i>
-        <input type="password" placeholder="Senha" id="password1" class="password" />
-        <div class="toggle">
-          <i id="show1" class="fa fa-eye" aria-hidden="true"></i>
-            <i id=" hide1" class="fa fa-eye-slash" aria-hidden="true"></i>
+      <p id='email-error'></p>
+      <div class='input-field'>
+        <i class='fas fa-lock'></i>
+        <input type='password' placeholder='Senha' id='password1' class='password' />
+        <div class='toggle'>
+          <i id='show1' class='fa fa-eye' aria-hidden='true'></i>
+            <i id='hide1' class='fa fa-eye-slash' aria-hidden='true'></i>
         </div>
       </div>
-      <input type="submit" value="Entrar" id="entrar" class="btn solid" />
-      <p class="social-text">Ou entre com o Google</p>
-      <div class="social-media">
-        <a href="#" class="social-icon">
-          <i class="fab fa-google"></i>
+      <input type='submit' value='Entrar' id='entrar' class='btn solid' />
+      <p class='social-text'>Ou entre com o Google</p>
+      <div class='social-media'>
+        <a href='#' class='social-icon'>
+          <i class='fab fa-google'></i>
         </a>
       </div>
     </form>
-    <form action="#"  id="form-sign-up" class="sign-up-form">
-      <h2 class="title">Criar uma Conta</h2>
-      <div class="input-field">
-        <i class="fas fa-user"></i>
-        <input type="text" id="sign-up-username" placeholder="Nome" />
+    <form action='#'  id='form-sign-up' class='sign-up-form'>
+      <h2 class='title'>Criar uma Conta</h2>
+      <div class='input-field'>
+        <i class='fas fa-user'></i>
+        <input type='text' id='sign-up-username' placeholder='Nome' />
       </div>
       <span class='msg-erro msg-nome'></span>
-      <div class="input-field">
-        <i class="fas fa-envelope"></i>
-        <input type="email" id="sign-up-email" placeholder="Email"  />
+      <div class='input-field'>
+        <i class='fas fa-envelope'></i>
+        <input type='email' id='sign-up-email' placeholder='Email'  />
       </div>
       <span class='msg-erro msg-email'></span>
-      <div class="input-field">
-        <i class="fas fa-lock"></i>
-        <input type="password" placeholder="Senha" id="password2" class="password"  />
-        <div class="toggle">
-          <i id="show2" class="fa fa-eye" aria-hidden="true"></i>
-          <i id="hide2" class="fa fa-eye-slash" aria-hidden="true"></i>
+      <div class='input-field'>
+        <i class='fas fa-lock'></i>
+        <input type='password' placeholder='Senha' id='password2' class='password'  />
+        <div class='toggle'>
+          <i id='show2' class='fa fa-eye' aria-hidden='true'></i>
+          <i id='hide2' class='fa fa-eye-slash' aria-hidden='true'></i>
         </div>
       </div>
       <span class='msg-erro msg-senha'></span>
       <div id='msgError'></div>
       <div id='msgSuccess'></div>
-      <input type="submit" class="btn" id="register" value="Cadastrar" />
-      <p class="social-text">Ou cadastre-se com o Google</p>
-      <div class="social-media">
-        <a href="#" class="social-icon">
-          <i class="fab fa-google"></i>
+      <input type='submit' class='btn' id='register' value='Cadastrar' />
+      <p class='social-text'>Ou cadastre-se com o Google</p>
+      <div class='social-media'>
+        <a href='#' class='social-icon'>
+          <i class='fab fa-google'></i>
         </a>
       </div>
     </form>
   </div>
 </div>
-<div class="panels-container">
-  <div class="panel left-panel">
-    <div class="content">
+<div class='panels-container'>
+  <div class='panel left-panel'>
+    <div class='content'>
       <h3>Nova por aqui ?</h3>
       <p>
         Participe da nossa comunidade, que é exclusiva para mulheres e te permite fazer novas amizades em um
         ambiente acolhedor e seguro! Clique abaixo e junte-se a nós!
       </p>
-      <button class="btn transparent" id="sign-up-btn">
+      <button class='btn transparent' id='sign-up-btn'>
         Cadastre-se
       </button>
     </div>
-    <img src="img/women.svg" class="image" alt="" />
+    <img src='img/women.svg' class='image' alt='' />
   </div>
-  <div class="panel right-panel">
-    <div class="content">
+  <div class='panel right-panel'>
+    <div class='content'>
       <h3>Já possui cadastro?</h3>
       <p>
         Clique baixo em <strong>Entrar</strong>, juntas somos mais fortes!
       </p>
-      <button class="btn transparent" id="sign-in-btn">
+      <button class='btn transparent' id='sign-in-btn'>
         Entrar
       </button>
     </div>
-    <img src="img/social-interactions.svg" class="image" alt="" />
+    <img src='img/social-interactions.svg' class='image' alt='' />
   </div>
 </div>
 </section>`;
-};
 
 const registerListeners = () => {
-
   const signInBtn = document.querySelector('#sign-in-btn');
   const signUpBtn = document.querySelector('#sign-up-btn');
   const container = document.querySelector('.container');
   const togglePassword = document.querySelectorAll('.toggle');
-
 
   signUpBtn.addEventListener('click', () => {
     container.classList.add('sign-up-mode');
@@ -118,7 +115,7 @@ const registerListeners = () => {
     const hidePassword = toggle.querySelector('.fa-eye-slash');
 
     if (password.getAttribute('type') === 'password') {
-      password.setAttribute('type', 'text');;
+      password.setAttribute('type', 'text');
       showPassword.style.display = 'block';
       hidePassword.style.display = 'none';
     } else {
@@ -126,32 +123,30 @@ const registerListeners = () => {
       showPassword.style.display = 'none';
       hidePassword.style.display = 'block';
     }
-  }
+  };
 
-  togglePassword.forEach(btn => {
-    btn.addEventListener('click', showHidePassword)
-  })
+  togglePassword.forEach((btn) => {
+    btn.addEventListener('click', showHidePassword);
+  });
 
   // validação
   const signUp = document.getElementById('register');
   const verificarEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
-  let nameUser = document.getElementById('sign-up-username');
+  const nameUser = document.getElementById('sign-up-username');
   const msgName = document.querySelector('.msg-nome');
   let validName = false;
 
-  let email = document.getElementById('sign-up-email');
+  const email = document.getElementById('sign-up-email');
   const msgEmail = document.querySelector('.msg-email');
   let validEmail = false;
 
-  let signUpPassword = document.getElementById('password2');
+  const signUpPassword = document.getElementById('password2');
   const msgPassword = document.querySelector('.msg-senha');
   let validPassword = false;
 
-  let msgError = document.querySelector('#msgError');
-  let msgSuccess = document.querySelector('#msgSuccess');
-
-
+  const msgError = document.querySelector('#msgError');
+  const msgSuccess = document.querySelector('#msgSuccess');
 
   signUp.addEventListener('click', signUpMode);
 
@@ -162,14 +157,12 @@ const registerListeners = () => {
       msgName.style.display = 'block';
       msgName.setAttribute('style', 'color: red');
       validName = false;
-
     } else {
-
       nameUser.setAttribute('style', 'color: green');
       msgName.style.display = 'none';
       validName = true;
     }
-  })
+  });
 
   email.addEventListener('keyup', () => {
     if (email.value.length <= 2) {
@@ -178,18 +171,16 @@ const registerListeners = () => {
       msgEmail.style.display = 'block';
       msgEmail.setAttribute('style', 'color: red');
       validEmail = false;
-
     } else if (verificarEmail.test(email.value)) {
       email.setAttribute('style', 'color: green');
       msgEmail.style.display = 'none';
       validEmail = true;
-
     } else {
       msgEmail.innerHTML = 'Formato do E-mail inválido';
       msgEmail.style.display = 'block';
       validEmail = false;
     }
-  })
+  });
 
   signUpPassword.addEventListener('keyup', () => {
     if (signUpPassword.value.length <= 5) {
@@ -203,17 +194,15 @@ const registerListeners = () => {
       msgPassword.style.display = 'none';
       validPassword = true;
     }
-  })
+  });
 
   function signUpMode() {
     if (validName && validEmail && validPassword) {
-
       msgSuccess.style.display = 'block';
       msgSuccess.setAttribute('style', 'color: green');
       msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>';
       msgError.setAttribute('style', 'display: none');
       msgError.innerHTML = '';
-
     } else {
       msgError.style.display = 'block';
       msgError.setAttribute('style', 'color: red');
@@ -222,7 +211,7 @@ const registerListeners = () => {
       msgSuccess.setAttribute('style', 'display: none');
     }
   }
-  //Login
+  // Login
   const emailInput = document.getElementById('sign-in-email');
   const loginButton = document.getElementById('entrar');
 
@@ -230,9 +219,9 @@ const registerListeners = () => {
     const emailsgn = emailInput.value;
     login(emailsgn);
   });
-}
+};
 
 export default {
   createHTML,
-  registerListeners
+  registerListeners,
 };
