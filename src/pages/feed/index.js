@@ -1,12 +1,12 @@
-export const feedPage = () => {
-  const section = document.createElement('section');
-  section.setAttribute('class', 'container');
+import profileComponent from '../../components/profile/profile.js';
 
-  const feedPageTemplate = `
-    <h1> Feed Page </h1>
+const createHTML = () => `
+    <h1>Feed</h1>
+    ${profileComponent.createHTML()}
   `;
 
-  section.innerHTML = feedPageTemplate;
-
-  return section;
+const registerListeners = () => {
+  profileComponent.registerListeners();
 };
+
+export default { createHTML, registerListeners };
