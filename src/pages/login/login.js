@@ -1,14 +1,14 @@
-import auth from "../../services/auth.js";
-import { changePage } from "../../router.js";
+import auth from '../../services/auth.js';
+import { changePage } from '../../router.js';
 
-export const login =  (email) => {
+export const login = (email) => {
   let hasError = false;
-  const emailError = document.getElementById("email-error");
-  emailError.style.display = "none";
+  const emailError = document.getElementById('email-error');
+  emailError.style.display = 'none';
 
   if (!email) {
-    emailError.innerHTML = "Ops, faltou seu email!";
-    emailError.style.display = "block";
+    emailError.innerHTML = 'Ops, faltou seu email!';
+    emailError.style.display = 'block';
     hasError = true;
   }
 
@@ -21,7 +21,6 @@ export const login =  (email) => {
   // }
 
   if (!hasError) {
-  
     auth.login(email);
     changePage('/');
   }
