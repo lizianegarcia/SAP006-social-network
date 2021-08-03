@@ -1,7 +1,7 @@
-import loginPage from "./pages/login/page.js";
-import homePage from "./pages/home/page.js";
-import feedPage from "./pages/feed/page.js";
-import notFoundPage from "./pages/not-found/page.js";
+import loginPage from "./pages/login/index.js";
+import homePage from "./pages/home/index.js";
+import feedPage from "./pages/feed/index.js";
+import notFoundPage from "./pages/not-found/index.js";
 
 import auth from "./services/auth.js";
 
@@ -50,9 +50,9 @@ const printPage = (page) => {
 
 export const initiate = () => {
   window.addEventListener("popstate", () => {
-
     printPage(window.location.pathname);
   });
+
   printPage(window.location.pathname);
 };
 

@@ -5,15 +5,14 @@ const createHTML = () => {
   return `
   <a id="move-on">Ir para o feed</a>
     <h1>Boas vindas</h1>
-    ${profile.createHTML()}
-    
+    ${profile.createHTML()}  
   `;
 };
 
 const registerListeners = () => {
   profile.registerListeners();
 
-  const moveOn = document.getElementById("move-on");
+  const moveOn = document.getElementById('move-on');
   moveOn.addEventListener("click", () => {
     changePage('/feed');
   });

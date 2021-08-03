@@ -2,7 +2,6 @@ import { changePage } from "../../router.js";
 
 const createHTML = () => {
   return `
-    
     <h1>Ops! Página não encontrada.</h1>
     <a id="go-back">Voltar para página inicial</a>
   `;
