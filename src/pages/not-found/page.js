@@ -11,7 +11,7 @@ const createHTML = () => {
 const registerListeners = () => {
   const goBackButton = document.getElementById("go-back");
   goBackButton.addEventListener("click", () => {
-    changePage("home");
+    changePage('/');
   });
 };
 

@@ -15,7 +15,7 @@ const registerListeners = () => {
 
   const moveOn = document.getElementById("move-on");
   moveOn.addEventListener("click", () => {
-    changePage("feed");
+    changePage('/feed');
   });
 };
 

@@ -1,7 +1,7 @@
 import auth from "../../services/auth.js";
 import { changePage } from "../../router.js";
 
-export const login =  (email, password) => {
+export const login =  (email) => {
   let hasError = false;
   const emailError = document.getElementById("email-error");
   emailError.style.display = "none";
@@ -23,6 +23,6 @@ export const login =  (email, password) => {
   if (!hasError) {
   
     auth.login(email);
-    changePage("home");
+    changePage('/');
   }
 };

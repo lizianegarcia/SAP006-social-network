@@ -3,5 +3,5 @@ import { changePage } from "../../router.js";
 
 export const logout = () => {
   auth.logout();
-  changePage("login");
+  changePage('/login');
 };
