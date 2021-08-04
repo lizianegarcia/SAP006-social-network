@@ -1,6 +1,6 @@
-import {
-  login,
-} from './login.js';
+/* eslint-disable no-use-before-define */
+/* eslint-disable import/no-cycle */
+import { login } from './login.js';
 
 const createHTML = () => `
 <section class="container">
