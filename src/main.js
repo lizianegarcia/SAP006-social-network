@@ -1,2 +1,3 @@
-import { initiate } from "./router.js";
+import { initiate } from './router.js';
+
 initiate();

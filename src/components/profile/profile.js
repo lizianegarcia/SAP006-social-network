@@ -1,15 +1,14 @@
-import { logout } from "./logout.js";
+// eslint-disable-next-line import/no-cycle
+import { logout } from './logout.js';
 
-const createHTML = () => {
-  return `
+const createHTML = () => `
         
         <button id="logout">Sair</button>
     `;
-};
 
 const registerListeners = () => {
-  const logoutButton = document.getElementById("logout");
-  logoutButton.addEventListener("click", logout);
+  const logoutButton = document.getElementById('logout');
+  logoutButton.addEventListener('click', logout);
 };
 
 export default { createHTML, registerListeners };

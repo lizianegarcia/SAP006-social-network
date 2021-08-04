@@ -1,4 +1,5 @@
-import profileComponent from "../../components/profile/profile.js";
+// eslint-disable-next-line import/no-cycle
+import profileComponent from '../../components/profile/profile.js';
 
 const createHTML = () => `
     <h1>Feed</h1>
