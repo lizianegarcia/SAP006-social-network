@@ -1,26 +1,19 @@
-import createProfileComponent from '../../components/profile/profile.js';
+/* eslint-disable import/no-cycle */
 import { changePage } from '../../router.js';
 
-const createHTML = () => `
+const createPage = () => {
+  const rootElement = document.createElement('div');
+  const contentnewElement = `
     <a id="move-on">Ir para o feed</a>
     <h1>Boas vindas</h1>
+   
   `;
-
-const registerListeners = (rootElement) => {
+  rootElement.innerHTML = contentnewElement;
   const moveOn = rootElement.querySelector('#move-on');
   moveOn.addEventListener('click', () => {
     changePage('/feed');
   });
-};
-const createPage = () => {
-  const rootElement = document.createElement('div')
-  rootElement.innerHTML = createHTML();
-  registerListeners(rootElement);
-
-  const profileElement = createProfileComponent();
-  rootElement.appendChild(profileElement);
   return rootElement;
 };
 
 export default createPage;
-

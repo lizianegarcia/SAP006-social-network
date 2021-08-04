@@ -1,7 +1,9 @@
+/* eslint-disable import/no-cycle */
 import { login } from './login.js';
 
-const createHTML = () => `
-<section class="container">
+const createPage = () => {
+  const rootElement = document.createElement('div');
+  const contentnewElement = `<section class="container">
 <div class="forms-container">
   <div class="signin-signup">
     <form action="#" class="sign-in-form">
@@ -90,7 +92,9 @@ const createHTML = () => `
 </div>
 </section>`;
 
-const registerListeners = (rootElement) => {
+  // registerListener
+  rootElement.innerHTML = contentnewElement;
+
   const signInBtn = rootElement.querySelector('#sign-in-btn');
   const signUpBtn = rootElement.querySelector('#sign-up-btn');
   const container = rootElement.querySelector('.container');
@@ -209,12 +213,6 @@ const registerListeners = (rootElement) => {
       validPassword = true;
     }
   });
-};
-
-const createPage = () => {
-  const rootElement = document.createElement('div');
-  rootElement.innerHTML = createHTML();
-  registerListeners(rootElement);
   return rootElement;
 };
 

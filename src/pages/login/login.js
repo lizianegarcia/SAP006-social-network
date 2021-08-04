@@ -1,9 +1,10 @@
+/* eslint-disable import/no-cycle */
 import auth from '../../services/auth.js';
 import { changePage } from '../../router.js';
 
 export const login = (email) => {
   let hasError = false;
-  const emailError = document.getElementById('email-error');
+  const emailError = document.querySelector('#email-error');
   emailError.style.display = 'none';
 
   if (!email) {

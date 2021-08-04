@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable import/no-cycle */
 import loginPage from './pages/login/index.js';
 import homePage from './pages/home/index.js';
 import feedPage from './pages/feed/index.js';
