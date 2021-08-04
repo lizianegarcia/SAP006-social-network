@@ -1,4 +1,4 @@
-const LOCALSTORAGE_USER = "user";
+const LOCALSTORAGE_USER = 'user';
 
 const auth = {
   getUser: () => {
