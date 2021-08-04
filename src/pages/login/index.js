@@ -148,6 +148,7 @@ const registerListeners = () => {
   const msgError = document.querySelector('#msgError');
   const msgSuccess = document.querySelector('#msgSuccess');
 
+  // eslint-disable-next-line no-use-before-define
   signUp.addEventListener('click', signUpMode);
 
   nameUser.addEventListener('keyup', () => {
