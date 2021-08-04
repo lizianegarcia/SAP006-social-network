@@ -1,14 +1,17 @@
-import profileComponent from "../../components/profile/profile.js";
+import createProfileComponent from '../../components/profile/profile.js';
 
-const createHTML = () => {
-  return `
+const createHTML = () => `
     <h1>Feed</h1>
-    ${profileComponent.createHTML()}
   `;
+
+const createPage = () => {
+  const rootElement = document.createElement('div')
+  rootElement.innerHTML = createHTML();
+
+  const profileElement = createProfileComponent();
+  rootElement.appendChild(profileElement);
+
+  return rootElement;
 };
 
-const registerListeners = () => {
-  profileComponent.registerListeners();
-};
-
-export default { createHTML, registerListeners };
+export default createPage;

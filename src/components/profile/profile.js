@@ -1,15 +1,19 @@
-import { logout } from "./logout.js";
+import { logout } from './logout.js';
 
-const createHTML = () => {
-  return `
-        
+const createHTML = () => `
         <button id="logout">Sair</button>
     `;
+
+const registerListeners = (rootElement) => {
+  const logoutButton = rootElement.querySelector('#logout');
+  logoutButton.addEventListener('click', logout);
 };
 
-const registerListeners = () => {
-  const logoutButton = document.getElementById("logout");
-  logoutButton.addEventListener("click", logout);
+const createComponent = () => {
+  const rootElement = document.createElement('div')
+  rootElement.innerHTML = createHTML();
+  registerListeners(rootElement);
+  return rootElement;
 };
 
-export default { createHTML, registerListeners };
+export default createComponent;

@@ -1,4 +1,3 @@
-
 // const logInEmail = document.getElementById('sign-in-email');
 // const logInPassword = document.getElementById('password');
 // const logInButton = document.getElementById('entrar');

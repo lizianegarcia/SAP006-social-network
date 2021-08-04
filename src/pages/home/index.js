@@ -1,21 +1,26 @@
-import profile from "../../components/profile/profile.js";
-import { changePage } from "../../router.js";
+import createProfileComponent from '../../components/profile/profile.js';
+import { changePage } from '../../router.js';
 
-const createHTML = () => {
-  return `
-  <a id="move-on">Ir para o feed</a>
+const createHTML = () => `
+    <a id="move-on">Ir para o feed</a>
     <h1>Boas vindas</h1>
-    ${profile.createHTML()}  
   `;
-};
 
-const registerListeners = () => {
-  profile.registerListeners();
-
-  const moveOn = document.getElementById('move-on');
-  moveOn.addEventListener("click", () => {
+const registerListeners = (rootElement) => {
+  const moveOn = rootElement.querySelector('#move-on');
+  moveOn.addEventListener('click', () => {
     changePage('/feed');
   });
 };
+const createPage = () => {
+  const rootElement = document.createElement('div')
+  rootElement.innerHTML = createHTML();
+  registerListeners(rootElement);
 
-export default { createHTML, registerListeners };
+  const profileElement = createProfileComponent();
+  rootElement.appendChild(profileElement);
+  return rootElement;
+};
+
+export default createPage;
+

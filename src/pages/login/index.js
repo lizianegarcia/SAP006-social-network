@@ -1,9 +1,6 @@
-import {
-  login
-} from "./login.js";
+import { login } from './login.js';
 
-const createHTML = () => {
-  return `
+const createHTML = () => `
 <section class="container">
 <div class="forms-container">
   <div class="signin-signup">
@@ -92,15 +89,27 @@ const createHTML = () => {
   </div>
 </div>
 </section>`;
-};
 
-const registerListeners = () => {
-
-  const signInBtn = document.querySelector('#sign-in-btn');
-  const signUpBtn = document.querySelector('#sign-up-btn');
-  const container = document.querySelector('.container');
-  const togglePassword = document.querySelectorAll('.toggle');
-
+const registerListeners = (rootElement) => {
+  const signInBtn = rootElement.querySelector('#sign-in-btn');
+  const signUpBtn = rootElement.querySelector('#sign-up-btn');
+  const container = rootElement.querySelector('.container');
+  const togglePassword = rootElement.querySelectorAll('.toggle');
+  const signUp = rootElement.querySelector('#register');
+  const verificarEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+  const nameUser = rootElement.querySelector('#sign-up-username');
+  const msgName = rootElement.querySelector('.msg-nome');
+  let validName = false;
+  const email = rootElement.querySelector('#sign-up-email');
+  const msgEmail = rootElement.querySelector('.msg-email');
+  let validEmail = false;
+  const signUpPassword = rootElement.querySelector('#password2');
+  const msgPassword = rootElement.querySelector('.msg-senha');
+  let validPassword = false;
+  const msgError = rootElement.querySelector('#msgError');
+  const msgSuccess = rootElement.querySelector('#msgSuccess');
+  const emailInput = rootElement.querySelector('#sign-in-email');
+  const loginButton = rootElement.querySelector('#entrar');
 
   signUpBtn.addEventListener('click', () => {
     container.classList.add('sign-up-mode');
@@ -118,7 +127,7 @@ const registerListeners = () => {
     const hidePassword = toggle.querySelector('.fa-eye-slash');
 
     if (password.getAttribute('type') === 'password') {
-      password.setAttribute('type', 'text');;
+      password.setAttribute('type', 'text');
       showPassword.style.display = 'block';
       hidePassword.style.display = 'none';
     } else {
@@ -126,33 +135,33 @@ const registerListeners = () => {
       showPassword.style.display = 'none';
       hidePassword.style.display = 'block';
     }
+  };
+
+  function signUpMode() {
+    if (validName && validEmail && validPassword) {
+      msgSuccess.style.display = 'block';
+      msgSuccess.setAttribute('style', 'color: green');
+      msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>';
+      msgError.setAttribute('style', 'display: none');
+      msgError.innerHTML = '';
+    } else {
+      msgError.style.display = 'block';
+      msgError.setAttribute('style', 'color: red');
+      msgError.innerHTML = '<strong>Preencha todos os campos corretamente </strong>';
+      msgSuccess.innerHTML = '';
+      msgSuccess.setAttribute('style', 'display: none');
+    }
   }
 
-  togglePassword.forEach(btn => {
-    btn.addEventListener('click', showHidePassword)
-  })
-
+  togglePassword.forEach((btn) => {
+    btn.addEventListener('click', showHidePassword);
+  });
+  // Login
+  loginButton.addEventListener('click', () => {
+    const emailsgn = emailInput.value;
+    login(emailsgn);
+  });
   // validação
-  const signUp = document.getElementById('register');
-  const verificarEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-
-  let nameUser = document.getElementById('sign-up-username');
-  const msgName = document.querySelector('.msg-nome');
-  let validName = false;
-
-  let email = document.getElementById('sign-up-email');
-  const msgEmail = document.querySelector('.msg-email');
-  let validEmail = false;
-
-  let signUpPassword = document.getElementById('password2');
-  const msgPassword = document.querySelector('.msg-senha');
-  let validPassword = false;
-
-  let msgError = document.querySelector('#msgError');
-  let msgSuccess = document.querySelector('#msgSuccess');
-
-
-
   signUp.addEventListener('click', signUpMode);
 
   nameUser.addEventListener('keyup', () => {
@@ -162,14 +171,12 @@ const registerListeners = () => {
       msgName.style.display = 'block';
       msgName.setAttribute('style', 'color: red');
       validName = false;
-
     } else {
-
       nameUser.setAttribute('style', 'color: green');
       msgName.style.display = 'none';
       validName = true;
     }
-  })
+  });
 
   email.addEventListener('keyup', () => {
     if (email.value.length <= 2) {
@@ -178,18 +185,16 @@ const registerListeners = () => {
       msgEmail.style.display = 'block';
       msgEmail.setAttribute('style', 'color: red');
       validEmail = false;
-
     } else if (verificarEmail.test(email.value)) {
       email.setAttribute('style', 'color: green');
       msgEmail.style.display = 'none';
       validEmail = true;
-
     } else {
       msgEmail.innerHTML = 'Formato do E-mail inválido';
       msgEmail.style.display = 'block';
       validEmail = false;
     }
-  })
+  });
 
   signUpPassword.addEventListener('keyup', () => {
     if (signUpPassword.value.length <= 5) {
@@ -203,36 +208,14 @@ const registerListeners = () => {
       msgPassword.style.display = 'none';
       validPassword = true;
     }
-  })
-
-  function signUpMode() {
-    if (validName && validEmail && validPassword) {
-
-      msgSuccess.style.display = 'block';
-      msgSuccess.setAttribute('style', 'color: green');
-      msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>';
-      msgError.setAttribute('style', 'display: none');
-      msgError.innerHTML = '';
-
-    } else {
-      msgError.style.display = 'block';
-      msgError.setAttribute('style', 'color: red');
-      msgError.innerHTML = '<strong>Preencha todos os campos corretamente </strong>';
-      msgSuccess.innerHTML = '';
-      msgSuccess.setAttribute('style', 'display: none');
-    }
-  }
-  //Login
-  const emailInput = document.getElementById('sign-in-email');
-  const loginButton = document.getElementById('entrar');
-
-  loginButton.addEventListener('click', () => {
-    const emailsgn = emailInput.value;
-    login(emailsgn);
   });
-}
-
-export default {
-  createHTML,
-  registerListeners
 };
+
+const createPage = () => {
+  const rootElement = document.createElement('div');
+  rootElement.innerHTML = createHTML();
+  registerListeners(rootElement);
+  return rootElement;
+};
+
+export default createPage;

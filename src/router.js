@@ -1,36 +1,43 @@
-import loginPage from "./pages/login/index.js";
-import homePage from "./pages/home/index.js";
-import feedPage from "./pages/feed/index.js";
-import notFoundPage from "./pages/not-found/index.js";
+import loginPage from './pages/login/index.js';
+import homePage from './pages/home/index.js';
+import feedPage from './pages/feed/index.js';
+import notFoundPage from './pages/not-found/index.js';
 
-import auth from "./services/auth.js";
+import auth from './services/auth.js';
 
-const main = document.getElementById("main");
+const main = document.getElementById('main');
 
 const routes = {
   '/': {
-    title: "Página inicial",
+    title: 'Página inicial',
     protected: true,
-    functions: homePage,
+    createPage: homePage,
   },
   '/login': {
-    title: "Acesse sua conta",
-    functions: loginPage,
+    title: 'Acesse sua conta',
+    createPage: loginPage,
   },
   '/feed': {
-    title: "Feed",
+    title: 'Feed',
     protected: true,
-    functions: feedPage,
+    createPage: feedPage,
   },
   '/not-found': {
-    title: "Página não encontrada",
-    functions: notFoundPage,
+    title: 'Página não encontrada',
+    createPage: notFoundPage,
   },
+};
+
+export const changePage = (page) => {
+  const route = routes[page];
+  const title = route.title;
+  window.history.pushState({}, title, page);
+  printPage(page);
 };
 
 const printPage = (page) => {
   let route = routes[page];
-  if(!route) {
+  if (!route) {
     route = routes['/notFound'];
   }
 
@@ -39,26 +46,21 @@ const printPage = (page) => {
   }
 
   if (page === '/login' && auth.getUser()) {
-    return changePage('/');
+    changePage('/');
+  } else {
+    document.title = route.title;
+    main.innerHTML = '';
+    const pageElement = route.createPage();
+    main.appendChild(pageElement);
   }
-
-  document.title = route.title;
-  main.innerHTML = route.functions.createHTML();
-  route.functions.registerListeners();
-}
-
+};
 
 export const initiate = () => {
-  window.addEventListener("popstate", () => {
+  window.addEventListener('popstate', () => {
     printPage(window.location.pathname);
   });
 
-  printPage(window.location.pathname);
-};
-
-export const changePage = (page) => {
-  const route = routes[page]
-  const title = route.title;
-  history.pushState({}, title, page);
-  window.dispatchEvent(new PopStateEvent("popstate"));
+  window.addEventListener('load', () => {
+    printPage(window.location.pathname);
+  });
 };
