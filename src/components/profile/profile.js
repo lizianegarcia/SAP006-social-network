@@ -1,14 +1,21 @@
-// eslint-disable-next-line import/no-cycle
+/* eslint-disable import/no-cycle */
+
+import firebase from '../../services/firebase.js';
 import { logout } from './logout.js';
 
-const createHTML = () => `
+const createPage = () => {
+  const user = firebase.getUser();
+  const rootElement = document.createElement('div');
+  const contentnewElement = `
+  <p>${user.displayName}</p>
         
-        <button id="logout">Sair</button>
-    `;
+  <button id="logout">Sair</button>
+`;
+  rootElement.innerHTML = contentnewElement;
 
-const registerListeners = () => {
-  const logoutButton = document.getElementById('logout');
+  const logoutButton = rootElement.querySelector('#logout');
   logoutButton.addEventListener('click', logout);
-};
 
-export default { createHTML, registerListeners };
+  return rootElement;
+};
+export default createPage;
