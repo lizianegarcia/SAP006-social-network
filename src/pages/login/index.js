@@ -25,8 +25,8 @@ const createPage = () => {
           <i id="show1" class="fa fa-eye" aria-hidden="true"></i>
             <i id=" hide1" class="fa fa-eye-slash" aria-hidden="true"></i>
         </div>
-        <p id="sign-in-password-error"></p>
       </div>
+      <p id="sign-in-password-error"></p>
       <input type="submit" value="Entrar" id="entrar" class="btn solid" />
       <p id="sign-in-error"></p>
       <p class="social-text">Ou entre com o Google</p>
@@ -65,7 +65,7 @@ const createPage = () => {
       <p id="sign-up-error"></p>
       <p class="social-text">Ou cadastre-se com o Google</p>
       <div class="social-media">
-        <a href="#" class="social-icon">
+        <a href="#" id='sign-up-google'class="social-icon">
           <i class="fab fa-google"></i>
         </a>
       </div>
@@ -110,7 +110,8 @@ const createPage = () => {
   const togglePassword = rootElement.querySelectorAll('.toggle');
 
   const googleSignInButton = rootElement.querySelector('#sign-in-google');
-  const signInForm = rootElement.querySelector('#entrar');
+  const googleSignUpButton = rootElement.querySelector('#sign-up-google');
+  const signInForm = rootElement.querySelector('.sign-in-form');
   const signUpForm = rootElement.querySelector('#form-sign-up');
 
   const emailInputIn = rootElement.querySelector('#sign-in-email');
@@ -166,36 +167,24 @@ const createPage = () => {
   // Login Google;
   googleSignInButton.addEventListener('click', () => {
     firebase.signInWithGoogle();
+    changePage('/feed');
+  });
+  // Cadastro Google;
+
+  googleSignUpButton.addEventListener('click', () => {
+    firebase.signUpWithGoogle();
     changePage('/');
   });
 
   // Login email e senha
 
-  signInForm.addEventListener('click', () => {
+  signInForm.addEventListener('submit', (event) => {
+    event.preventDefault();
     const email = emailInputIn.value;
     const password = passwordInputIn.value;
 
     signIn(email, password);
   });
-
-  // Criar conta
-  function signUpMode() {
-    if (validName && validEmail && validPassword) {
-      msgSuccess.style.display = 'block';
-      msgSuccess.setAttribute('style', 'color: green');
-      msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>';
-      msgError.setAttribute('style', 'display: none');
-      msgError.innerHTML = '';
-    } else {
-      msgError.style.display = 'block';
-      msgError.setAttribute('style', 'color: red');
-      msgError.innerHTML = '<strong>Preencha todos os campos corretamente </strong>';
-      msgSuccess.innerHTML = '';
-      msgSuccess.setAttribute('style', 'display: none');
-    }
-  }
-
-  signInForm.addEventListener('click', signUpMode);
 
   nameInput.addEventListener('keyup', () => {
     if (nameInput.value.length <= 2) {

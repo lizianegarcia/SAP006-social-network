@@ -1,4 +1,4 @@
-/* eslint-disable import/no-cycle */
+// /* eslint-disable import/no-cycle */
 import firebase from '../../services/firebase.js';
 import { changePage } from '../../router.js';
 
@@ -19,7 +19,7 @@ export const signIn = (email, password) => {
     hasError = true;
   }
 
-  if (password) {
+  if (!password) {
     passwordError.innerHTML = 'Ops, faltou sua senha';
     passwordError.style.display = 'block';
     hasError = true;
