@@ -2,7 +2,7 @@
 import firebase from '../../services/firebase.js';
 import { changePage } from '../../router.js';
 
-export const signIn = (email, password) => {
+export const signIn = async (email, password) => {
   let hasError = false;
 
   const emailError = document.querySelector('#sign-in-email-error');
@@ -15,22 +15,25 @@ export const signIn = (email, password) => {
 
   if (!email) {
     emailError.innerHTML = 'Ops, faltou seu email!';
+    emailError.setAttribute('style', 'color: red');
     emailError.style.display = 'block';
     hasError = true;
   }
 
   if (!password) {
     passwordError.innerHTML = 'Ops, faltou sua senha';
+    passwordError.setAttribute('style', 'color: red');
     passwordError.style.display = 'block';
     hasError = true;
   }
   if (hasError) {
     try {
-      firebase.signIn(email, password);
+      await firebase.signIn(email, password);
       changePage('/');
     } catch (error) {
       console.error(error);
       signInError.innerHTML = 'Ops, não está autenticado.';
+      signInError.setAttribute('style', 'color: red');
       signInError.style.display = 'block';
     }
   }

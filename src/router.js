@@ -39,17 +39,18 @@ export const changePage = (page) => {
   printPage(page);
 };
 
-const printPage = (page) => {
+const printPage = async (page) => {
+  const userIsLogged = await firebase.getUser();
   let route = routes[page];
   if (!route) {
     route = routes['/notFound'];
   }
 
-  if (route.protected && !firebase.getUser()) {
+  if (route.protected && !userIsLogged) {
     route = routes['/login'];
   }
 
-  if (page === '/login' && firebase.getUser()) {
+  if (page === '/login' && userIsLogged) {
     changePage('/');
   } else {
     document.title = route.title;

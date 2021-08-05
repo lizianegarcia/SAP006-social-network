@@ -17,6 +17,7 @@ export const signUp = async (name, email, password) => {
       signUpError.innerHTML = 'Ops, e-mail já registrado!';
     } else {
       signUpError.innerHTML = 'Ops, não foi possível criar um usuário!';
+      signUpError.setAttribute('style', 'color: red');
     }
 
     signUpError.style.display = 'block';
