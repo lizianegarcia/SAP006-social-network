@@ -5,8 +5,8 @@ import { changePage } from '../router.js';
 
 const getUser = () => firebase.auth().currentUser;
 
-const updateUser = (name) => {
-  const user = getUser();
+const updateUser = async (name) => {
+  const user = await getUser();
   user.updateProfile({
     displayName: name,
   });
@@ -43,8 +43,8 @@ const signUpWithGoogle = () => {
 
 const signIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
-const signUp = (name, email, password) => {
-  const user = firebase.auth().createUserWithEmailAndPassword(email, password);
+const signUp = async (name, email, password) => {
+  const user = await firebase.auth().createUserWithEmailAndPassword(email, password);
   updateUser(name);
   return user;
 };

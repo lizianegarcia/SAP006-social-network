@@ -18,15 +18,18 @@ const createPage = () => {
         <input type="text" id='sign-in-email' placeholder="E-mail" />
       </div>
       <p id="sign-in-email-error"></p>
+      
       <div class="input-field">
         <i class="fas fa-lock"></i>
-        <input type="password" placeholder="Senha" id="password1" class="password" />
+        <input type="password" placeholder="Senha" id="password1" 
+        class="password" />
         <div class="toggle">
           <i id="show1" class="fa fa-eye" aria-hidden="true"></i>
             <i id=" hide1" class="fa fa-eye-slash" aria-hidden="true"></i>
         </div>
       </div>
       <p id="sign-in-password-error"></p>
+      
       <input type="submit" value="Entrar" id="entrar" class="btn solid" />
       <p id="sign-in-error"></p>
       <p class="social-text">Ou entre com o Google</p>
@@ -167,7 +170,6 @@ const createPage = () => {
   // Login Google;
   googleSignInButton.addEventListener('click', () => {
     firebase.signInWithGoogle();
-    changePage('/feed');
   });
   // Cadastro Google;
 
