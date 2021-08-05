@@ -1,8 +1,8 @@
 /* eslint-disable import/no-cycle */
-import auth from '../../services/auth.js';
+import firebase from '../../services/firebase.js';
 import { changePage } from '../../router.js';
 
 export const logout = () => {
-  auth.logout();
+  firebase.signOut();
   changePage('/login');
 };

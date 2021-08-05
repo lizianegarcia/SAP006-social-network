@@ -1,13 +1,13 @@
-/* eslint-disable consistent-return */
 /* eslint-disable no-use-before-define */
-/* eslint-disable no-restricted-globals */
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable import/no-cycle */
 import loginPage from './pages/login/index.js';
 import homePage from './pages/home/index.js';
 import feedPage from './pages/feed/index.js';
 import notFoundPage from './pages/not-found/index.js';
 
-import auth from './services/auth.js';
+import firebase from './services/firebase.js';
 
 const main = document.getElementById('main');
 
@@ -15,21 +15,28 @@ const routes = {
   '/': {
     title: 'Página inicial',
     protected: true,
-    functions: homePage,
+    createPage: homePage,
   },
   '/login': {
     title: 'Acesse sua conta',
-    functions: loginPage,
+    createPage: loginPage,
   },
   '/feed': {
     title: 'Feed',
     protected: true,
-    functions: feedPage,
+    createPage: feedPage,
   },
   '/not-found': {
     title: 'Página não encontrada',
-    functions: notFoundPage,
+    createPage: notFoundPage,
   },
+};
+
+export const changePage = (page) => {
+  const route = routes[page];
+  const title = route.title;
+  window.history.pushState({}, title, page);
+  printPage(page);
 };
 
 const printPage = (page) => {
@@ -38,17 +45,18 @@ const printPage = (page) => {
     route = routes['/notFound'];
   }
 
-  if (route.protected && !auth.getUser()) {
+  if (route.protected && !firebase.getUser()) {
     route = routes['/login'];
   }
 
-  if (page === '/login' && auth.getUser()) {
-    return changePage('/');
+  if (page === '/login' && firebase.getUser()) {
+    changePage('/');
+  } else {
+    document.title = route.title;
+    main.innerHTML = '';
+    const pageElement = route.createPage();
+    main.appendChild(pageElement);
   }
-
-  document.title = route.title;
-  main.innerHTML = route.functions.createHTML();
-  route.functions.registerListeners();
 };
 
 export const initiate = () => {
@@ -56,12 +64,7 @@ export const initiate = () => {
     printPage(window.location.pathname);
   });
 
-  printPage(window.location.pathname);
-};
-
-export const changePage = (page) => {
-  const route = routes[page];
-  const title = route.title;
-  history.pushState({}, title, page);
-  window.dispatchEvent(new PopStateEvent('popstate'));
+  window.addEventListener('load', () => {
+    printPage(window.location.pathname);
+  });
 };
