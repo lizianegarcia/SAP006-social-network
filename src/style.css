@@ -10,7 +10,6 @@
   --light-gray: #f0f0f0;
 }
 
-
 * {
   margin: 0;
   padding: 0;
@@ -73,7 +72,7 @@ form.sign-in-form {
 
 .logo {
     width: 30%;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .title {
@@ -139,7 +138,7 @@ form.sign-in-form {
 }
 
 .social-text {
-  padding: 0.7rem 0;
+  padding: 0.5rem 0;
   font-size: 1rem;
 }
 
