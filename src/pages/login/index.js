@@ -1,5 +1,8 @@
 /* eslint-disable import/no-cycle */
-import { login } from './login.js';
+import firebase from '../../services/firebase.js';
+import { changePage } from '../../router.js';
+import { signIn } from './signIn.js';
+import { signUp } from './signUp.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
@@ -13,7 +16,7 @@ const createPage = () => {
         <i class="fas fa-user"></i>
         <input type="text" id='sign-in-email' placeholder="E-mail" />
       </div>
-      <p id="email-error"></p>
+      <p id="sign-in-email-error"></p>
       <div class="input-field">
         <i class="fas fa-lock"></i>
         <input type="password" placeholder="Senha" id="password1" class="password" />
@@ -21,11 +24,13 @@ const createPage = () => {
           <i id="show1" class="fa fa-eye" aria-hidden="true"></i>
             <i id=" hide1" class="fa fa-eye-slash" aria-hidden="true"></i>
         </div>
+        <p id="sign-in-password-error"></p>
       </div>
       <input type="submit" value="Entrar" id="entrar" class="btn solid" />
+      <p id="sign-in-error"></p>
       <p class="social-text">Ou entre com o Google</p>
       <div class="social-media">
-        <a href="#" class="social-icon">
+        <a href="#" id="sign-in-google" class="social-icon">
           <i class="fab fa-google"></i>
         </a>
       </div>
@@ -42,6 +47,7 @@ const createPage = () => {
         <input type="email" id="sign-up-email" placeholder="Email"  />
       </div>
       <span class='msg-erro msg-email'></span>
+      <p id="sign-up-email-error"></p>
       <div class="input-field">
         <i class="fas fa-lock"></i>
         <input type="password" placeholder="Senha" id="password2" class="password"  />
@@ -50,10 +56,12 @@ const createPage = () => {
           <i id="hide2" class="fa fa-eye-slash" aria-hidden="true"></i>
         </div>
       </div>
+      <p id="sign-up-password-error"></p>
       <span class='msg-erro msg-senha'></span>
       <div id='msgError'></div>
       <div id='msgSuccess'></div>
       <input type="submit" class="btn" id="register" value="Cadastrar" />
+      <p id="sign-up-error"></p>
       <p class="social-text">Ou cadastre-se com o Google</p>
       <div class="social-media">
         <a href="#" class="social-icon">
@@ -99,21 +107,29 @@ const createPage = () => {
   const signUpBtn = rootElement.querySelector('#sign-up-btn');
   const container = rootElement.querySelector('.container');
   const togglePassword = rootElement.querySelectorAll('.toggle');
-  const signUp = rootElement.querySelector('#register');
+
+  const googleSignInButton = rootElement.querySelector('#sign-in-google');
+  const signInForm = rootElement.querySelector('#entrar');
+  const signUpForm = rootElement.querySelector('#form-sign-up');
+
+  const emailInputIn = rootElement.querySelector('#sign-in-email');
+  const passwordInputIn = rootElement.querySelector('#password1');
+
+  const nameInput = rootElement.querySelector('#sign-up-username');
+  const emailInput = rootElement.querySelector('#sign-up-email');
+  const passwordInput = rootElement.querySelector('#password2');
+
   const verificarEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-  const nameUser = rootElement.querySelector('#sign-up-username');
-  const msgName = rootElement.querySelector('.msg-nome');
-  let validName = false;
-  const email = rootElement.querySelector('#sign-up-email');
-  const msgEmail = rootElement.querySelector('.msg-email');
-  let validEmail = false;
-  const signUpPassword = rootElement.querySelector('#password2');
-  const msgPassword = rootElement.querySelector('.msg-senha');
-  let validPassword = false;
+
   const msgError = rootElement.querySelector('#msgError');
   const msgSuccess = rootElement.querySelector('#msgSuccess');
-  const emailInput = rootElement.querySelector('#sign-in-email');
-  const loginButton = rootElement.querySelector('#entrar');
+  const msgName = rootElement.querySelector('.msg-nome');
+  const msgEmail = rootElement.querySelector('.msg-email');
+  const msgPassword = rootElement.querySelector('.msg-senha');
+
+  let validName = false;
+  let validEmail = false;
+  let validPassword = false;
 
   signUpBtn.addEventListener('click', () => {
     container.classList.add('sign-up-mode');
@@ -130,17 +146,38 @@ const createPage = () => {
     const showPassword = toggle.querySelector('.fa-eye');
     const hidePassword = toggle.querySelector('.fa-eye-slash');
 
+    hidePassword.style.display = 'none';
+    showPassword.style.display = 'none';
+
     if (password.getAttribute('type') === 'password') {
       password.setAttribute('type', 'text');
       showPassword.style.display = 'block';
-      hidePassword.style.display = 'none';
     } else {
       password.setAttribute('type', 'password');
-      showPassword.style.display = 'none';
       hidePassword.style.display = 'block';
     }
   };
 
+  togglePassword.forEach((btn) => {
+    btn.addEventListener('click', showHidePassword);
+  });
+
+  // Login Google;
+  googleSignInButton.addEventListener('click', () => {
+    firebase.signInWithGoogle();
+    changePage('/');
+  });
+
+  // Login email e senha
+
+  signInForm.addEventListener('click', () => {
+    const email = emailInputIn.value;
+    const password = passwordInputIn.value;
+
+    signIn(email, password);
+  });
+
+  // Criar conta
   function signUpMode() {
     if (validName && validEmail && validPassword) {
       msgSuccess.style.display = 'block';
@@ -157,40 +194,31 @@ const createPage = () => {
     }
   }
 
-  togglePassword.forEach((btn) => {
-    btn.addEventListener('click', showHidePassword);
-  });
-  // Login
-  loginButton.addEventListener('click', () => {
-    const emailsgn = emailInput.value;
-    login(emailsgn);
-  });
-  // validação
-  signUp.addEventListener('click', signUpMode);
+  signInForm.addEventListener('click', signUpMode);
 
-  nameUser.addEventListener('keyup', () => {
-    if (nameUser.value.length <= 2) {
-      nameUser.setAttribute('style', 'color: red');
+  nameInput.addEventListener('keyup', () => {
+    if (nameInput.value.length <= 2) {
+      nameInput.setAttribute('style', 'color: red');
       msgName.innerHTML = 'Favor preencher o Nome';
       msgName.style.display = 'block';
       msgName.setAttribute('style', 'color: red');
       validName = false;
     } else {
-      nameUser.setAttribute('style', 'color: green');
+      nameInput.setAttribute('style', 'color: green');
       msgName.style.display = 'none';
       validName = true;
     }
   });
 
-  email.addEventListener('keyup', () => {
-    if (email.value.length <= 2) {
-      email.setAttribute('style', 'color: red');
+  emailInput.addEventListener('keyup', () => {
+    if (emailInput.value.length <= 2) {
+      emailInput.setAttribute('style', 'color: red');
       msgEmail.innerHTML = 'Favor preencher o Email';
       msgEmail.style.display = 'block';
       msgEmail.setAttribute('style', 'color: red');
       validEmail = false;
-    } else if (verificarEmail.test(email.value)) {
-      email.setAttribute('style', 'color: green');
+    } else if (verificarEmail.test(emailInput.value)) {
+      emailInput.setAttribute('style', 'color: green');
       msgEmail.style.display = 'none';
       validEmail = true;
     } else {
@@ -200,19 +228,44 @@ const createPage = () => {
     }
   });
 
-  signUpPassword.addEventListener('keyup', () => {
-    if (signUpPassword.value.length <= 5) {
+  passwordInput.addEventListener('keyup', () => {
+    if (passwordInput.value.length <= 5) {
       msgPassword.setAttribute('style', 'color: red');
       msgPassword.innerHTML = 'Insira no mínimo 6 caracteres';
       msgPassword.style.display = 'block';
       msgPassword.setAttribute('style', 'color: red');
       validPassword = false;
     } else {
-      signUpPassword.setAttribute('style', 'color: green');
+      passwordInput.setAttribute('style', 'color: green');
       msgPassword.style.display = 'none';
       validPassword = true;
     }
   });
+
+  signUpForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (validName && validEmail && validPassword) {
+      msgSuccess.style.display = 'block';
+      msgSuccess.setAttribute('style', 'color: green');
+      msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>';
+      msgError.setAttribute('style', 'display: none');
+      msgError.innerHTML = '';
+
+      const name = nameInput.value;
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      await signUp(name, email, password);
+    } else {
+      msgError.style.display = 'block';
+      msgError.setAttribute('style', 'color: red');
+      msgError.innerHTML = '<strong>Preencha todos os campos corretamente </strong>';
+      msgSuccess.innerHTML = '';
+      msgSuccess.setAttribute('style', 'display: none');
+    }
+  });
+
   return rootElement;
 };
 

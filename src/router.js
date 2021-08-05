@@ -1,11 +1,10 @@
-/* eslint-disable no-use-before-define */
 /* eslint-disable import/no-cycle */
 import loginPage from './pages/login/index.js';
 import homePage from './pages/home/index.js';
 import feedPage from './pages/feed/index.js';
 import notFoundPage from './pages/not-found/index.js';
 
-import auth from './services/auth.js';
+import firebase from './services/firebase.js';
 
 const main = document.getElementById('main');
 
@@ -43,11 +42,11 @@ const printPage = (page) => {
     route = routes['/notFound'];
   }
 
-  if (route.protected && !auth.getUser()) {
+  if (route.protected && !firebase.getUser()) {
     route = routes['/login'];
   }
 
-  if (page === '/login' && auth.getUser()) {
+  if (page === '/login' && firebase.getUser()) {
     changePage('/');
   } else {
     document.title = route.title;
