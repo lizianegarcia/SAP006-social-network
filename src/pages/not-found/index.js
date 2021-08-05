@@ -1,17 +1,21 @@
-import { changePage } from "../../router.js";
+/* eslint-disable import/no-cycle */
+import { changePage } from '../../router.js';
 
-const createHTML = () => {
-  return `
+const createPage = () => {
+  const rootElement = document.createElement('div');
+  const contentnewElement = `
     <h1>Ops! Página não encontrada.</h1>
     <a id="go-back">Voltar para página inicial</a>
   `;
-};
+  // registerListener
+  rootElement.innerHTML = contentnewElement;
 
-const registerListeners = () => {
-  const goBackButton = document.getElementById("go-back");
-  goBackButton.addEventListener("click", () => {
+  const goBackButton = rootElement.querySelector('#go-back');
+  goBackButton.addEventListener('click', () => {
     changePage('/');
   });
+
+  return rootElement;
 };
 
-export default { createHTML, registerListeners };
+export default createPage;
