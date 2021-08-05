@@ -26,20 +26,20 @@ const signInWithGoogle = () => {
     });
 };
 
-// export const signUpWithGoogle = () => {
-//   const providerSignUp = new firebase.auth.GoogleAuthProvider();
-//   providerSignUp.addScope('profile');
-//   providerSignUp.addScope('email');
-//   firebase.auth().signInWithPopup(providerSignUp)
-//     .then((result) => {
-//       changePage('/');
-//       console.log(result);
-//     }).catch((error) => {
-//       alert('Falha de Registro');
-//       console.log(error);
-//     });
-//   return providerSignUp;
-// };
+const signUpWithGoogle = () => {
+  const providerSignUp = new firebase.auth.GoogleAuthProvider();
+  providerSignUp.addScope('profile');
+  providerSignUp.addScope('email');
+  firebase.auth().signInWithPopup(providerSignUp)
+    .then((result) => {
+      changePage('/');
+      console.log(result);
+    }).catch((error) => {
+      alert('Falha de Registro');
+      console.log(error);
+    });
+  return providerSignUp;
+};
 
 const signIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
@@ -52,5 +52,5 @@ const signUp = (name, email, password) => {
 const signOut = () => firebase.auth().signOut();
 
 export default {
-  getUser, updateUser, signInWithGoogle, signIn, signUp, signOut,
+  getUser, updateUser, signInWithGoogle, signUpWithGoogle, signIn, signUp, signOut,
 };
