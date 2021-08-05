@@ -7,10 +7,11 @@ import homePage from './pages/home/index.js';
 import feedPage from './pages/feed/index.js';
 import notFoundPage from './pages/not-found/index.js';
 
-<<<<<<< HEAD
-import auth from './services/auth.js';
-=======
 import firebase from './services/firebase.js';
+
+const main = document.getElementById('main');
+
+const routes = {
   '/': {
     title: 'Página inicial',
     protected: true,
@@ -18,11 +19,7 @@ import firebase from './services/firebase.js';
   },
   '/login': {
     title: 'Acesse sua conta',
-<<<<<<< HEAD
-    functions: loginPage,
-=======
     createPage: loginPage,
->>>>>>> b91b974154080cc02a6e410c927c885d2a7b6a0b
   },
   '/feed': {
     title: 'Feed',
@@ -31,13 +28,6 @@ import firebase from './services/firebase.js';
   },
   '/not-found': {
     title: 'Página não encontrada',
-<<<<<<< HEAD
-    functions: notFoundPage,
-  },
-};
-
-// eslint-disable-next-line consistent-return
-=======
     createPage: notFoundPage,
   },
 };
@@ -49,7 +39,6 @@ export const changePage = (page) => {
   printPage(page);
 };
 
->>>>>>> b91b974154080cc02a6e410c927c885d2a7b6a0b
 const printPage = (page) => {
   let route = routes[page];
   if (!route) {
@@ -68,13 +57,6 @@ const printPage = (page) => {
     const pageElement = route.createPage();
     main.appendChild(pageElement);
   }
-<<<<<<< HEAD
-
-  document.title = route.title;
-  main.innerHTML = route.functions.createHTML();
-  route.functions.registerListeners();
-=======
->>>>>>> b91b974154080cc02a6e410c927c885d2a7b6a0b
 };
 
 export const initiate = () => {
@@ -86,13 +68,3 @@ export const initiate = () => {
     printPage(window.location.pathname);
   });
 };
-<<<<<<< HEAD
-
-export const changePage = (page) => {
-  const route = routes[page];
-  const title = route.title;
-  history.pushState({}, title, page);
-  window.dispatchEvent(new PopStateEvent('popstate'));
-};
-=======
->>>>>>> b91b974154080cc02a6e410c927c885d2a7b6a0b
