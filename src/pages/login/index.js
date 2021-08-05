@@ -11,7 +11,7 @@ const createPage = () => {
 <div class="forms-container">
   <div class="signin-signup">
     <form action="#" class="sign-in-form">
-      <img src="img/Amitié.png" alt="" class="logo">
+      <img src="img/Amitié1.png" alt="" class="logo">
       <h2 class="title">Login</h2>
       <div class="input-field">
         <i class="fas fa-user"></i>
@@ -37,7 +37,6 @@ const createPage = () => {
       </div>
     </form>
     <form action="#"  id="form-sign-up" class="sign-up-form">
-    <img src="img/Amitié.png" alt="" class="logo">
       <h2 class="title">Criar uma Conta</h2>
       <div class="input-field">
         <i class="fas fa-user"></i>
