@@ -1,26 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-
-:root {
-  --teal: #229e90;
-  --teal-hover: #39BCAC;;
-  --ultra-pink: #FF6585;
-  --space-cadet: #403E56;
-  --dark-gray: #444444;
-  --medium-gray: #ACACAC;
-  --light-gray: #f0f0f0;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body,
-input {
-  font-family: "Poppins", sans-serif;
-}
-
 .container {
   position: relative;
   width: 100%;
@@ -63,7 +40,7 @@ form {
 
 
 
-form.sign-in-form {
+form.reset-password {
   z-index: 2;
 }
 
@@ -204,12 +181,12 @@ form.sign-in-form {
   left: 25%;
 }
 
-.container.sign-up-mode form.sign-up-form {
+.container.sign-up-mode form.reset-password {
   opacity: 1;
   z-index: 2;
 }
 
-.container.sign-up-mode form.sign-in-form {
+.container.sign-up-mode form.reset-password {
   opacity: 0;
   z-index: 1;
 }

@@ -1,15 +1,13 @@
 /* eslint-disable import/no-cycle */
-import forgotYourPassword from '../../services/firebase.js';
+import firebase from '../../services/firebase.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
   const contentnewElement = `
-  <link rel="stylesheet" href="./pages/reset-password/style.css" />
-  
   <section class="container">
   <div class="forms-container">
     <div class="signin-signup">
-      <form action="#" class="sign-in-form">
+      <form action="#" class="reset-password">
         <img src="img/Amitié1.png" alt="" class="logo">
         <h2 class="title">Para redefinir sua senha, informe o endereço de e-mail cadastrado:</h2>
         <div class="input-field">
@@ -22,14 +20,14 @@ const createPage = () => {
   `;
   // // registerListener
   rootElement.innerHTML = contentnewElement;
-  const btnResetPassword = rootElement.querySelector('.sign-in-form');
+  const btnResetPassword = rootElement.querySelector('.reset-password');
   btnResetPassword.addEventListener('submit', (event) => {
     event.preventDefault();
     const emailInput = rootElement.querySelector('#sign-in-email');
 
     const email = emailInput.value;
 
-    forgotYourPassword(email);
+    firebase.forgotYourPassword(email);
   });
 
   return rootElement;

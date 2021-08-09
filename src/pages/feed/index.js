@@ -1,6 +1,3 @@
-/* eslint-disable import/no-cycle */
-import createComponent from '../../components/profile/profile.js';
-
 const createPage = () => {
   const rootElement = document.createElement('div');
   const contentnewElement = `
@@ -78,17 +75,16 @@ const createPage = () => {
 
   rootElement.innerHTML = contentnewElement;
 
-    const hamburger = rootElement.querySelector('#hamburger');
-    const navLinks = rootElement.querySelector('.navbar-links');
-    const links = rootElement.querySelectorAll('.navbar-links li');
+  const hamburger = rootElement.querySelector('#hamburger');
+  const navLinks = rootElement.querySelector('.navbar-links');
+  const links = rootElement.querySelectorAll('.navbar-links li');
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
-        links.forEach(link => {
-            link.classList.toggle('fade');
-        });
-    })
-
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    links.forEach((link) => {
+      link.classList.toggle('fade');
+    });
+  });
 
   return rootElement;
 };

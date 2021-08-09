@@ -261,9 +261,9 @@ const createPage = () => {
     }
   });
 
-const btnForgotPassword = rootElement.querySelector('#forgotPassword');
+  // const btnForgotPassword = rootElement.querySelector('#forgotPassword');
 
-btnForgotPassword.addEventListener
+  // btnForgotPassword.addEventListener('click', changePage('/reset-password'));
 
   return rootElement;
 };

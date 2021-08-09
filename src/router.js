@@ -1,7 +1,3 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable import/no-named-as-default-member */
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable import/no-cycle */
 import loginPage from './pages/login/index.js';
 import homePage from './pages/home/index.js';
 import createProfilePage from './pages/create-profile/index.js';
