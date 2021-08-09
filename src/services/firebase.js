@@ -50,17 +50,17 @@ const signUp = async (name, email, password) => {
 
 const signOut = () => firebase.auth().signOut();
 
-const verificationEmail = () => {
-  firebase.auth().currentUser.sendEmailVerification()
-    .then(() => {
-      console.log('Email verification sent!');
-      // redirecting the user to the profile page once everything is done correctly
-      changePage('/login');
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
+// const verificationEmail = () => {
+//   firebase.auth().currentUser.sendEmailVerification()
+//     .then(() => {
+//       console.log('Email verification sent!');
+//       // redirecting the user to the profile page once everything is done correctly
+//       changePage('/login');
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// };
 
 const forgotYourPassword = (email) => {
   const passwordReset = firebase.auth().sendPasswordResetEmail(email)
@@ -82,6 +82,5 @@ export default {
   signIn,
   signUp,
   signOut,
-  verificationEmail,
   forgotYourPassword,
 };

@@ -1,4 +1,5 @@
-// import { changePage } from '../../router.js';
+/* eslint-disable import/no-cycle */
+import forgotYourPassword from '../../services/firebase.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
@@ -21,11 +22,15 @@ const createPage = () => {
   `;
   // // registerListener
   rootElement.innerHTML = contentnewElement;
+  const btnResetPassword = rootElement.querySelector('.sign-in-form');
+  btnResetPassword.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const emailInput = rootElement.querySelector('#sign-in-email');
 
-  // const goBackButton = rootElement.querySelector('#go-back');
-  // goBackButton.addEventListener('click', () => {
-  //   changePage('/');
-  // });
+    const email = emailInput.value;
+
+    forgotYourPassword(email);
+  });
 
   return rootElement;
 };

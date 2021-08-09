@@ -12,7 +12,7 @@ const createPage = () => {
   <section class="container">
 <div class="forms-container">
   <div class="signin-signup">
-    <form action="#" class="sign-in-form">
+    <form action="#" id="sign-in-form" class="sign-in-form">
       <img src="img/Amitié1.png" alt="" class="logo">
       <h2 class="title">Login</h2>
       <div class="input-field">
@@ -33,7 +33,7 @@ const createPage = () => {
       <p id="sign-in-password-error"></p>
       <input type="submit" value="Entrar" id="entrar" class="btn solid" />
       <p id="sign-in-error"></p>
-      <a id="forgotPassword" class="forgotPasswordn">Esqueceu a sua senha? Clique aqui!</a>
+      <a id="forgotPassword" class="forgotPassword">Esqueceu a sua senha? Clique aqui!</a>
       <p class="social-text">Ou entre com o Google</p>
       <div class="social-media">
         <a href="#" id="sign-in-google" class="social-icon">
@@ -116,11 +116,8 @@ const createPage = () => {
 
   const googleSignInButton = rootElement.querySelector('#sign-in-google');
   const googleSignUpButton = rootElement.querySelector('#sign-up-google');
-  const signInForm = rootElement.querySelector('.sign-in-form');
+  const signInForm = rootElement.querySelector('#sign-in-form');
   const signUpForm = rootElement.querySelector('#form-sign-up');
-
-  const emailInputIn = rootElement.querySelector('#sign-in-email');
-  const passwordInputIn = rootElement.querySelector('#password1');
 
   const nameInput = rootElement.querySelector('#sign-up-username');
   const emailInput = rootElement.querySelector('#sign-up-email');
@@ -184,11 +181,15 @@ const createPage = () => {
 
   signInForm.addEventListener('submit', (event) => {
     event.preventDefault();
+    const emailInputIn = rootElement.querySelector('#sign-in-email');
+    const passwordInputIn = rootElement.querySelector('#password1');
     const email = emailInputIn.value;
     const password = passwordInputIn.value;
 
     signIn(email, password);
   });
+
+  // validacao cadastro
 
   nameInput.addEventListener('keyup', () => {
     if (nameInput.value.length <= 2) {
@@ -259,6 +260,10 @@ const createPage = () => {
       msgSuccess.setAttribute('style', 'display: none');
     }
   });
+
+const btnForgotPassword = rootElement.querySelector('#forgotPassword');
+
+btnForgotPassword.addEventListener
 
   return rootElement;
 };
