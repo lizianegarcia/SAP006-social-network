@@ -6,6 +6,7 @@ import loginPage from './pages/login/index.js';
 import homePage from './pages/home/index.js';
 import feedPage from './pages/feed/index.js';
 import notFoundPage from './pages/not-found/index.js';
+import profilePage from './pages/profile/index.js';
 
 import firebase from './services/firebase.js';
 
@@ -30,6 +31,10 @@ const routes = {
     title: 'Página não encontrada',
     createPage: notFoundPage,
   },
+  '/perfil': {
+    title: 'Perfil',
+    createPage: profilePage,
+  },
 };
 
 export const changePage = (page) => {
@@ -39,17 +44,18 @@ export const changePage = (page) => {
   printPage(page);
 };
 
-const printPage = (page) => {
+const printPage = async (page) => {
+  const userIsLogged = await firebase.getUser();
   let route = routes[page];
   if (!route) {
     route = routes['/notFound'];
   }
 
-  if (route.protected && !firebase.getUser()) {
+  if (route.protected && !userIsLogged) {
     route = routes['/login'];
   }
 
-  if (page === '/login' && firebase.getUser()) {
+  if (page === '/login' && userIsLogged) {
     changePage('/');
   } else {
     document.title = route.title;
