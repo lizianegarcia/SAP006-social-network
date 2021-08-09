@@ -27,7 +27,7 @@ export const signIn = async (email, password) => {
     passwordError.style.display = 'block';
     hasError = true;
   }
-  if (hasError) {
+  if (!hasError) {
     try {
       await firebase.signIn(email, password);
       changePage('/');
