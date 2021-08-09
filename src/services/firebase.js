@@ -1,6 +1,3 @@
-/* eslint-disable import/named */
-/* eslint-disable import/no-cycle */
-/* eslint-disable no-alert */
 import { changePage } from '../router.js';
 
 const getUser = () => firebase.auth().currentUser;

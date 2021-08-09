@@ -1,5 +1,4 @@
-/* eslint-disable import/named */
-/* eslint-disable import/no-cycle */
+
 import firebase from '../../services/firebase.js';
 import { changePage } from '../../router.js';
 import { signIn } from './signIn.js';
@@ -8,7 +7,6 @@ import { signUp } from './signUp.js';
 const createPage = () => {
   const rootElement = document.createElement('div');
   const contentnewElement = `
-  <link rel="stylesheet" href="./pages/login/style.css" />
   <section class="container">
 <div class="forms-container">
   <div class="signin-signup">
