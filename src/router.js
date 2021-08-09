@@ -36,3 +36,46 @@ const routes = {
     title: 'Página não encontrada',
     createPage: notFoundPage,
   },
+  '/reset-password': {
+    title: 'Esqueceu a senha',
+    createPage: resetPasswordPage,
+  },
+};
+
+export const changePage = (page) => {
+  const route = routes[page];
+  const title = route.title;
+  window.history.pushState({}, title, page);
+  printPage(page);
+};
+
+const printPage = async (page) => {
+  const userIsLogged = await firebase.getUser();
+  let route = routes[page];
+  if (!route) {
+    route = routes['/notFound'];
+  }
+
+  if (route.protected && !userIsLogged) {
+    route = routes['/login'];
+  }
+
+  if (page === '/login' && userIsLogged) {
+    changePage('/');
+  } else {
+    document.title = route.title;
+    main.innerHTML = '';
+    const pageElement = route.createPage();
+    main.appendChild(pageElement);
+  }
+};
+
+export const initiate = () => {
+  window.addEventListener('popstate', () => {
+    printPage(window.location.pathname);
+  });
+
+  window.addEventListener('load', () => {
+    printPage(window.location.pathname);
+  });
+};
