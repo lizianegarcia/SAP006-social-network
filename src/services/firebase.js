@@ -38,7 +38,6 @@ const signUpWithGoogle = () => {
       alert('Falha de Registro');
       console.log(error);
     });
-  return providerSignUp;
 };
 
 const signIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
@@ -51,6 +50,38 @@ const signUp = async (name, email, password) => {
 
 const signOut = () => firebase.auth().signOut();
 
+const verificationEmail = () => {
+  firebase.auth().currentUser.sendEmailVerification()
+    .then(() => {
+      console.log('Email verification sent!');
+      // redirecting the user to the profile page once everything is done correctly
+      changePage('/login');
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+const forgotYourPassword = (email) => {
+  const passwordReset = firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+      alert('E-mail enviado com sucesso!');
+    })
+    .catch((error) => {
+      alert('Falha de Login');
+      console.log(error);
+    });
+  return passwordReset;
+};
+
 export default {
-  getUser, updateUser, signInWithGoogle, signUpWithGoogle, signIn, signUp, signOut,
+  getUser,
+  updateUser,
+  signInWithGoogle,
+  signUpWithGoogle,
+  signIn,
+  signUp,
+  signOut,
+  verificationEmail,
+  forgotYourPassword,
 };
