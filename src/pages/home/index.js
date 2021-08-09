@@ -1,4 +1,4 @@
-/* eslint-disable import/no-cycle */
+
 import { changePage } from '../../router.js';
 
 const createPage = () => {
