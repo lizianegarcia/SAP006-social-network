@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 // /* eslint-disable import/no-cycle */
 import firebase from '../../services/firebase.js';
 import { changePage } from '../../router.js';

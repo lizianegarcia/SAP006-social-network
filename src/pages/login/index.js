@@ -7,7 +7,9 @@ import { signUp } from './signUp.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
-  const contentnewElement = `<section class="container">
+  const contentnewElement = `
+  <link rel="stylesheet" href="./pages/login/style.css" />
+  <section class="container">
 <div class="forms-container">
   <div class="signin-signup">
     <form action="#" class="sign-in-form">
@@ -29,9 +31,9 @@ const createPage = () => {
         </div>
       </div>
       <p id="sign-in-password-error"></p>
-      
       <input type="submit" value="Entrar" id="entrar" class="btn solid" />
       <p id="sign-in-error"></p>
+      <a id="forgotPassword" class="forgotPasswordn">Esqueceu a sua senha? Clique aqui!</a>
       <p class="social-text">Ou entre com o Google</p>
       <div class="social-media">
         <a href="#" id="sign-in-google" class="social-icon">
