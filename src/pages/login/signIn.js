@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable import/no-cycle */
 // /* eslint-disable import/no-cycle */
 import firebase from '../../services/firebase.js';
@@ -27,7 +28,7 @@ export const signIn = async (email, password) => {
     passwordError.style.display = 'block';
     hasError = true;
   }
-  if (hasError) {
+  if (!hasError) {
     try {
       await firebase.signIn(email, password);
       changePage('/');
