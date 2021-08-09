@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import createComponent from '../../components/profile/profile.js';
+
 
 const createPage = () => {
   const rootElement = document.createElement('div');
