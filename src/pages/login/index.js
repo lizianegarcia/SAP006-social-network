@@ -1,7 +1,7 @@
 /* eslint-disable import/named */
 /* eslint-disable import/no-cycle */
+import { changePage } from '../../routes/changePage.js';
 import firebase from '../../services/firebase.js';
-import { changePage } from '../../router.js';
 import { signIn } from './signIn.js';
 import { signUp } from './signUp.js';
 
@@ -261,9 +261,11 @@ const createPage = () => {
     }
   });
 
-  // const btnForgotPassword = rootElement.querySelector('#forgotPassword');
+  const btnForgotPassword = rootElement.querySelector('#forgotPassword');
 
-  // btnForgotPassword.addEventListener('click', changePage('/reset-password'));
+  btnForgotPassword.addEventListener('click', () => {
+    changePage('/reset-password');
+  });
 
   return rootElement;
 };
