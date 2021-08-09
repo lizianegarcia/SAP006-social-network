@@ -1,4 +1,3 @@
-
 import firebase from '../../services/firebase.js';
 import { changePage } from '../../router.js';
 import { signIn } from './signIn.js';
