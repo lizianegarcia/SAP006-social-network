@@ -1,26 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-
-:root {
-  --teal: #229e90;
-  --teal-hover: #39BCAC;;
-  --ultra-pink: #FF6585;
-  --space-cadet: #403E56;
-  --dark-gray: #444444;
-  --medium-gray: #ACACAC;
-  --light-gray: #f0f0f0;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body,
-input {
-  font-family: "Poppins", sans-serif;
-}
-
 .container {
   position: relative;
   width: 100%;
@@ -37,7 +14,7 @@ input {
   left: 0;
 }
 
-.signin-signup {
+.reset-container {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -63,7 +40,7 @@ form {
 
 
 
-form.sign-in-form {
+form.reset-password {
   z-index: 2;
 }
 
@@ -72,7 +49,7 @@ form.sign-in-form {
     margin-bottom: 40px;
 }
 
-.title {
+.title-reset {
   font-size: 0.9rem;
   color: #444;
   margin-bottom: 10px;
@@ -200,16 +177,16 @@ form.sign-in-form {
   transform: translateX(-800px);
 }
 
-.container.sign-up-mode .signin-signup {
+.container.sign-up-mode .reset-container {
   left: 25%;
 }
 
-.container.sign-up-mode form.sign-up-form {
+.container.sign-up-mode form.reset-password {
   opacity: 1;
   z-index: 2;
 }
 
-.container.sign-up-mode form.sign-in-form {
+.container.sign-up-mode form.reset-password {
   opacity: 0;
   z-index: 1;
 }
@@ -232,15 +209,15 @@ form.sign-in-form {
     min-height: 800px;
     height: 100vh;
   }
-  .signin-signup {
+  .reset-container  {
     width: 100%;
     top: 95%;
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
   }
 
-  .signin-signup,
-  .container.sign-up-mode .signin-signup {
+  .reset-container ,
+  .container.sign-up-mode .reset-container  {
     left: 50%;
   }
 
@@ -304,7 +281,7 @@ form.sign-in-form {
     transform: translateY(300px);
   }
 
-  .container.sign-up-mode .signin-signup {
+  .container.sign-up-mode .reset-container  {
     top: 5%;
     transform: translate(-50%, 0);
   }

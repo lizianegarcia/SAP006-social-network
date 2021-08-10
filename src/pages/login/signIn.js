@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 // /* eslint-disable import/no-cycle */
+import { changePage } from '../../routes/changePage.js';
 import firebase from '../../services/firebase.js';
-import { changePage } from '../../router.js';
 
 export const signIn = async (email, password) => {
   let hasError = false;

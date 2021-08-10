@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import profile from '../../components/profile/profile.js';
 
 const createPage = () => {
