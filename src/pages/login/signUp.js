@@ -1,7 +1,5 @@
-/* eslint-disable import/named */
-/* eslint-disable import/no-cycle */
+import { changePage } from '../../routes/changePage.js';
 import firebase from '../../services/firebase.js';
-import { changePage } from '../../router.js';
 
 export const signUp = async (name, email, password) => {
   const signUpError = document.querySelector('#sign-up-error');

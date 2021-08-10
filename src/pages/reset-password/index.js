@@ -1,16 +1,15 @@
-// import { changePage } from '../../router.js';
+import { changePage } from '../../routes/changePage.js';
+import firebase from '../../services/firebase.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
   const contentnewElement = `
-  <link rel="stylesheet" href="./pages/reset-password/style.css" />
-  
   <section class="container">
   <div class="forms-container">
-    <div class="signin-signup">
-      <form action="#" class="sign-in-form">
+    <div class="reset-container">
+      <form action="#" class="reset-password">
         <img src="img/Amitié1.png" alt="" class="logo">
-        <h2 class="title">Para redefinir sua senha, informe o endereço de e-mail cadastrado:</h2>
+        <h2 class="title-reset">Para redefinir sua senha, informe o endereço de e-mail cadastrado:</h2>
         <div class="input-field">
           <i class="fas fa-user"></i>
           <input type="text" id='sign-in-email' placeholder="digite seu e-mail." />
@@ -19,13 +18,17 @@ const createPage = () => {
       </form>
         </section>
   `;
-  // // registerListener
   rootElement.innerHTML = contentnewElement;
+  const btnResetPassword = rootElement.querySelector('.reset-password');
+  btnResetPassword.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const emailInput = rootElement.querySelector('#sign-in-email');
 
-  // const goBackButton = rootElement.querySelector('#go-back');
-  // goBackButton.addEventListener('click', () => {
-  //   changePage('/');
-  // });
+    const email = emailInput.value;
+
+    await firebase.forgotYourPassword(email);
+    changePage('/login');
+  });
 
   return rootElement;
 };

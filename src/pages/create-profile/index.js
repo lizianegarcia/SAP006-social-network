@@ -1,5 +1,5 @@
-/* eslint-disable func-names */
 /* eslint-disable no-use-before-define */
+/* eslint-disable func-names */
 const createPage = () => {
   // const user = firebase.getUser();
   const rootElement = document.createElement('div');
@@ -18,7 +18,7 @@ const createPage = () => {
   const inputImg = rootElement.querySelector('#input-file-profileImg');
   const profilePic = rootElement.querySelector('.photo');
   const userLog = rootElement.querySelector('#name-user');
-  // const reF = firebase.storage().ref('profile-Images');
+  const reF = firebase.storage().ref('profile-Images');
 
   const setUserData = () => {
     firebase.auth().onAuthStateChanged((userSign) => {
@@ -31,66 +31,48 @@ const createPage = () => {
     profilePic.src = newPic;
   };
 
-  const changeProfileImage = (file, trocaImg) => {
-    const ref = firebase.storage().ref('profileImages');
-    ref
-      .child(file.name)
-      .put(file)
-      .then(() => {
-        ref.child(file.name)
-          .getDownloadURL()
-          .then((url) => {
-            trocaImg(url);
-            firebase.auth().currentUser.updateProfile({
-              photoURL: url,
-            });
-          });
-      });
-  };
-
   const sendNewProfileImg = (changeImage) => {
     profilePic.addEventListener('click', () => {
       inputImg.style.opacity = 1;
       inputImg.onchange = (event) => {
-        changeProfileImage(event.target.files[0], changeImage);
+        sendImg(event.target.files[0], changeImage);
         inputImg.style.opacity = 0;
       };
     });
   };
 
-  // const sendImg = () => {
-  //   inputImg.onchange = (event) => {
-  //     const photo = event.target.files[0];
-  //     const reader = new FileReader();
-  //     const uid = firebase.database().ref().push().key;
+  const sendImg = () => {
+    inputImg.onchange = (event) => {
+      const photo = event.target.files[0];
+      const reader = new FileReader();
+      const uid = firebase.database().ref().push().key;
 
-  //     reader.readAsDataURL(photo);
-  //     reader.onload = function () {
-  //       const base64 = reader.result.split('base64,')[1];
+      reader.readAsDataURL(photo);
+      reader.onload = function () {
+        const base64 = reader.result.split('base64,')[1];
 
-  //       reF
-  //         .child(uid)
-  //         .putString(base64, 'base64', { contentType: 'image/png' })
-  //         .then((snapshot) => {
-  //           console.log('snapshot', snapshot);
-  //           reF
-  //             .child(uid)
-  //             .getDownloadURL()
-  //             .then((url) => {
-  //               console.log('string download', url);
-  //   firebase.auth().currentUser.updateProfile({
-  //     photoURL: url,
-  // });
-  //           });
-  //       });
-  //   };
-  // };
-  // sendImg();
-  setUserData();
-  changeProfileImage();
-  sendNewProfileImg(setNewProfileImg);
-  return rootElement;
+        reF
+          .child(uid)
+          .putString(base64, 'base64', { contentType: 'image/png' })
+          .then((snapshot) => {
+            console.log('snapshot', snapshot);
+            reF
+              .child(uid)
+              .getDownloadURL()
+              .then((url) => {
+                console.log('string download', url);
+                firebase.auth().currentUser.updateProfile({
+                  photoURL: url,
+                });
+              });
+          });
+      };
+    };
+    sendImg();
+    setUserData();
+    // changeProfileImage();
+    sendNewProfileImg(setNewProfileImg);
+    return rootElement;
+  };
 };
-// };
-
 export default createPage;
