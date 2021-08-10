@@ -1,5 +1,6 @@
-import { changePage } from '../router.js';
+import { changePage } from '../routes/changePage.js';
 
+/* eslint-disable no-alert */
 const getUser = () => firebase.auth().currentUser;
 
 const updateUser = async (name) => {
@@ -13,7 +14,7 @@ const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope('profile');
   provider.addScope('email');
-  firebase.auth().signInWithPopup(provider)
+  return firebase.auth().signInWithPopup(provider)
     .then((result) => {
       changePage('/');
       console.log(result);
@@ -27,7 +28,7 @@ const signUpWithGoogle = () => {
   const providerSignUp = new firebase.auth.GoogleAuthProvider();
   providerSignUp.addScope('profile');
   providerSignUp.addScope('email');
-  firebase.auth().signInWithPopup(providerSignUp)
+  return firebase.auth().signInWithPopup(providerSignUp)
     .then((result) => {
       changePage('/');
       console.log(result);
@@ -47,17 +48,17 @@ const signUp = async (name, email, password) => {
 
 const signOut = () => firebase.auth().signOut();
 
-const verificationEmail = () => {
-  firebase.auth().currentUser.sendEmailVerification()
-    .then(() => {
-      console.log('Email verification sent!');
-      // redirecting the user to the profile page once everything is done correctly
-      changePage('/login');
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
+// const verificationEmail = () => {
+//   firebase.auth().currentUser.sendEmailVerification()
+//     .then(() => {
+//       console.log('Email verification sent!');
+//       // redirecting the user to the profile page once everything is done correctly
+//       changePage('/login');
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// };
 
 const forgotYourPassword = (email) => {
   const passwordReset = firebase.auth().sendPasswordResetEmail(email)
@@ -79,6 +80,5 @@ export default {
   signIn,
   signUp,
   signOut,
-  verificationEmail,
   forgotYourPassword,
 };

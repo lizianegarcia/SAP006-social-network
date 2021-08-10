@@ -1,5 +1,4 @@
-/* eslint-disable import/no-cycle */
-import { changePage } from '../../router.js';
+import { changePage } from '../../routes/changePage.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');

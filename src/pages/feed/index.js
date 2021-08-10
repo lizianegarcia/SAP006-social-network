@@ -1,4 +1,3 @@
-
 import profile from '../../components/profile/profile.js';
 
 const createPage = () => {
@@ -77,20 +76,19 @@ const createPage = () => {
 
   rootElement.innerHTML = contentnewElement;
 
-    const hamburger = rootElement.querySelector('#hamburger');
-    const navLinks = rootElement.querySelector('.navbar-links');
-    const links = rootElement.querySelectorAll('.navbar-links li');
-    const section = rootElement.querySelector('.post-feed')
+  const hamburger = rootElement.querySelector('#hamburger');
+  const navLinks = rootElement.querySelector('.navbar-links');
+  const links = rootElement.querySelectorAll('.navbar-links li');
+  const section = rootElement.querySelector('.post-feed');
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
-        links.forEach(link => {
-            link.classList.toggle('fade');
-        });
-    })
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    links.forEach((link) => {
+      link.classList.toggle('fade');
+    });
+  });
 
-    section.appendChild(profile());
-
+  section.appendChild(profile());
 
   return rootElement;
 };
