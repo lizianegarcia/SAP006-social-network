@@ -1,8 +1,8 @@
+import profile from '../../components/profile/profile.js';
+
 const createPage = () => {
   const rootElement = document.createElement('div');
-  const contentnewElement = `
-        <link rel="stylesheet" href="./pages/feed/style.css" />
-        
+  const contentnewElement = `        
         <header>
             <nav class="feed-navbar">
                 <img class="feed-logo" src="./img/Amitié2.png" alt="">
@@ -69,6 +69,7 @@ const createPage = () => {
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                 <i class="fas fa-heart" id="heart"></i>
             </div>
+
         </section>
         </main>
     `;
@@ -78,6 +79,7 @@ const createPage = () => {
   const hamburger = rootElement.querySelector('#hamburger');
   const navLinks = rootElement.querySelector('.navbar-links');
   const links = rootElement.querySelectorAll('.navbar-links li');
+  const section = rootElement.querySelector('.post-feed');
 
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
@@ -85,6 +87,8 @@ const createPage = () => {
       link.classList.toggle('fade');
     });
   });
+
+  section.appendChild(profile());
 
   return rootElement;
 };

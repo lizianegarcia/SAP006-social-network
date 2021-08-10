@@ -1,0 +1,7 @@
+@import url('./font.css');
+@import url('./root.css');
+@import url('./reset.css');
+
+@import url('../pages/feed/style.css');
+@import url('../pages/login/style.css');
+@import url('../pages/reset-password/style.css');

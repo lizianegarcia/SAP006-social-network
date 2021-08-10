@@ -1,5 +1,3 @@
-/* eslint-disable import/named */
-/* eslint-disable import/no-cycle */
 import { changePage } from '../../routes/changePage.js';
 import firebase from '../../services/firebase.js';
 import { signIn } from './signIn.js';
@@ -8,7 +6,6 @@ import { signUp } from './signUp.js';
 const createPage = () => {
   const rootElement = document.createElement('div');
   const contentnewElement = `
-  <link rel="stylesheet" href="./pages/login/style.css" />
   <section class="container">
 <div class="forms-container">
   <div class="signin-signup">
@@ -20,7 +17,6 @@ const createPage = () => {
         <input type="text" id='sign-in-email' placeholder="E-mail" />
       </div>
       <p id="sign-in-email-error"></p>
-      
       <div class="input-field">
         <i class="fas fa-lock"></i>
         <input type="password" placeholder="Senha" id="password1" 
@@ -32,8 +28,8 @@ const createPage = () => {
       </div>
       <p id="sign-in-password-error"></p>
       <input type="submit" value="Entrar" id="entrar" class="btn solid" />
-      <p id="sign-in-error"></p>
       <a id="forgotPassword" class="forgotPassword">Esqueceu a sua senha? Clique aqui!</a>
+      <p id="sign-in-error"></p>
       <p class="social-text">Ou entre com o Google</p>
       <div class="social-media">
         <a href="#" id="sign-in-google" class="social-icon">

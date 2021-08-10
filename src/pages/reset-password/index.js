@@ -1,4 +1,5 @@
 /* eslint-disable import/no-cycle */
+import { changePage } from '../../routes/changePage.js';
 import firebase from '../../services/firebase.js';
 
 const createPage = () => {
@@ -18,16 +19,16 @@ const createPage = () => {
       </form>
         </section>
   `;
-  // // registerListener
   rootElement.innerHTML = contentnewElement;
   const btnResetPassword = rootElement.querySelector('.reset-password');
-  btnResetPassword.addEventListener('submit', (event) => {
+  btnResetPassword.addEventListener('submit', async (event) => {
     event.preventDefault();
     const emailInput = rootElement.querySelector('#sign-in-email');
 
     const email = emailInput.value;
 
-    firebase.forgotYourPassword(email);
+    await firebase.forgotYourPassword(email);
+    changePage('/login');
   });
 
   return rootElement;
