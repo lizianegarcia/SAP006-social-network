@@ -7,10 +7,10 @@ const createPage = () => {
   const contentnewElement = `
   <section class="container">
   <div class="forms-container">
-    <div class="signin-signup">
+    <div class="reset-container">
       <form action="#" class="reset-password">
         <img src="img/Amitié1.png" alt="" class="logo">
-        <h2 class="title">Para redefinir sua senha, informe o endereço de e-mail cadastrado:</h2>
+        <h2 class="title-reset">Para redefinir sua senha, informe o endereço de e-mail cadastrado:</h2>
         <div class="input-field">
           <i class="fas fa-user"></i>
           <input type="text" id='sign-in-email' placeholder="digite seu e-mail." />
