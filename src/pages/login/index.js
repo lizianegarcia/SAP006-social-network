@@ -7,9 +7,9 @@ const createPage = () => {
   const rootElement = document.createElement('div');
   const contentnewElement = `
   <section class="container">
-<div class="forms-container">
-  <div class="signin-signup">
-    <form action="#" id="sign-in-form" class="sign-in-form">
+    <div class="forms-container">
+      <div class="signin-signup">
+        <form action="#" id="sign-in-form" class="sign-in-form">
       <img src="img/Amitié1.png" alt="" class="logo">
       <h2 class="title">Login</h2>
       <div class="input-field">
@@ -131,6 +131,8 @@ const createPage = () => {
   let validEmail = false;
   let validPassword = false;
 
+  // ANIMACAO
+
   signUpBtn.addEventListener('click', () => {
     container.classList.add('sign-up-mode');
   });
@@ -138,6 +140,8 @@ const createPage = () => {
   signInBtn.addEventListener('click', () => {
     container.classList.remove('sign-up-mode');
   });
+
+  // OLHINHOS DA SENHA
 
   const showHidePassword = (event) => {
     const toggle = event.currentTarget;
@@ -166,11 +170,10 @@ const createPage = () => {
   googleSignInButton.addEventListener('click', () => {
     firebase.signInWithGoogle();
   });
-  // Cadastro Google;
 
+  // Cadastro Google;
   googleSignUpButton.addEventListener('click', () => {
     firebase.signUpWithGoogle();
-    changePage('/');
   });
 
   // Login email e senha

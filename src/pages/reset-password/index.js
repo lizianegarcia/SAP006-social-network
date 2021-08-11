@@ -1,33 +1,63 @@
+<<<<<<< HEAD
 import { changePage } from '../../routes/changePage.js';
+=======
+>>>>>>> e2b12e59cdf9110911f20b14588a34b852fdd4e2
 import firebase from '../../services/firebase.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
   const contentnewElement = `
-  <section class="container">
-  <div class="forms-container">
+  <section class="reset-password-container">
+  <div class="container-form">
     <div class="reset-container">
       <form action="#" class="reset-password">
-        <img src="img/Amitié1.png" alt="" class="logo">
+        <img src="img/Amitié1.png" alt="" class="reset-logo">
         <h2 class="title-reset">Para redefinir sua senha, informe o endereço de e-mail cadastrado:</h2>
-        <div class="input-field">
+        <div class="reset-input">
           <i class="fas fa-user"></i>
-          <input type="text" id='sign-in-email' placeholder="digite seu e-mail." />
-        </div>        
-        <input type="submit" value="redefinir senha" id="entrar" class="btn solid" />
+          <input type="text" id='reset-email' placeholder="digite seu e-mail." />
+        </div> 
+        <p id="reset-email-error"></p>
+        <p id="reset-email-success"></p>       
+        <input type="submit" value="redefinir senha" id="reset" class="btn-reset" />
       </form>
         </section>
   `;
   rootElement.innerHTML = contentnewElement;
+
   const btnResetPassword = rootElement.querySelector('.reset-password');
+
   btnResetPassword.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const emailInput = rootElement.querySelector('#sign-in-email');
+
+    const emailInput = rootElement.querySelector('#reset-email');
+    const emailResetError = rootElement.querySelector('#reset-email-error');
+    const emailResetSuccess = rootElement.querySelector('#reset-email-success');
 
     const email = emailInput.value;
+    let resetError = false;
 
-    await firebase.forgotYourPassword(email);
-    changePage('/login');
+    emailResetError.style.display = 'none';
+    emailResetSuccess.style.display = 'none';
+
+    if (!email) {
+      emailResetError.innerHTML = 'Ops, faltou seu email!';
+      emailResetError.setAttribute('style', 'color: red');
+      emailResetError.style.display = 'block';
+      resetError = true;
+    }
+    if (!resetError) {
+      try {
+        await firebase.forgotYourPassword(email);
+        emailResetSuccess.innerHTML = 'E-mail enviado com sucesso!';
+        emailResetSuccess.setAttribute('style', 'color: green');
+        emailResetSuccess.style.display = 'block';
+      } catch (error) {
+        emailResetError.innerHTML = 'E-mail incorreto!';
+        emailResetError.setAttribute('style', 'color: red');
+        emailResetError.style.display = 'block';
+      }
+    }
   });
 
   return rootElement;

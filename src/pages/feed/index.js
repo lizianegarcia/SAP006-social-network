@@ -1,8 +1,7 @@
-import profile from '../../components/profile/profile.js';
+// import profile from '../../components/profile/profile.js';
 // import firebase from '../../services/firebase.js';
-import {  loadPosts, createPost, addPosts } from '../../services/firebase.js';
+import { loadPosts, createPost, addPosts } from '../../services/firebase.js';
 
-const createPage = () => {
   const rootElement = document.createElement('div');
   const contentnewElement = `        
         <header>
@@ -39,7 +38,6 @@ const createPage = () => {
   const navLinks = rootElement.querySelector('.navbar-links');
   const links = rootElement.querySelectorAll('.navbar-links li');
 
-
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
     links.forEach((link) => {
@@ -47,16 +45,15 @@ const createPage = () => {
     });
   });
 
-
   rootElement.querySelector('#postForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const textPost = document.querySelector('#postText').value;
-      createPost(textPost);
-    });
+    e.preventDefault();
+    const textPost = document.querySelector('#postText').value;
+    createPost(textPost);
+  });
 
   //rootElement.querySelector('.loading-posts').innerHTML = addPosts();
   loadPosts();
-  
+
 //   BOTÃO DE LOGOUT
 //   const section = rootElement.querySelector('.post-feed');
 //   section.appendChild(profile());
@@ -66,8 +63,6 @@ const createPage = () => {
 
 export default createPage;
 
-
-
 /*
 
    <div class="post-feed-item">
@@ -76,4 +71,4 @@ export default createPage;
                 <i class="fas fa-heart" id="heart"></i>
             </div>
 
-*/ 
+*/
