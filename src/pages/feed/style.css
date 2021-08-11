@@ -135,42 +135,34 @@
     }
 }
 
+/* FORMULARIO FEED */
 
-
-/* MAIN */
-/* INPUT PUBLICAR */
-.feed-container {
-    height: 90vh;
+/* .feed-container {
     display: flex;
     justify-content:flex-start;
     align-items: center;
     flex-direction: column;
     margin: 4rem 0 0 0;
+} */
 
-}
-
-.publish-feed{
+.posts-form {
     display: flex;
+    flex-direction: row;
+    margin: 3rem 0 1rem 0;
     width: 100%;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--medium-gray);
 }
 
-.publish-feed img {
-    width: 60px;
-    border-radius: 50px;
-    margin: 0 0 1.5rem 1.2rem;
-}
-
-.twitter-text {
+.post-text {
     outline: none;
     border: none;
-    width: 60%;
-    margin: 0 0 1.5rem 3rem;
+    width: 80%;
+    margin: 0 1.5rem 1.5rem 0;
 }
 
-.publish-btn {
+.post-btn {
     border: none;
     color: white;
     background-color: var(--teal);
@@ -180,26 +172,26 @@
 }
 
 @media screen and (min-width: 500px) {
-    .publish-feed img {
+    .posts-form img {
         margin: 0 0 1.5rem 1.9rem;
     }
 }
 @media screen and (min-width: 660px) {
-    .publish-feed img {
+    .posts-form img {
         margin: 0 0 1.5rem 3rem;
     }
 
-    .publish-btn {
+    .post-btn {
         padding: 1rem;
         margin-right: 1.7rem;
     }
 }
 
 @media screen and (min-width: 768px) {
-    .publish-feed img {
+    .posts-form img {
         margin: 0 0 1.5rem 4.2rem;
     }
-    .publish-btn {
+    .post-btn {
         width: 75px;
         margin-right: 2.5rem;
     }
@@ -210,13 +202,13 @@
         width: 80%;
         margin: 5rem auto;
     }
-    .publish-feed img {
+    .posts-form img {
         margin: 0 0 1.5rem 4.6rem;
     }
-    .twitter-text {
+    .post-text {
         margin: 0 0 1.5rem 5.5rem;
     }
-    .publish-btn {
+    .post-btn {
         width: 80px;
         padding: 1.3rem;
         margin-left: 3rem;
@@ -228,13 +220,13 @@
    .feed-container {
      width: 70%;
    }
-   .publish-btn {
+   .post-btn {
     margin-right: 2.5rem;
    }
 }
 
 @media screen and (min-width: 1300px) {
-    .publish-feed img {
+    .posts-form img {
         margin: 0 0 1.5rem 5rem;
     }
 }
@@ -244,10 +236,10 @@
         width: 60%;
       }
    
-    .publish-feed img {
+    .posts-form img {
         margin: 0 0 1.5rem 5rem;
     }
-    .publish-btn {
+    .post-btn {
         margin-right: 3.2rem;
     }
 }
@@ -255,16 +247,17 @@
 
 /* PUBLICAÇÕES */
 
-.post-feed {
+.posts-list {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     margin-top: 2rem;
+    list-style: none;
 }
 
-.post-feed-item {
+.post-container {
     display: flex;
     width: 100%;
     align-items: center;
@@ -272,29 +265,33 @@
     margin-top: 2rem;
     border-bottom: 1px solid var(--medium-gray);
 }
-.post-feed-item img,
-.post-feed-item p,
-.post-feed-item i {
-    margin-bottom: 2rem;
+
+.user-profile {
+
 }
 
-.post-feed-item img {
-    width: 60px;
-    border-radius: 50px;
+.user-avatar {
+
 }
 
-.post-feed-item p {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    width: 60%;
-    color: black;
-    font-size: 1.4rem;
+.user-name {
+
 }
 
-.post-feed-item i {
-    margin-right: 2.0rem;
-    color: var(--medium-gray);
-    font-size: 1.6rem;
+.post-field {
+
+}
+
+.user-post {
+
+}
+
+.manage-post {
+
+}
+
+.manage-post-btn {
+    
 }
 
 @media screen and (min-width: 660px) {
@@ -302,13 +299,6 @@
 }
 
 @media screen and (min-width: 768px) {
-    .post-feed-item p {
-       margin-top: 0;
-    }
-    
-    .post-feed-item i {
-        font-size: 1.8rem;
-    }
     
 }
 

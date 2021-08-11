@@ -37,16 +37,16 @@ const createPage = () => {
         </a>
       </div>
     </form>
-    <form action="#"  id="form-sign-up" class="sign-up-form">
-      <h2 class="title">Criar uma Conta</h2>
-      <div class="input-field">
-        <i class="fas fa-user"></i>
-        <input type="text" id="sign-up-username" placeholder="Nome" />
+    <form action='#'  id='form-sign-up' class='sign-up-form'>
+      <h2 class='title'>Criar uma Conta</h2>
+      <div class='input-field'>
+        <i class='fas fa-user'></i>
+        <input type='text' id='sign-up-username' placeholder='Nome' />
       </div>
       <span class='msg-erro msg-nome'></span>
-      <div class="input-field">
-        <i class="fas fa-envelope"></i>
-        <input type="email" id="sign-up-email" placeholder="Email"  />
+      <div class='input-field'>
+        <i class='fas fa-envelope'></i>
+        <input type='email' id='sign-up-email' placeholder='Email'  />
       </div>
       <span class='msg-erro msg-email'></span>
       <p id="sign-up-email-error"></p>
@@ -73,31 +73,31 @@ const createPage = () => {
     </form>
   </div>
 </div>
-<div class="panels-container">
-  <div class="panel left-panel">
-    <div class="content">
+<div class='panels-container'>
+  <div class='panel left-panel'>
+    <div class='content'>
       <h3>Nova por aqui ?</h3>
       <p>
         Participe da nossa comunidade, que é exclusiva para mulheres e te permite fazer novas amizades em um
         ambiente acolhedor e seguro! Clique abaixo e junte-se a nós!
       </p>
-      <button class="btn transparent" id="sign-up-btn">
+      <button class='btn transparent' id='sign-up-btn'>
         Cadastre-se
       </button>
     </div>
-    <img src="img/women.svg" class="image" alt="" />
+    <img src='img/women.svg' class='image' alt='' />
   </div>
-  <div class="panel right-panel">
-    <div class="content">
+  <div class='panel right-panel'>
+    <div class='content'>
       <h3>Já possui cadastro?</h3>
       <p>
         Clique baixo em <strong>Entrar</strong>, juntas somos mais fortes!
       </p>
-      <button class="btn transparent" id="sign-in-btn">
+      <button class='btn transparent' id='sign-in-btn'>
         Entrar
       </button>
     </div>
-    <img src="img/social-interactions.svg" class="image" alt="" />
+    <img src='img/social-interactions.svg' class='image' alt='' />
   </div>
 </div>
 </section>`;
