@@ -1,5 +1,7 @@
 import { changePage } from '../routes/changePage.js';
 
+const waitAuthState = () => new Promise((resolve) => firebase.auth().onAuthStateChanged(resolve));
+
 const getUser = () => firebase.auth().currentUser;
 
 const updateUser = async (name) => {
@@ -40,42 +42,29 @@ const signUpWithGoogle = () => {
 const signIn = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password);
 
-const signUp = async (name, email, password) => {
-  const user = await firebase.auth()
-    .createUserWithEmailAndPassword(email, password);
-  updateUser(name);
-  return user;
-};
-
 const signOut = () => firebase.auth().signOut();
 
-// const verificationEmail = () => {
-//   firebase.auth().currentUser.sendEmailVerification()
-//     .then(() => {
-//       console.log('Email verification sent!');
-//       // redirecting the user to the profile page once everything is done correctly
-//       changePage('/login');
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// };
-
-const forgotYourPassword = (email) => {
-  const passwordReset = firebase.auth().sendPasswordResetEmail(email)
+const verificationEmail = () => {
+  firebase.auth().currentUser.sendEmailVerification()
     .then(() => {
-      alert('E-mail enviado com sucesso!');
+      alert('Email verification sent!');
     })
     .catch((error) => {
-      alert('Falha de Login');
-      console.log(error);
+      console.error(error);
     });
-  return passwordReset;
 };
 
+const signUp = async (name, email, password) => {
+  await firebase.auth().createUserWithEmailAndPassword(email, password);
+  await updateUser(name);
+  verificationEmail();
+  await signOut();
+};
+
+const forgotYourPassword = (email) => firebase.auth().sendPasswordResetEmail(email);
 // FEED
- 
- export const createPost = (textPost) => {
+
+export const createPost = (textPost) => {
   const user = firebase.auth().currentUser;
   const post = {
     text: textPost,
@@ -96,7 +85,7 @@ const forgotYourPassword = (email) => {
 };
 
 export const addPosts = (post) => {
-  console.log(post)
+  console.log(post);
   const postTemplate = `
    <li id="${post.data().userId}" class="post-container">
     <div class= "user-profile">
@@ -117,14 +106,12 @@ export const addPosts = (post) => {
   document.querySelector('#postsList').innerHTML += postTemplate;
 };
 
-
 export const loadPosts = () => {
   const postsCollection = firebase.firestore().collection('posts');
   postsCollection.get().then((snap) => {
-    console.log(snap)
+    console.log(snap);
     document.querySelector('.loading-posts').innerHTML = '';
     snap.forEach((post) => {
-
       addPosts(post);
     });
   });
@@ -132,14 +119,14 @@ export const loadPosts = () => {
 
 export const deletePost = (postId) => {
   const postsCollection = firebase.firestore().collection('posts');
-  postsCollection.doc(postId).delete().then(doc => {
+  postsCollection.doc(postId).delete().then((doc) => {
     console.log('Deleted!!!!!');
     loadPosts();
-  })
-}
-
+  });
+};
 
 export default {
+  waitAuthState,
   getUser,
   updateUser,
   signInWithGoogle,
