@@ -1,6 +1,7 @@
 import { changePage } from '../routes/changePage.js';
 
-/* eslint-disable no-alert */
+const waitAuthState = () => new Promise((resolve) => firebase.auth().onAuthStateChanged(resolve));
+
 const getUser = () => firebase.auth().currentUser;
 
 const updateUser = async (name) => {
@@ -40,13 +41,14 @@ const signUpWithGoogle = () => {
 
 const signIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
+const signOut = () => firebase.auth().signOut();
+
 const signUp = async (name, email, password) => {
   const user = await firebase.auth().createUserWithEmailAndPassword(email, password);
-  updateUser(name);
-  return user;
+  await updateUser(name);
+  await user.sendEmailVerification();
+  await signOut();
 };
-
-const signOut = () => firebase.auth().signOut();
 
 // const verificationEmail = () => {
 //   firebase.auth().currentUser.sendEmailVerification()
@@ -60,19 +62,10 @@ const signOut = () => firebase.auth().signOut();
 //     });
 // };
 
-const forgotYourPassword = (email) => {
-  const passwordReset = firebase.auth().sendPasswordResetEmail(email)
-    .then(() => {
-      alert('E-mail enviado com sucesso!');
-    })
-    .catch((error) => {
-      alert('Falha de Login');
-      console.log(error);
-    });
-  return passwordReset;
-};
+const forgotYourPassword = (email) => firebase.auth().sendPasswordResetEmail(email);
 
 export default {
+  waitAuthState,
   getUser,
   updateUser,
   signInWithGoogle,
