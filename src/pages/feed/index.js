@@ -1,4 +1,4 @@
-// import profile from '../../components/profile/profile.js';
+import profile from '../../components/profile/profile.js';
 // import firebase from '../../services/firebase.js';
 import { loadPosts, createPost, addPosts } from '../../services/firebase.js';
 
