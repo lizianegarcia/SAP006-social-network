@@ -1,4 +1,6 @@
 import profile from '../../components/profile/profile.js';
+// import firebase from '../../services/firebase.js';
+import {  loadPosts, createPost, addPosts } from '../../services/firebase.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
@@ -19,59 +21,16 @@ const createPage = () => {
                 </ul>
             </nav>
         </header>
+       
+          <form id="postForm" class="posts-form">
+              <input type="text" name="postText" id="postText" class="post-text" autocomplete="off" placeholder="No que você está pensando?">
+              <button id="publishBtn" class="post-btn">Publicar</button>
+          </form>
+
+          <section class="loading-posts"></section>
+          <ul id="postsList" class="posts-list"></ul>
+
         
-        <main class="feed-container">
-        <section id="publish-feed" class="publish-feed">
-            <img src="http://placehold.it/100x100" alt="avatar">
-            <input type="text" name="twitterText" id="twitterText" class="twitter-text" placeholder="No que você está pensando?">
-            <button id="publishBtn" class="publish-btn">Publicar</button>
-        </section>
-
-        <section id="post-feed" class="post-feed">
-            <div class="post-feed-item">
-                <img src="http://placehold.it/100x100" alt="user avatar">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <i class="fas fa-heart" id="heart"></i>
-            </div>
-
-            <div class="post-feed-item">
-                <img src="http://placehold.it/100x100" alt="user avatar">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <i class="fas fa-heart" id="heart"></i>
-            </div>
-
-            <div class="post-feed-item">
-                <img src="http://placehold.it/100x100" alt="user avatar">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <i class="fas fa-heart" id="heart"></i>
-            </div>
-
-            <div class="post-feed-item">
-                <img src="http://placehold.it/100x100" alt="user avatar">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <i class="fas fa-heart" id="heart"></i>
-            </div>
-
-            <div class="post-feed-item">
-                <img src="http://placehold.it/100x100" alt="user avatar">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <i class="fas fa-heart" id="heart"></i>
-            </div>
-
-            <div class="post-feed-item">
-                <img src="http://placehold.it/100x100" alt="user avatar">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <i class="fas fa-heart" id="heart"></i>
-            </div>
-
-            <div class="post-feed-item">
-                <img src="http://placehold.it/100x100" alt="user avatar">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <i class="fas fa-heart" id="heart"></i>
-            </div>
-
-        </section>
-        </main>
     `;
 
   rootElement.innerHTML = contentnewElement;
@@ -79,7 +38,7 @@ const createPage = () => {
   const hamburger = rootElement.querySelector('#hamburger');
   const navLinks = rootElement.querySelector('.navbar-links');
   const links = rootElement.querySelectorAll('.navbar-links li');
-  const section = rootElement.querySelector('.post-feed');
+
 
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
@@ -88,9 +47,33 @@ const createPage = () => {
     });
   });
 
-  section.appendChild(profile());
+
+  rootElement.querySelector('#postForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const textPost = document.querySelector('#postText').value;
+      createPost(textPost);
+    });
+
+  //rootElement.querySelector('.loading-posts').innerHTML = addPosts();
+  loadPosts();
+  
+//   BOTÃO DE LOGOUT
+//   const section = rootElement.querySelector('.post-feed');
+//   section.appendChild(profile());
 
   return rootElement;
 };
 
 export default createPage;
+
+
+
+/*
+
+   <div class="post-feed-item">
+                <img src="http://placehold.it/100x100" alt="user avatar">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <i class="fas fa-heart" id="heart"></i>
+            </div>
+
+*/ 
