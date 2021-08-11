@@ -74,8 +74,8 @@ const forgotYourPassword = (email) => {
 };
 
 // FEED
- 
- export const createPost = (textPost) => {
+
+export const createPost = (textPost) => {
   const user = firebase.auth().currentUser;
   const post = {
     text: textPost,
@@ -96,7 +96,7 @@ const forgotYourPassword = (email) => {
 };
 
 export const addPosts = (post) => {
-  console.log(post)
+  console.log(post);
   const postTemplate = `
    <li id="${post.data().userId}" class="post-container">
     <div class= "user-profile">
@@ -117,14 +117,12 @@ export const addPosts = (post) => {
   document.querySelector('#postsList').innerHTML += postTemplate;
 };
 
-
 export const loadPosts = () => {
   const postsCollection = firebase.firestore().collection('posts');
   postsCollection.get().then((snap) => {
-    console.log(snap)
+    console.log(snap);
     document.querySelector('.loading-posts').innerHTML = '';
     snap.forEach((post) => {
-
       addPosts(post);
     });
   });
@@ -132,12 +130,11 @@ export const loadPosts = () => {
 
 export const deletePost = (postId) => {
   const postsCollection = firebase.firestore().collection('posts');
-  postsCollection.doc(postId).delete().then(doc => {
+  postsCollection.doc(postId).delete().then((doc) => {
     console.log('Deleted!!!!!');
     loadPosts();
-  })
-}
-
+  });
+};
 
 export default {
   getUser,
