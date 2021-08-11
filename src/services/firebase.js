@@ -43,24 +43,22 @@ const signIn = (email, password) => firebase.auth().signInWithEmailAndPassword(e
 
 const signOut = () => firebase.auth().signOut();
 
-const signUp = async (name, email, password) => {
-  const user = await firebase.auth().createUserWithEmailAndPassword(email, password);
-  await updateUser(name);
-  await user.sendEmailVerification();
-  await signOut();
+const verificationEmail = () => {
+  firebase.auth().currentUser.sendEmailVerification()
+    .then(() => {
+      alert('Email verification sent!');
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };
 
-// const verificationEmail = () => {
-//   firebase.auth().currentUser.sendEmailVerification()
-//     .then(() => {
-//       console.log('Email verification sent!');
-//       // redirecting the user to the profile page once everything is done correctly
-//       changePage('/login');
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// };
+const signUp = async (name, email, password) => {
+  await firebase.auth().createUserWithEmailAndPassword(email, password);
+  await updateUser(name);
+  verificationEmail();
+  await signOut();
+};
 
 const forgotYourPassword = (email) => firebase.auth().sendPasswordResetEmail(email);
 
