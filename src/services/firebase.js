@@ -1,6 +1,5 @@
 import { changePage } from '../routes/changePage.js';
 
-/* eslint-disable no-alert */
 const getUser = () => firebase.auth().currentUser;
 
 const updateUser = async (name) => {

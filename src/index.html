@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./styles/index.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./styles/index.css">
+    <title>Amitié</title>
+  </head>
+  <body>
+    <div id="main"></div>
 
-  <title>Amitié</title>
-</head>
-<body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
 
-  <div id="main"></div>
-
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
-  
-  <!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
-  
-  <script>
-    // Your web app's Firebase configuration
-    let firebaseConfig = {
-      apiKey: "AIzaSyBvTFecff2LbfwWW0CEhWs3waFtDzUM_n4",
-      authDomain: "amitie-f30ce.firebaseapp.com",
-      projectId: "amitie-f30ce",
-      storageBucket: "amitie-f30ce.appspot.com",
-      messagingSenderId: "545232759130",
-      appId: "1:545232759130:web:5e26b0bcf4ec9f2563eb63"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-  </script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
 
-<script type="module" src="main.js"></script>
-</body>
+    <script>
+      // Your web app's Firebase configuration
+      let firebaseConfig = {
+        apiKey: 'AIzaSyBvTFecff2LbfwWW0CEhWs3waFtDzUM_n4',
+        authDomain: 'amitie-f30ce.firebaseapp.com',
+        projectId: 'amitie-f30ce',
+        storageBucket: 'amitie-f30ce.appspot.com',
+        messagingSenderId: '545232759130',
+        appId: '1:545232759130:web:5e26b0bcf4ec9f2563eb63'
+      }
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig)
+    </script>
 
+    <script type="module" src="main.js"></script>
+  </body>
 </html>
