@@ -66,7 +66,7 @@
 .navbar-links .li-items a {
     color: white;
     text-decoration: none;
-    font-size: 2.5rem;
+    font-size: 1.6rem;
 }
 
 .navbar-links .li-items:hover{
@@ -109,41 +109,17 @@
 }
 
 @media screen and (min-width: 1200px) {
-    .navbar-links {
-        flex-direction: row;
-        background: rgb(34, 158, 144, 0.7);
-    }
+    
     .navbar-links .li-items a{
         font-weight: 700;
     }
     .navbar-links.open {
         clip-path: circle(1600px at 90% -10%);
         -webkit-clip-path: circle(1600px at 90% -20%);
-        background: rgb(34, 158, 144, 0.8);
-    }
-
-    .navbar-links .li-items:nth-child(1){
-        transition: all 0.5s ease 0.9s;
-    }
-    
-    .navbar-links .li-items:nth-child(2){
-        transition: all 0.5s ease 0.6s;
-    }
-    
-    .navbar-links .li-items:nth-child(3){
-        transition: all 0.5s ease 0.3s;
     }
 }
 
 /* FORMULARIO FEED */
-
-/* .feed-container {
-    display: flex;
-    justify-content:flex-start;
-    align-items: center;
-    flex-direction: column;
-    margin: 4rem 0 0 0;
-} */
 
 .posts-form {
     display: flex;
@@ -152,14 +128,26 @@
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid var(--medium-gray);
+   
+    /* border-bottom: 1px solid var(--medium-gray); */
+}
+
+.greet-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0 2rem 0;
 }
 
 .post-text {
     outline: none;
     border: none;
-    width: 80%;
-    margin: 0 1.5rem 1.5rem 0;
+    min-width: 80%;
+    font-size: 1rem;
+    flex-wrap: wrap;
+    background-color: var(--light-gray);
+    padding: 0.7rem;
+    border-radius: 10px;
 }
 
 .post-btn {
@@ -168,17 +156,16 @@
     background-color: var(--teal);
     padding: 0.7rem;
     border-radius: 10px;
-    margin: 0 1rem 1.5rem 0;
+    font-size: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@media screen and (min-width: 500px) {
-    .posts-form img {
-        margin: 0 0 1.5rem 1.9rem;
-    }
-}
-@media screen and (min-width: 660px) {
-    .posts-form img {
-        margin: 0 0 1.5rem 3rem;
+@media screen and (min-width: 560px) {
+    .posts-form {
+        margin-bottom: 3rem;
     }
 
     .post-btn {
@@ -188,11 +175,9 @@
 }
 
 @media screen and (min-width: 768px) {
-    .posts-form img {
-        margin: 0 0 1.5rem 4.2rem;
-    }
+   
     .post-btn {
-        width: 75px;
+        width: 85px;
         margin-right: 2.5rem;
     }
 }
@@ -202,14 +187,13 @@
         width: 80%;
         margin: 5rem auto;
     }
-    .posts-form img {
-        margin: 0 0 1.5rem 4.6rem;
-    }
+
     .post-text {
-        margin: 0 0 1.5rem 5.5rem;
+        padding: 1.3rem;
     }
+   
     .post-btn {
-        width: 80px;
+        width: 100px;
         padding: 1.3rem;
         margin-left: 3rem;
        
@@ -263,35 +247,65 @@
     align-items: center;
     justify-content: space-around;
     margin-top: 2rem;
-    border-bottom: 1px solid var(--medium-gray);
 }
 
-.user-profile {
-
+.user-photo-container {
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 1rem 1rem;
+    width: 10%;
 }
 
-.user-avatar {
+.user-feed-photo {
+    width: 60px;
+    border-radius: 50px;
+    
+}
 
+
+
+.post-field {
+    width: 70%;
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    margin: 0 1rem 1rem 0;
 }
 
 .user-name {
-
-}
-
-.post-field {
-
+    font-weight: 600;
 }
 
 .user-post {
-
+    flex-wrap: wrap;
 }
 
 .manage-post {
+    border-bottom: 1px solid var(--medium-gray);
+    width: 100%;
+
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 
 }
 
 .manage-post-btn {
-    
+    margin: 0 .6rem 1rem 0;
+    border: none;
+    color: white;
+    background-color: var(--teal);
+    padding: 0.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (min-width: 660px) {
