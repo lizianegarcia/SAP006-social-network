@@ -19,6 +19,7 @@ const createPage = () => {
   moveProfile.addEventListener('click', () => {
     changePage('/create-profile');
   });
+
   return rootElement;
 };
 

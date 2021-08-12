@@ -14,8 +14,8 @@ export const printPage = async (page) => {
   }
 
   if (page === '/login' && userIsLogged) {
-    window.history.pushState({}, '...', '/');
-    window.dispatchEvent(new PopStateEvent('popstate'));
+    window.history.pushState({}, '...', '/');// histórico de navegacão entre as paginas.
+    window.dispatchEvent(new PopStateEvent('popstate'));// dispara o evento que troca de página.
   } else {
     document.title = route.title;
     main.innerHTML = '';

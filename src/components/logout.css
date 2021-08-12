@@ -1,0 +1,18 @@
+#logout {
+    border: none;
+    color: var(--teal);
+    background-color: white;
+    padding: 0.8rem;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (min-width: 1200px) {
+    #logout{
+        font-weight: 700;
+    }
+}

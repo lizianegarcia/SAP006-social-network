@@ -1,5 +1,7 @@
 import { changePage } from '../routes/changePage.js';
 
+const waitAuthState = () => new Promise((resolve) => firebase.auth().onAuthStateChanged(resolve));
+
 const getUser = () => firebase.auth().currentUser;
 
 const updateUser = async (name) => {
@@ -40,39 +42,26 @@ const signUpWithGoogle = () => {
 const signIn = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password);
 
-const signUp = async (name, email, password) => {
-  const user = await firebase.auth()
-    .createUserWithEmailAndPassword(email, password);
-  updateUser(name);
-  return user;
-};
-
 const signOut = () => firebase.auth().signOut();
 
-// const verificationEmail = () => {
-//   firebase.auth().currentUser.sendEmailVerification()
-//     .then(() => {
-//       console.log('Email verification sent!');
-//       // redirecting the user to the profile page once everything is done correctly
-//       changePage('/login');
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// };
-
-const forgotYourPassword = (email) => {
-  const passwordReset = firebase.auth().sendPasswordResetEmail(email)
+const verificationEmail = () => {
+  firebase.auth().currentUser.sendEmailVerification()
     .then(() => {
-      alert('E-mail enviado com sucesso!');
+      alert('Email verification sent!');
     })
     .catch((error) => {
-      alert('Falha de Login');
-      console.log(error);
+      console.error(error);
     });
-  return passwordReset;
 };
 
+const signUp = async (name, email, password) => {
+  await firebase.auth().createUserWithEmailAndPassword(email, password);
+  await updateUser(name);
+  verificationEmail();
+  await signOut();
+};
+
+const forgotYourPassword = (email) => firebase.auth().sendPasswordResetEmail(email);
 // FEED
 
 export const createPost = (textPost) => {
@@ -98,21 +87,20 @@ export const createPost = (textPost) => {
 export const addPosts = (post) => {
   console.log(post);
   const postTemplate = `
-   <li id="${post.data().userId}" class="post-container">
-    <div class= "user-profile">
-      <img src="http://placehold.it/100x100" class="user-avatar" alt="User Photo">
-      <p class="user-name">@${post.data().userName}</p>
-    </div>
-    <article class="post-field">
-      <p class="user-post">${post.data().text}</p>
-      
-    </article>
-    <div class="manage-post">
-      <button id="like-btn" class="manage-post-btn"><i class="fas fa-heart" id="heart"></i></button>
-      <button id="edit-btn" class="manage-post-btn">Editar</button>
-      <button id="delete-btn" class="manage-post-btn">Deletar</button>
-    </div>
-   </li>
+      <li id="${post.data().userId}" class="post-container">
+        <div class="user-photo-container">
+          <img src="http://placehold.it/100x100" alt="User Photo" class="user-feed-photo">
+        </div>
+        <article class="post-field">
+          <p class="user-name">@${post.data().userName}</p>
+          <p class="user-post">${post.data().text}</p>
+        </article>
+      </li>
+      <section class="manage-post">
+          <button id="like-btn" class="manage-post-btn"><i class="fas fa-heart" id="heart"></i></button>
+          <button id="edit-btn" class="manage-post-btn">Editar</button>
+          <button id="delete-btn" class="manage-post-btn">Excluir</button>
+      </section>
    `;
   document.querySelector('#postsList').innerHTML += postTemplate;
 };
@@ -137,6 +125,7 @@ export const deletePost = (postId) => {
 };
 
 export default {
+  waitAuthState,
   getUser,
   updateUser,
   signInWithGoogle,
