@@ -1,7 +1,5 @@
 import profile from '../../components/profile/profile.js';
-import firebase from '../../services/firebase.js';
-import { loadPosts, createPost } from '../../services/firebase.js';
-
+import firebase, { loadPosts, createPost } from '../../services/firebase.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
@@ -15,6 +13,7 @@ const createPage = () => {
                       <div class="hamburger-line"></div>
                       <div class="hamburger-line"></div>
                   </div>
+
                   <ul class="navbar-links" id="navbar-links">
                       <li class="li-items" id="navigate-profile"><a href="#">Perfil</a></li>
                       <li class="li-items" id="navigate-feed"><a href="#">Feed</a></li>
@@ -22,6 +21,7 @@ const createPage = () => {
                   </ul>
               </nav>
           </header>
+
           <section class="greet-user">
             <p>Bem vinda, ${user.displayName}</p>
           </section>
@@ -30,9 +30,11 @@ const createPage = () => {
               <input type="text" name="postText" id="postText" class="post-text" autocomplete="off" placeholder="No que você está pensando?">
               <button id="publishBtn" class="post-btn">Publicar</button>
           </form>
+
           <section class="loading-posts"></section>
           <ul id="postsList" class="posts-list"></ul>
           
+
     `;
 
   rootElement.innerHTML = contentnewElement;
@@ -57,23 +59,19 @@ const createPage = () => {
   });
 
   loadPosts();
-  
-  //NAV LINKS
+
+  // NAV LINKS
   navigateProfile.addEventListener('click', () => {
     changePage('/create-profile');
   });
 
-  //LOGOUT COMPONENT
+  // LOGOUT COMPONENT
   section.appendChild(profile());
 
   return rootElement;
-}; 
-
-
+};
 
 export default createPage;
-
-
 
 /*
    <div class="post-feed-item">
@@ -81,4 +79,4 @@ export default createPage;
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                 <i class="fas fa-heart" id="heart"></i>
             </div>
-*/ 
+*/
