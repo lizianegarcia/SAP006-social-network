@@ -26,7 +26,7 @@
   z-index: 5;
 }
 
-form {
+.form-forger-password {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@ form {
   grid-row: 1 / 2;
 }
 
-form.reset-password {
+.form-forger-password.reset-password {
   z-index: 2;
 }
 
@@ -178,7 +178,7 @@ form.reset-password {
     font-size: 0.9rem;
   }
 
-  form {
+  .form-forger-password {
     padding: 70px 1.5rem;
   }
 
