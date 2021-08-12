@@ -23,19 +23,19 @@ const createPage = () => {
                   </ul>
               </nav>
           </header>
+          <main class="feed-container">
+            <section class="greet-user">
+              <p>Bem vinda, ${user.displayName}</p>
+            </section>
+        
+            <form id="postForm" class="posts-form">
+                <input type="text" name="postText" id="postText" class="post-text" autocomplete="off" placeholder="No que você está pensando?">
+                <button id="publishBtn" class="post-btn">Publicar</button>
+            </form>
 
-          <section class="greet-user">
-            <p>Bem vinda, ${user.displayName}</p>
-          </section>
-       
-          <form id="postForm" class="posts-form">
-              <input type="text" name="postText" id="postText" class="post-text" autocomplete="off" placeholder="No que você está pensando?">
-              <button id="publishBtn" class="post-btn">Publicar</button>
-          </form>
-
-          <section class="loading-posts"></section>
-          <ul id="postsList" class="posts-list"></ul>
-
+            <section class="loading-posts"></section>
+            <ul id="postsList" class="posts-list"></ul>
+          </main>
           
     `;
 
