@@ -87,21 +87,20 @@ export const createPost = (textPost) => {
 export const addPosts = (post) => {
   console.log(post);
   const postTemplate = `
-   <li id="${post.data().userId}" class="post-container">
-    <div class= "user-profile">
-      <img src="http://placehold.it/100x100" class="user-avatar" alt="User Photo">
-      <p class="user-name">@${post.data().userName}</p>
-    </div>
-    <article class="post-field">
-      <p class="user-post">${post.data().text}</p>
-      
-    </article>
-    <div class="manage-post">
-      <button id="like-btn" class="manage-post-btn"><i class="fas fa-heart" id="heart"></i></button>
-      <button id="edit-btn" class="manage-post-btn">Editar</button>
-      <button id="delete-btn" class="manage-post-btn">Deletar</button>
-    </div>
-   </li>
+      <li id="${post.data().userId}" class="post-container">
+        <div class="user-photo-container">
+          <img src="http://placehold.it/100x100" alt="User Photo" class="user-feed-photo">
+        </div>
+        <article class="post-field">
+          <p class="user-name">@${post.data().userName}</p>
+          <p class="user-post">${post.data().text}</p>
+        </article>
+      </li>
+      <section class="manage-post">
+          <button id="like-btn" class="manage-post-btn"><i class="fas fa-heart" id="heart"></i></button>
+          <button id="edit-btn" class="manage-post-btn">Editar</button>
+          <button id="delete-btn" class="manage-post-btn">Excluir</button>
+      </section>
    `;
   document.querySelector('#postsList').innerHTML += postTemplate;
 };

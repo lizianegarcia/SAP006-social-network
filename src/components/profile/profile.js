@@ -5,7 +5,6 @@ const createPage = () => {
   const user = firebase.getUser();
   const rootElement = document.createElement('div');
   const contentnewElement = `
-  <p>${user.displayName}</p>
         
   <button id="logout">Sair</button>
 `;
