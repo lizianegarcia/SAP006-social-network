@@ -1,6 +1,6 @@
 import profile from '../../components/profile/profile.js';
 // import firebase from '../../services/firebase.js';
-import {  loadPosts, createPost, addPosts } from '../../services/firebase.js';
+import { loadPosts, createPost, addPosts } from '../../services/firebase.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
@@ -49,10 +49,10 @@ const createPage = () => {
 
 
   rootElement.querySelector('#postForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const textPost = document.querySelector('#postText').value;
-      createPost(textPost);
-    });
+    e.preventDefault();
+    const textPost = document.querySelector('#postText').value;
+    createPost(textPost);
+  });
 
   //rootElement.querySelector('.loading-posts').innerHTML = addPosts();
   loadPosts();

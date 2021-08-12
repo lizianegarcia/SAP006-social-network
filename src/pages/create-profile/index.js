@@ -41,40 +41,39 @@ const createPage = () => {
     }
   });
 
+  // const sendNewProfileImg = (changeImage) => {
+  //   userPhoto.addEventListener('click', () => {
+  //     inputImg.style.opacity = 1;
+  //     inputImg.onchange = (event) => {
+  //       sendImg(event.target.files[0], changeImage);
+  //       inputImg.style.opacity = 0;
+  //     };
+  //   });
+  // };
+
   const sendImg = () => {
     const ref = firebase.storage().ref('User-images');
     inputImg.onchange = (event) => {
       const photo = event.target.files[0];
       const reader = new FileReader();
       const uid = firebase.database().ref().push().key;
-
       reader.readAsDataURL(photo);
       reader.onload = function () {
         const base64 = reader.result.split('base64,')[1];
-
         ref
           .child(uid)
-          .putString(base64, 'base64', { contentType: 'image/png' })
-          .then((snapshot) => {
-            console.log('snapshot', snapshot);
-            ref
-              .child(uid)
-              .getDownloadURL()
-              .then((url) => {
-                console.log(url);
-                userPhoto.src = url;
-                firebase.auth().currentUser.updateProfile({
-                  photoURL: url,
-                });
-              });
+          .putString(base64, 'base64', { contentType: 'image/png' });
+        ref
+          .child(uid)
+          .getDownloadURL()
+          .then((url) => {
+            userPhoto.src = url;
           });
       };
     };
   };
-
   sendImg();
-  // firebase.updateUser();
-
+  // sendNewProfileImg();
   return rootElement;
 };
 
