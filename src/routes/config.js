@@ -16,6 +16,7 @@ export const routes = {
   },
   '/create-profile': {
     title: 'Acesse sua conta',
+    protected: true,
     createPage: createProfilePage,
   },
   '/not-found': {
