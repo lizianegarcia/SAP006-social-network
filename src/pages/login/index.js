@@ -9,7 +9,7 @@ const createPage = () => {
   <section class="container">
     <div class="forms-container">
       <div class="signin-signup">
-        <form action="#" id="sign-in-form" class="sign-in-form">
+        <form action="#" id="sign-in-form" class="sign-in-form form">
       <img src="img/Amitié1.png" alt="" class="logo">
       <h2 class="title">Login</h2>
       <div class="input-field">
@@ -37,7 +37,7 @@ const createPage = () => {
         </a>
       </div>
     </form>
-    <form action='#'  id='form-sign-up' class='sign-up-form'>
+    <form action='#'  id='form-sign-up' class='sign-up-form form'>
       <h2 class='title'>Criar uma Conta</h2>
       <div class='input-field'>
         <i class='fas fa-user'></i>
