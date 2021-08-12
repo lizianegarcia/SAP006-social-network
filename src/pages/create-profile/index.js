@@ -1,9 +1,3 @@
-/* eslint-disable no-use-before-define */
-// import firebase from '../../services/firebase.js';
-
-// import firebase from "../../services/firebase";
-
-/* eslint-disable func-names */
 const createPage = () => {
   const photoURL = firebase.auth().currentUser.photoURL;
   const rootElement = document.createElement('div');
