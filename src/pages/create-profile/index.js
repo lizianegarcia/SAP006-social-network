@@ -8,70 +8,76 @@ const createPage = () => {
   const photoURL = firebase.auth().currentUser.photoURL;
   const rootElement = document.createElement('div');
   const contentnewElement = `
-    <h1>Perfil</h1>
-    <div class='profile-photo'>
-      <img id='user-photo' class='user-photo' src='${photoURL}'>
-      <input type="file" id="profileImage" class="profileImage">
-    </div> 
-    <div class='profile-name'>
+    <section class='profile-area'>
+    <div class='profile-area-theme'>
+    <img class='theme-image' src="/../../img/profile-background">
+    </div>
+    <figure class='profile-area-photo-box'>
+    <div class="image-upload">
+      <label for="file-input">
+        <img src="https://lh3.googleusercontent.com/a-/AOh14GjjgYkmwQENTZE5ldo-yTEjZ2Cdz143s2AlbE5e9g=s96-c" style="pointer-events: none"/>
+      </label>
+
+      <input id="file-input" type="file" />
+    </div>
+      <div class='photo'>
+        <img id='user-photo' class='user-photo' src='${photoURL}' style="pointer-events: none"/>
+        <input type="file" id="input-file-profileImg" class='input-file-profileImg transparency' accept=".jpg, .jpeg, .png">
+      </div>
+    </figure>
+    <div class='name-profile-area'>
     <p id='name-user'></p>
     </div>
+    </section>
+
     <div class='profile-interests'>
     <input type="checkbox" id="leitura" name="Leitura">
-    <label for="leitura" class="interest"><i class="fas fa-book"></i></label>
+    <label for="leitura"><img class='img' src='https://image.flaticon.com/icons/png/512/2972/2972085.png'></label>
     <label for="leitura" class="interest">Leitura</i></label>
     
-
     <input type="checkbox" id="viagens" name="Viagens">
-    <label for="viagens" class="interest"><i class="fas fa-globe-americas"></i></label>
+    <label for="viagens"><img class='img' src='https://image.flaticon.com/icons/png/512/3411/3411404.png'></label>
     <label for="viagens" class="interest">Viagens</label>
 
-
     <input type="checkbox" id="natureza" name="Natureza">
-    <label for="natureza" class="interest"><i class="fab fa-pagelines"></i></label>
+    <label for="natureza"><img class='img' src='https://image.flaticon.com/icons/png/512/740/740934.png'></label>
     <label for="natureza" class="interest">Natureza</label>
-
     
     <input type="checkbox" id="filmes e séries" name="Filmes e Séries">
-    <label for="filmes e séries" class="interest"><i class="far fa-play-circle"></i>
+    <label for="filmes e séries"><img class='img' src='https://image.flaticon.com/icons/png/512/5058/5058138.png'>
     </label>
     <label for="filmes e séries" class="interest">Filmes e Séries</label>
 
-
     <input type="checkbox" id="culinária" name="culinária">
-    <label for="culinária" class="interest"><i class="fas fa-hamburger"></i>
+    <label for="culinária"><img class='img' src='https://image.flaticon.com/icons/png/512/2972/2972043.png'>
     </label>
     <label for="culinária" class="interest">Culinária</label>
 
-
     <input type="checkbox" id="Astrologia" name="Astrologia">
-    <label for="Astrologia" class="interest"><i class="far fa-star"></i>
+    <label for="Astrologia"><img class='img' src='https://image.flaticon.com/icons/png/512/2647/2647336.png'>
     </label>
     <label for="Astrologia" class="interest">Astrologia</label>
 
-
     <input type="checkbox" id="Games" name="Games">
-    <label for="Games" class="interest"><i class="fas fa-gamepad"></i></label>
+    <label for="Games"><img class='img' src='https://image.flaticon.com/icons/png/512/5260/5260529.png'></label>
     <label for="Games" class="interest">Games</label>
 
-
     <input type="checkbox" id="Fotografia" name="Fotografia">
-    <label for="Fotografia" class="interest"><i class="fas fa-camera"></i></label>
+    <label for="Fotografia"><img class='img' src='https://img-premium.flaticon.com/png/512/186/premium/186266.png?token=exp=1628817371~hmac=e3096a5868e48cf899058b38a39274f4'></label>
     <label for="Fotografia" class="interest">Fotografia</label>
 
-
     <input type="checkbox" id="Aprender novas línguas" name="Aprender novas línguas">
-    <label for="Aprender novas línguas" class="interest"><i class="fas fa-language"></i></label>
+    <label for="Aprender novas línguas"><img class='img' src='https://img-premium.flaticon.com/png/512/3412/premium/3412644.png?token=exp=1628817170~hmac=41eee28b2ce5e9080ede3eee49c48eb7'></label>
     <label for="Aprender novas línguas" class="interest">Aprender novas línguas</label>
 
     <input type="checkbox" id="Esportes" name="Esportes">
-    <label for="Esportes" class="interest"><i class="fas fa-running"></i></label>
+    <label for="Esportes"><img class='img' src='https://image.flaticon.com/icons/png/512/2798/2798086.png'></label>
     <label for="Esportes" class="interest">Esportes</label>
-
+    </div>
   `;
   // registerListener
   rootElement.innerHTML = contentnewElement;
-  const inputImg = rootElement.querySelector('#profileImage');
+  const inputImg = rootElement.querySelector('#input-file-profileImg');
   const userPhoto = rootElement.querySelector('#user-photo');
   const userName = rootElement.querySelector('#name-user');
 
@@ -82,6 +88,16 @@ const createPage = () => {
       userName.innerHTML = user.displayName;
     }
   });
+
+  const sendNewProfileImg = (changeImage) => {
+    userPhoto.addEventListener('click', () => {
+      inputImg.style.opacity = 1;
+      inputImg.onchange = (event) => {
+        sendImg(event.target.files[0], changeImage);
+        inputImg.style.opacity = 0;
+      };
+    });
+  };
 
   const sendImg = () => {
     const ref = firebase.storage().ref('User-images');
@@ -115,7 +131,7 @@ const createPage = () => {
   };
 
   sendImg();
-  // firebase.updateUser();
+  sendNewProfileImg();
 
   return rootElement;
 };

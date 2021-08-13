@@ -1,24 +1,66 @@
-h1 {
+
+#name-user {
+  text-align: center;
+  color: #403E56;
+  font-size: 25px;
+}
+
+.profile-area {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.name-profile-area {
   text-align: center;
 }
 
-.user-photo {
-  margin: 50px;
-  width: 110px;
-  height: 110px;
-  border-radius: 60px;
-  border: 2px solid #00bfa6;
+.profile-area-photo-box {
+  /* width: 200px; */
+  overflow: hidden;
 }
+
+/* .user-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+}
+
+.user-photo:hover {
+  opacity: 0.5;
+  cursor: pointer;
+} */
+
 
 .profile-interests {
-  padding: 20px;
-  margin: 10px;
-  color: #ff6585;
-  font-size: 30px;
-  cursor: pointer;
+  flex-wrap: wrap;
+  align-items: center;
+  color: #444444;
+  width: 250px;
+  font-size: 0.2 rem;
 }
 
-/* .interest {
-  color:red;
-  font-size: 1rem;
-} */
+.img {
+  margin: 10px;
+  width: 30px;
+  height: 30px;
+  /* width: 40px;
+  height: 40px; */
+  cursor:pointer;
+}
+
+.photo > input {
+  visibility:hidden;
+  width:0;
+  height:0;
+}
+
+.image-upload > input {
+  visibility:hidden;
+  width:0;
+  height:0
+}
+
+.interest {
+  margin-right: 30px;
+}
