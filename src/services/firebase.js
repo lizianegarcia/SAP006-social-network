@@ -1,5 +1,3 @@
-import { changePage } from '../routes/changePage.js';
-
 const waitAuthState = () => new Promise((resolve) => firebase.auth().onAuthStateChanged(resolve));
 
 const getUser = () => firebase.auth().currentUser;
@@ -11,32 +9,11 @@ const updateUser = async (name) => {
   });
 };
 
-const signInWithGoogle = () => {
+const signInSignUpWithGoogle = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope('profile');
   provider.addScope('email');
-  return firebase.auth().signInWithPopup(provider)
-    .then((result) => {
-      changePage('/');
-      console.log(result);
-    }).catch((error) => {
-      alert('Falha de Registro');
-      console.log(error);
-    });
-};
-
-const signUpWithGoogle = () => {
-  const providerSignUp = new firebase.auth.GoogleAuthProvider();
-  providerSignUp.addScope('profile');
-  providerSignUp.addScope('email');
-  return firebase.auth().signInWithPopup(providerSignUp)
-    .then((result) => {
-      changePage('/');
-      console.log(result);
-    }).catch((error) => {
-      alert('Falha de Registro');
-      console.log(error);
-    });
+  await firebase.auth().signInWithPopup(provider);
 };
 
 const signIn = (email, password) => firebase.auth()
@@ -44,47 +21,19 @@ const signIn = (email, password) => firebase.auth()
 
 const signOut = () => firebase.auth().signOut();
 
-const verificationEmail = () => {
-  firebase.auth().currentUser.sendEmailVerification()
-    .then(() => {
-      alert('Email verification sent!');
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
+const verificationEmail = () => firebase.auth().currentUser.sendEmailVerification();
 
 const signUp = async (name, email, password) => {
   await firebase.auth().createUserWithEmailAndPassword(email, password);
   await updateUser(name);
-  verificationEmail();
+  await verificationEmail();
   await signOut();
 };
 
 const forgotYourPassword = (email) => firebase.auth().sendPasswordResetEmail(email);
 // FEED
 
-export const createPost = (textPost) => {
-  const user = firebase.auth().currentUser;
-  const post = {
-    text: textPost,
-    userId: user.uid,
-    userName: user.displayName,
-    userEmail: user.email,
-    likes: 0,
-    comments: [],
-  };
-
-  const postsCollection = firebase
-    .firestore()
-    .collection('posts');
-  postsCollection.add(post).then(() => {
-    document.querySelector('#postsList').value = '';
-    loadPosts();
-  });
-};
-
-export const addPosts = (post) => {
+const addPosts = (post) => {
   console.log(post);
   const postTemplate = `
       <li id="${post.data().userId}" class="post-container">
@@ -105,7 +54,7 @@ export const addPosts = (post) => {
   document.querySelector('#postsList').innerHTML += postTemplate;
 };
 
-export const loadPosts = () => {
+const loadPosts = () => {
   const postsCollection = firebase.firestore().collection('posts');
   postsCollection.get().then((snap) => {
     console.log(snap);
@@ -116,7 +65,27 @@ export const loadPosts = () => {
   });
 };
 
-export const deletePost = (postId) => {
+const createPost = (textPost) => {
+  const user = firebase.auth().currentUser;
+  const post = {
+    text: textPost,
+    userId: user.uid,
+    userName: user.displayName,
+    userEmail: user.email,
+    likes: 0,
+    comments: [],
+  };
+
+  const postsCollection = firebase
+    .firestore()
+    .collection('posts');
+  postsCollection.add(post).then(() => {
+    document.querySelector('#postsList').value = '';
+    loadPosts();
+  });
+};
+
+const deletePost = (postId) => {
   const postsCollection = firebase.firestore().collection('posts');
   postsCollection.doc(postId).delete().then((doc) => {
     console.log('Deleted!!!!!');
@@ -128,10 +97,13 @@ export default {
   waitAuthState,
   getUser,
   updateUser,
-  signInWithGoogle,
-  signUpWithGoogle,
+  signInSignUpWithGoogle,
   signIn,
   signUp,
   signOut,
   forgotYourPassword,
+  createPost,
+  loadPosts,
+  deletePost,
+
 };
