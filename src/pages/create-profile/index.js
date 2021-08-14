@@ -1,85 +1,138 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-use-before-define */
-// import firebase from '../../services/firebase.js';
-
-// import firebase from "../../services/firebase";
-
 /* eslint-disable func-names */
+
 const createPage = () => {
   const photoURL = firebase.auth().currentUser.photoURL;
   const rootElement = document.createElement('div');
   const contentnewElement = `
-    <section class='profile-area'>
+  <header>
+              <nav class="feed-navbar">
+                  <img class="feed-logo" src="./img/Amitié2.png" alt="">
+                  <div class="hamburger" id="hamburger">
+                      <div class="hamburger-line"></div>
+                      <div class="hamburger-line"></div>
+                      <div class="hamburger-line"></div>
+                  </div>
+
+                  <ul class="navbar-links" id="navbar-links">
+                      <li class="li-items" id="navigate-profile"><a href="#">Perfil</a></li>
+                      <li class="li-items" id="navigate-feed"><a href="#">Feed</a></li>
+                      <li class="li-items feed-logout"></li>
+                  </ul>
+              </nav>
+          </header>
+  <section class='profile-area'>
     <div class='profile-area-theme'>
-    <img class='theme-image' src="/../../img/profile-background">
+    <img class='theme-image' src="../../img/profile/background.png">
     </div>
     <figure class='profile-area-photo-box'>
-    <div class="image-upload">
-      <label for="file-input">
-        <img src="https://lh3.googleusercontent.com/a-/AOh14GjjgYkmwQENTZE5ldo-yTEjZ2Cdz143s2AlbE5e9g=s96-c" style="pointer-events: none"/>
-      </label>
-
-      <input id="file-input" type="file" />
-    </div>
-      <div class='photo'>
-        <img id='user-photo' class='user-photo' src='${photoURL}' style="pointer-events: none"/>
-        <input type="file" id="input-file-profileImg" class='input-file-profileImg transparency' accept=".jpg, .jpeg, .png">
+      <div class="image-upload">
+        <label for="file-input">
+          <img src='${photoURL}' id='user-photo' class='user-photo'/>
+        </label>
+        <input id="file-input" type="file" />
       </div>
     </figure>
     <div class='name-profile-area'>
-    <p id='name-user'></p>
+      <p id='name-user'></p>
     </div>
-    </section>
-
+  </section>  
+  <section class='profile-area-interests'>
     <div class='profile-interests'>
-    <input type="checkbox" id="leitura" name="Leitura">
-    <label for="leitura"><img class='img' src='https://image.flaticon.com/icons/png/512/2972/2972085.png'></label>
-    <label for="leitura" class="interest">Leitura</i></label>
+      <input type="checkbox" value="Leitura" id="Leitura" name="Interest">
+      <label for="Leitura"><img class='img' src="../../img/profile/leitura.png"></label>
+      <label for="Leitura" class="interest">Leitura</i></label>
     
-    <input type="checkbox" id="viagens" name="Viagens">
-    <label for="viagens"><img class='img' src='https://image.flaticon.com/icons/png/512/3411/3411404.png'></label>
-    <label for="viagens" class="interest">Viagens</label>
+      <input type="checkbox" value="Viagens" id="Viagens" name="Interest">
+      <label for="Viagens"><img class='img' src="../../img/profile/viagens.png"></label>
+      <label for="Viagens" class="interest">Viagens</label>
 
-    <input type="checkbox" id="natureza" name="Natureza">
-    <label for="natureza"><img class='img' src='https://image.flaticon.com/icons/png/512/740/740934.png'></label>
-    <label for="natureza" class="interest">Natureza</label>
-    
-    <input type="checkbox" id="filmes e séries" name="Filmes e Séries">
-    <label for="filmes e séries"><img class='img' src='https://image.flaticon.com/icons/png/512/5058/5058138.png'>
-    </label>
-    <label for="filmes e séries" class="interest">Filmes e Séries</label>
+      <input type="checkbox" value="Natureza" id="Natureza" name="Interest">
+      <label for="Natureza"><img class='img' src="../../img/profile/natureza.png"></label>
+      <label for="Natureza" class="interest">Natureza</label>
+      
+      <input type="checkbox" value="Filmes e séries" id="Filmes e séries" name="Interest">
+      <label for="Filmes e séries"><img class='img' src="../../img/profile/filmes.png">
+      </label>
+      <label for="Filmes e séries" class="interest">Filmes e Séries</label>
 
-    <input type="checkbox" id="culinária" name="culinária">
-    <label for="culinária"><img class='img' src='https://image.flaticon.com/icons/png/512/2972/2972043.png'>
-    </label>
-    <label for="culinária" class="interest">Culinária</label>
+      <input type="checkbox" value="Culinária" id="Culinária" name="Interest">
+      <label for="Culinária"><img class='img' src="../../img/profile/culinaria.png">
+      </label>
+      <label for="Culinária" class="interest">Culinária</label>
 
-    <input type="checkbox" id="Astrologia" name="Astrologia">
-    <label for="Astrologia"><img class='img' src='https://image.flaticon.com/icons/png/512/2647/2647336.png'>
-    </label>
-    <label for="Astrologia" class="interest">Astrologia</label>
+      <input type="checkbox" value="Astrologia" id="Astrologia" name="Interest">
+      <label for="Astrologia"><img class='img' src="../../img/profile/astrologia.png">
+      </label>
+      <label for="Astrologia" class="interest">Astrologia</label>
 
-    <input type="checkbox" id="Games" name="Games">
-    <label for="Games"><img class='img' src='https://image.flaticon.com/icons/png/512/5260/5260529.png'></label>
-    <label for="Games" class="interest">Games</label>
+      <input type="checkbox" value="Games" id="Games" name="Interest">
+      <label for="Games"><img class='img' src="../../img/profile/games.png"></label>
+      <label for="Games" class="interest">Games</label>
 
-    <input type="checkbox" id="Fotografia" name="Fotografia">
-    <label for="Fotografia"><img class='img' src='https://img-premium.flaticon.com/png/512/186/premium/186266.png?token=exp=1628817371~hmac=e3096a5868e48cf899058b38a39274f4'></label>
-    <label for="Fotografia" class="interest">Fotografia</label>
+      <input type="checkbox" value="Fotografia" id="Fotografia" name="Interest">
+      <label for="Fotografia"><img class='img' src="../../img/profile/fotografia.png"></label>
+      <label for="Fotografia" class="interest">Fotografia</label>
 
-    <input type="checkbox" id="Aprender novas línguas" name="Aprender novas línguas">
-    <label for="Aprender novas línguas"><img class='img' src='https://img-premium.flaticon.com/png/512/3412/premium/3412644.png?token=exp=1628817170~hmac=41eee28b2ce5e9080ede3eee49c48eb7'></label>
-    <label for="Aprender novas línguas" class="interest">Aprender novas línguas</label>
+      <input type="checkbox" value="Aprender novas línguas" id="Aprender novas línguas" name="Interest">
+      <label for="Aprender novas línguas"><img class='img' src="../../img/profile/linguas.png"></label>
+      <label for="Aprender novas línguas" class="interest">Aprender novas línguas</label>
 
-    <input type="checkbox" id="Esportes" name="Esportes">
-    <label for="Esportes"><img class='img' src='https://image.flaticon.com/icons/png/512/2798/2798086.png'></label>
-    <label for="Esportes" class="interest">Esportes</label>
+      <input type="checkbox" value="Esportes" id="Esportes" name="Interest">
+      <img class='img' src="../../img/profile/esportes.png"></label>
+      <label for="Esportes" class="interest">Esportes</label>
     </div>
+  </section>
+    <button id="botao-check" type="button" class="btn">Salvar </button>
+    <div class="resultadoCheckbox"> </div>
   `;
   // registerListener
   rootElement.innerHTML = contentnewElement;
-  const inputImg = rootElement.querySelector('#input-file-profileImg');
+
+  const hamburger = rootElement.querySelector('#hamburger');
+  const navLinks = rootElement.querySelector('.navbar-links');
+  const links = rootElement.querySelectorAll('.navbar-links li');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    links.forEach((link) => {
+      link.classList.toggle('fade');
+    });
+  });
+
+  const inputImg = rootElement.querySelector('#file-input');
   const userPhoto = rootElement.querySelector('#user-photo');
   const userName = rootElement.querySelector('#name-user');
+
+  const botao = rootElement.querySelector('#botao-check');
+  // eslint-disable-next-line prefer-const
+  let interesse = rootElement.querySelectorAll('input[name="Interest"]');
+  // eslint-disable-next-line prefer-const
+  let div = rootElement.querySelector('.resultadoCheckbox');
+  // eslint-disable-next-line prefer-const
+  let insterestChecked = [];
+  const usuario = firebase.auth().currentUser;
+
+  botao.addEventListener('click', () => {
+    for (let i = 0; i < interesse.length; i++) {
+      if (interesse[i].checked) {
+        insterestChecked.push(interesse[i].value);
+      }
+    }
+    div.innerHTML = insterestChecked.join(', ');
+
+    const interests = {
+      array: insterestChecked,
+      userId: usuario.uid,
+    };
+
+    const collectionInterests = firebase.firestore().collection('checkbox');
+    console.log('foooooooi', collectionInterests);
+    collectionInterests.add(interests).then((res) => {
+      console.log('add no firebase');
+    });
+  });
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user != null) {
@@ -88,16 +141,6 @@ const createPage = () => {
       userName.innerHTML = user.displayName;
     }
   });
-
-  const sendNewProfileImg = (changeImage) => {
-    userPhoto.addEventListener('click', () => {
-      inputImg.style.opacity = 1;
-      inputImg.onchange = (event) => {
-        sendImg(event.target.files[0], changeImage);
-        inputImg.style.opacity = 0;
-      };
-    });
-  };
 
   const sendImg = () => {
     const ref = firebase.storage().ref('User-images');
@@ -131,7 +174,6 @@ const createPage = () => {
   };
 
   sendImg();
-  sendNewProfileImg();
 
   return rootElement;
 };
