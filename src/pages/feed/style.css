@@ -141,7 +141,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     margin: 2rem 0 2rem 0;
+}
+
+.user-feed-photo {
+    width: 100px;
+    border-radius: 50px;
+    margin-bottom: 1%;
 }
 
 .post-text {
@@ -272,12 +279,19 @@
     width: 10%;
 }
 
-.user-feed-photo {
+.user-post-photo {
     width: 60px;
     border-radius: 50px;
-    
 }
 
+.user-name {
+    font-weight: 600;
+}
+
+.edit-container {
+    display: flex;
+    flex-direction: column;
+}
 
 .post-field {
     width: 70%;
@@ -286,16 +300,45 @@
     justify-content: center;
     flex-direction: column;
     text-align: left;
-    margin: 0 1rem 1rem 0;
-}
-
-.user-name {
-    font-weight: 600;
+    /* margin: 0 0 1rem 2rem; */
 }
 
 .user-post {
+    margin-left: 1.6rem;
     flex-wrap: wrap;
+    resize: none;
+    border: none;
+    font-family: inherit;
+    background-color: transparent;
+    font-size: 1rem;
+    color: black;
+    width: 90%;
 }
+
+.edit-container {
+    flex-direction: row;
+}
+
+.display-none {
+    display: none;
+} 
+
+.edit-post {
+    font-family: inherit;
+    background-color: transparent;
+    font-size: 1rem;
+    color: black;
+    width: 90%;
+}
+
+.edit-buttons {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
 
 .manage-post {
     border-bottom: 1px solid var(--medium-gray);
@@ -303,10 +346,15 @@
 
     
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
 
-
+.post-likes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 .manage-post-btn {
@@ -323,10 +371,16 @@
     justify-content: center;
 }
 
-@media screen and (min-width: 660px) {
-    
+.likes-number {
+    margin: 0 .6rem 1rem 0;
 }
 
+
+@media screen and (min-width: 660px) {
+    .user-post-photo{
+        width: 100px;
+    }
+}
 @media screen and (min-width: 768px) {
     
 }
