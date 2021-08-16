@@ -9,7 +9,7 @@ const createPage = () => {
   <section class="container">
     <div class="forms-container">
       <div class="signin-signup">
-        <form action="#" id="sign-in-form" class="sign-in-form">
+        <form action="#" id="sign-in-form" class="sign-in-form form">
       <img src="img/Amitié1.png" alt="" class="logo">
       <h2 class="title">Login</h2>
       <div class="input-field">
@@ -36,8 +36,9 @@ const createPage = () => {
           <i class="fab fa-google"></i>
         </a>
       </div>
+      <p id="login-google-error"></p>
     </form>
-    <form action='#'  id='form-sign-up' class='sign-up-form'>
+    <form action='#'  id='form-sign-up' class='sign-up-form form'>
       <h2 class='title'>Criar uma Conta</h2>
       <div class='input-field'>
         <i class='fas fa-user'></i>
@@ -70,6 +71,7 @@ const createPage = () => {
           <i class="fab fa-google"></i>
         </a>
       </div>
+      <p id="register-google-error"></p>
     </form>
   </div>
 </div>
@@ -107,6 +109,7 @@ const createPage = () => {
 
   const signInBtn = rootElement.querySelector('#sign-in-btn');
   const signUpBtn = rootElement.querySelector('#sign-up-btn');
+  const ForgotPasswordBtn = rootElement.querySelector('#forgotPassword');
   const container = rootElement.querySelector('.container');
   const togglePassword = rootElement.querySelectorAll('.toggle');
 
@@ -167,13 +170,23 @@ const createPage = () => {
   });
 
   // Login Google;
-  googleSignInButton.addEventListener('click', () => {
-    firebase.signInWithGoogle();
+  googleSignInButton.addEventListener('click', async () => {
+    try {
+      await firebase.signInSignUpWithGoogle();
+      changePage('/');
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   // Cadastro Google;
-  googleSignUpButton.addEventListener('click', () => {
-    firebase.signUpWithGoogle();
+  googleSignUpButton.addEventListener('click', async () => {
+    try {
+      await firebase.signInSignUpWithGoogle();
+      changePage('/');
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   // Login email e senha
@@ -242,7 +255,7 @@ const createPage = () => {
     if (validName && validEmail && validPassword) {
       msgSuccess.style.display = 'block';
       msgSuccess.setAttribute('style', 'color: green');
-      msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>';
+      msgSuccess.innerHTML = '<strong>Email enviado com sucesso...</strong>';
       msgError.setAttribute('style', 'display: none');
       msgError.innerHTML = '';
 
@@ -260,9 +273,7 @@ const createPage = () => {
     }
   });
 
-  const btnForgotPassword = rootElement.querySelector('#forgotPassword');
-
-  btnForgotPassword.addEventListener('click', () => {
+  ForgotPasswordBtn.addEventListener('click', () => {
     changePage('/reset-password');
   });
 

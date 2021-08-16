@@ -10,7 +10,7 @@ const createPage = () => {
   <section class="reset-password-container">
   <div class="container-form">
     <div class="reset-container">
-      <form action="#" class="reset-password">
+      <form action="#" class="reset-password form-forger-password">
         <img src="img/Amitié1.png" alt="" class="reset-logo">
         <h2 class="title-reset">Para redefinir sua senha, informe o endereço de e-mail cadastrado:</h2>
         <div class="reset-input">
