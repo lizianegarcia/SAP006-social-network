@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-/* eslint-disable no-use-before-define */
-import { changePage } from '../routes/changePage.js';
-
-=======
->>>>>>> de17f40c7420e916caee2a42969ecfcd5016d6ea
 const waitAuthState = () => new Promise((resolve) => firebase.auth().onAuthStateChanged(resolve));
 
 const getUser = () => firebase.auth().currentUser;
