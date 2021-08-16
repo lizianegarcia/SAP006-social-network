@@ -74,12 +74,8 @@ const createPage = () => {
 
 export default createPage;
 
-
-
   //  <div class="post-feed-item">
   //               <img src="http://placehold.it/100x100" alt="user avatar">
   //               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
   //               <i class="fas fa-heart" id="heart"></i>
   //           </div>
-
-
