@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 const createPage = () => {
   const photoURL = firebase.auth().currentUser.photoURL;
   const rootElement = document.createElement('div');
