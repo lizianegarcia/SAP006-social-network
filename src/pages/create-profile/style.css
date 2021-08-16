@@ -1,19 +1,125 @@
-h1 {
+.profile-area {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.name-profile-area {
   text-align: center;
+  width: 100%;
+}
+
+.theme-image {
+  display: none;
+}
+
+.profile-area-photo-box {
+  width: 100px;
+  overflow: hidden;
 }
 
 .user-photo {
-  margin: 50px;
-  width: 110px;
-  height: 110px;
-  border-radius: 60px;
-  border: 2px solid #00bfa6;
+  width: 63px;
+  height: 63px;
+  border-radius: 34px;
+  /* width: 120px;
+  height: 120px;
+  border-radius: 60px; */
+} 
+
+
+.user-photo:hover {
+  opacity: 0.5;
+  cursor: pointer;
+} 
+
+#name-user {
+  text-align: center;
+  color: #403E56;
+  font-size: 25px;
+}
+
+.profile-area-interests {
+  display: flex;
+  align-items: center;
 }
 
 .profile-interests {
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  padding-top: 0px;
+  flex-wrap: wrap;
+  color: #444444;
+  width: 600px;
+  font-size: 0.2 rem;
   margin: 10px;
-  color: #ff6585;
-  font-size: 30px;
-  cursor: pointer;
+}
+
+.img {
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  cursor:pointer;
+}
+
+.image-upload > input {
+  visibility:hidden;
+  width:0;
+  height:0
+}
+
+.interest {
+  margin-right: 30px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .profile-area {
+    flex-direction: column;
+    height: 300px;
+    border: 2px solid gray;
+    border-radius: 4px;
+    width: 60%;
+    margin-top: 10px;
+    padding: 0px;
+    margin-left: 250px;
+  }
+
+  .profile-area-theme {
+    background-color: rgb(211, 211, 211);
+    width: 100%;
+    height: 40%;
+    margin-bottom: 10px;
+  }
+
+  .profile-area-photo-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    padding-top: 0px;
+  }
+  
+  .theme-image {
+    display: block;
+    width: 100%;
+    height: 280px;
+  }
+
+  .user-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+  } 
+
+  .profile-area-interests {
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    border: 2px solid gray;
+    border-radius: 4px;
+    width: 60%;
+    margin-top: 10px;
+    padding: 0px;
+    margin-left: 250px;
+  }
 }
