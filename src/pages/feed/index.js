@@ -1,7 +1,6 @@
 import profile from '../../components/profile/profile.js';
+import { changePage } from '../../routes/changePage.js';
 import firebase from '../../services/firebase.js';
-import { loadPosts, createPost } from '../../services/firebase.js';
-
 
 const createPage = () => {
   const rootElement = document.createElement('div');
@@ -17,7 +16,7 @@ const createPage = () => {
                   </div>
 
                   <ul class="navbar-links" id="navbar-links">
-                      <li class="li-items" id="navigate-profile"><a href="#">Perfil</a></li>
+                      <li class="li-items" id="navigate-profile"><a href="#" id="goProfile">Perfil</a></li>
                       <li class="li-items" id="navigate-feed"><a href="#">Feed</a></li>
                       <li class="li-items feed-logout"></li>
                   </ul>
@@ -45,7 +44,7 @@ const createPage = () => {
   const navLinks = rootElement.querySelector('.navbar-links');
   const links = rootElement.querySelectorAll('.navbar-links li');
   const section = rootElement.querySelector('.feed-logout');
-  const navigateProfile = rootElement.querySelector('#navigate-profile');
+  const navigateProfile = rootElement.querySelector('#goProfile');
 
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
@@ -57,34 +56,30 @@ const createPage = () => {
   rootElement.querySelector('#postForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const textPost = document.querySelector('#postText').value;
-    createPost(textPost);
+    firebase.createPost(textPost);
   });
 
-  loadPosts();
-  
-  //NAV LINKS
+  firebase.loadPosts();
+
+  // NAV LINKS
   navigateProfile.addEventListener('click', () => {
     changePage('/create-profile');
   });
 
-  //LOGOUT COMPONENT
+  // LOGOUT COMPONENT
   section.appendChild(profile());
 
   return rootElement;
-}; 
-
-
+};
 
 export default createPage;
 
 
 
-/*
+  //  <div class="post-feed-item">
+  //               <img src="http://placehold.it/100x100" alt="user avatar">
+  //               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+  //               <i class="fas fa-heart" id="heart"></i>
+  //           </div>
 
-   <div class="post-feed-item">
-                <img src="http://placehold.it/100x100" alt="user avatar">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <i class="fas fa-heart" id="heart"></i>
-            </div>
 
-*/ 
