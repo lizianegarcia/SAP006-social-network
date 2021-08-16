@@ -16,8 +16,7 @@ const signInSignUpWithGoogle = async () => {
   await firebase.auth().signInWithPopup(provider);
 };
 
-const signIn = (email, password) => firebase.auth()
-  .signInWithEmailAndPassword(email, password);
+const signIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
 const signOut = () => firebase.auth().signOut();
 
@@ -31,33 +30,151 @@ const signUp = async (name, email, password) => {
 };
 
 const forgotYourPassword = (email) => firebase.auth().sendPasswordResetEmail(email);
+
 // FEED
 
 const addPosts = (post) => {
-  console.log(post);
   const postTemplate = `
-      <li id="${post.data().userId}" class="post-container">
-        <div class="user-photo-container">
-          <img src="http://placehold.it/100x100" alt="User Photo" class="user-feed-photo">
+    <li id="${post.data().userId}" data-template class="post-container">
+      <div class="user-photo-container">
+        <img src="https://i.pravatar.cc/100?img=48" alt="User Photo" class="user-post-photo">
+        <p class="user-name">@${post.data().userName}</p>
+      </div>
+      <div id=${post.id}>
+        <textarea disabled class="user-post" rows="4" cols="50">${
+  post.data().text
+}</textarea>
+
+        <div data-edit class="edit-container display-none">
+          <textarea data-text="${
+  post.id
+}" class="edit-post" rows="4" cols="50">${post.data().text}</textarea>
+        
+          <div class="edit-buttons">
+            <button data-cancel="${
+  post.id
+}" class="manage-post-btn cancel-btn" disabled>Cancelar</button>
+            <button data-save="${
+  post.id
+}" class="manage-post-btn save-btn" disabled>Salvar</button>
+          </div>
         </div>
-        <article class="post-field">
-          <p class="user-name">@${post.data().userName}</p>
-          <p class="user-post">${post.data().text}</p>
-        </article>
-      </li>
-      <section class="manage-post">
-          <button id="like-btn" class="manage-post-btn"><i class="fas fa-heart" id="heart"></i></button>
-          <button id="edit-btn" class="manage-post-btn">Editar</button>
-          <button id="delete-btn" class="manage-post-btn">Excluir</button>
-      </section>
+      </div>
+     </li>
+     <div class="manage-post" id=${post.id}>
+      <div class="post-likes" id="${post.id}">
+        <button id="like-btn" class="manage-post-btn like-btn"><i class="fas fa-heart" id="heart"></i></button>
+        <p class="likes-number" id="${post.id}">${post.data().likes}</p>
+      </div>
+      <button data-edit="${
+  post.id
+}" class="manage-post-btn edit-btn">Editar</button>
+      <button class="manage-post-btn delete-btn">Excluir</button>
+     </div>
    `;
   document.querySelector('#postsList').innerHTML += postTemplate;
+
+  const postContainer = document.querySelectorAll('[data-template]');
+
+  const activateEdition = (document) => {
+    document.querySelector('.edit-container').classList.remove('display-none');
+  };
+
+  for (const open of postContainer) {
+    console.log(open);
+    open.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target.dataset.edit === '') {
+        activateEdition(open);
+      }
+    });
+  }
+
+  // const editButtons = document.querySelectorAll('[data-edit]')
+  // for (const button of editButtons) {
+  //   button.addEventListener('click', (e) => {
+  //     const editId = e.target.dataset.edit
+  //     const textArea = document.querySelector(`[data-text="${editId}"]`)
+  //     textArea.removeAttribute("disabled");
+
+  //     const saveButtons = document.querySelectorAll(`[data-save="${editId}"]`);
+  //     saveButtons.removeAttribute('disabled');
+  //     saveButtons.classList.removeAttribute('display-none')
+  //     const cancelButtons = document.querySelectorAll(`[data-cancel="${editId}"]`);
+  //     cancelButtons.removeAttribute('disabled');
+  //     cancelButtons.classList.removeAttribute('display-none')
+
+  //   });
+  // };
+
+  const deleteButtons = document.querySelectorAll('.delete-btn');
+  for (const button of deleteButtons) {
+    button.addEventListener('click', (e) => {
+      deletePost(e.currentTarget.parentNode.id);
+    });
+  }
+
+  const likeButtons = document.querySelectorAll('.like-btn');
+  for (const button of likeButtons) {
+    button.addEventListener('click', (e) => {
+      likePosts(e.currentTarget.parentNode.id);
+    });
+  }
+};
+
+const editPost = (newText, postID) => {
+  console.log(newText);
+  console.log(postID);
+  firebase.firestore().collection('posts').doc(postID).update({ text: newText });
+};
+
+const likePosts = (postId) => {
+  const postsCollection = firebase.firestore().collection('posts');
+
+  const promisseResult = postsCollection
+    .doc(postId)
+    .get()
+    .then((post) => {
+      console.log(postId);
+      console.log(post.data());
+      const countLikes = post.data().likes;
+      if (countLikes >= 1) {
+        postsCollection
+          .doc(postId)
+          .update({
+            likes: post.data().likes - 1,
+          })
+          .then(() => {
+            loadPosts();
+          });
+      } else {
+        postsCollection
+          .doc(postId)
+          .update({
+            likes: post.data().likes + 1,
+          })
+          .then(() => {
+            loadPosts();
+          });
+      }
+    });
+  return promisseResult.then();
+};
+
+const deletePost = (postId) => {
+  const postsCollection = firebase.firestore().collection('posts');
+  postsCollection
+    .doc(postId)
+    .delete()
+    .then(() => {
+      console.log('Deleted!!!!!');
+      loadPosts();
+    });
 };
 
 const loadPosts = () => {
   const postsCollection = firebase.firestore().collection('posts');
   postsCollection.get().then((snap) => {
-    console.log(snap);
     document.querySelector('.loading-posts').innerHTML = '';
     snap.forEach((post) => {
       addPosts(post);
@@ -76,19 +193,9 @@ const createPost = (textPost) => {
     comments: [],
   };
 
-  const postsCollection = firebase
-    .firestore()
-    .collection('posts');
+  const postsCollection = firebase.firestore().collection('posts');
   postsCollection.add(post).then(() => {
     document.querySelector('#postsList').value = '';
-    loadPosts();
-  });
-};
-
-const deletePost = (postId) => {
-  const postsCollection = firebase.firestore().collection('posts');
-  postsCollection.doc(postId).delete().then((doc) => {
-    console.log('Deleted!!!!!');
     loadPosts();
   });
 };
@@ -104,6 +211,4 @@ export default {
   forgotYourPassword,
   createPost,
   loadPosts,
-  deletePost,
-
 };
