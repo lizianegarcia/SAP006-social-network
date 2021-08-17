@@ -9,8 +9,9 @@ const createPage = () => {
   // if (!user) {
   //   logout();
   // }
+  // eslint-disable-next-line no-use-before-define
 
-  const contentnewElement = `        
+  const contentnewElement = `
           <header>
               <nav class="feed-navbar">
                   <img class="feed-logo" src="./img/Amitié2.png" alt="">
@@ -29,7 +30,7 @@ const createPage = () => {
           </header>
           <main class="feed-container">
             <section class="greet-user">
-            <img src="https://i.pravatar.cc/100?img=16" alt="User Photo" class="user-feed-photo">
+            <img src='${user.photoURL}' alt="User Photo" class="user-feed-photo" id="feedPhoto">
               <p>Bem vinda, ${user.displayName}</p>
             </section>
         
@@ -51,6 +52,7 @@ const createPage = () => {
   const links = rootElement.querySelectorAll('.navbar-links li');
   const section = rootElement.querySelector('.feed-logout');
   const navigateProfile = rootElement.querySelector('#goProfile');
+  const userPhoto = rootElement.querySelector('#feedPhoto');
 
   // const postsCollection = firebase.firestore().collection("posts");
   // console.log(postsCollection);
@@ -75,6 +77,12 @@ const createPage = () => {
     links.forEach((link) => {
       link.classList.toggle('fade');
     });
+  });
+
+  firebase.logUser((User) => {
+    if (User != null) {
+      userPhoto.src = User.photoURL || '../../img/profile/user-default.png';
+    }
   });
 
   firebase.loadPosts();

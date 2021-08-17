@@ -7,6 +7,7 @@
 
 import profile from '../../components/profile/profile.js';
 import { changePage } from '../../routes/changePage.js';
+// import firebase from '../../services/firebase.js';
 
 const createPage = () => {
   const usuario = firebase.auth().currentUser;
@@ -158,10 +159,10 @@ const createPage = () => {
   });
 
   // Pega a imagem do usuário ou coloca um avatar
-  firebase.auth().onAuthStateChanged(user => {
-    if (user != null) {
-      userPhoto.src = user.photoURL || '../../img/profile/user-default.png';
-      userName.innerHTML = user.displayName;
+  firebase.auth().onAuthStateChanged(User => {
+    if (User != null) {
+      userPhoto.src = User.photoURL || '../../img/profile/user-default.png';
+      userName.innerHTML = User.displayName;
     }
   });
 
