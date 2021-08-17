@@ -141,7 +141,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     margin: 2rem 0 2rem 0;
+}
+
+.user-feed-photo {
+    width: 100px;
+    border-radius: 50px;
+    margin-bottom: 1%;
 }
 
 .post-text {
@@ -253,7 +260,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     list-style: none;
 }
 
@@ -262,40 +269,93 @@
     width: 100%;
     align-items: center;
     justify-content: space-around;
-    margin-top: 2rem;
+    flex-direction: column;
+    margin-bottom: 48px;
 }
 
-.user-photo-container {
+.user-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* margin: 0 0 1rem 1rem; */
+    width: 90%;
+}
+
+/* .user-post-photo {
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 0 1rem 1rem;
-    width: 10%;
-}
-
-.user-feed-photo {
     width: 60px;
     border-radius: 50px;
-    
-}
-
-
-.post-field {
-    width: 70%;
-    display: flex;
-    align-items: left;
-    justify-content: center;
-    flex-direction: column;
-    text-align: left;
-    margin: 0 1rem 1rem 0;
-}
+} */
 
 .user-name {
     font-weight: 600;
+    width: 100%;
+}
+
+.post-date {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.edit-container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.post-field {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: justify;
+    flex-direction: column;
+    text-align: left;
+    /* margin: 0 0 1rem 2rem; */
 }
 
 .user-post {
     flex-wrap: wrap;
+    resize: none;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    background-color: var(--light-gray);
+    padding: .5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin: 1.6rem 0;
+    color: black;
+    width: 100%;
 }
+
+.edit-container {
+    flex-direction: row;
+}
+
+.display-none {
+    display: none;
+} 
+
+.edit-post {
+    font-family: inherit;
+    background-color: transparent;
+    font-size: 1rem;
+    color: black;
+    width: 90%;
+}
+
+.edit-buttons {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
 
 .manage-post {
     border-bottom: 1px solid var(--medium-gray);
@@ -303,10 +363,15 @@
 
     
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
 
-
+.post-likes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 .manage-post-btn {
@@ -323,10 +388,16 @@
     justify-content: center;
 }
 
-@media screen and (min-width: 660px) {
-    
+.likes-number {
+    margin: 0 .6rem 1rem 0;
 }
 
+
+@media screen and (min-width: 660px) {
+    .user-post-photo{
+        width: 100px;
+    }
+}
 @media screen and (min-width: 768px) {
     
 }

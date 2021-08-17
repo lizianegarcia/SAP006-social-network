@@ -5,6 +5,11 @@ import firebase from '../../services/firebase.js';
 const createPage = () => {
   const rootElement = document.createElement('div');
   const user = firebase.getUser();
+ 
+  // if (!user) {
+  //   logout();
+  // }
+
   const contentnewElement = `        
           <header>
               <nav class="feed-navbar">
@@ -24,15 +29,15 @@ const createPage = () => {
           </header>
           <main class="feed-container">
             <section class="greet-user">
+            <img src="https://i.pravatar.cc/100?img=16" alt="User Photo" class="user-feed-photo">
               <p>Bem vinda, ${user.displayName}</p>
             </section>
         
             <form id="postForm" class="posts-form">
-                <input type="text" name="postText" id="postText" class="post-text" autocomplete="off" placeholder="No que você está pensando?">
+                <input type="text" name="postText" id="postText" class="post-text" autocomplete="off" placeholder="No que você está pensando?" required>
                 <button id="publishBtn" class="post-btn">Publicar</button>
             </form>
 
-            <section class="loading-posts"></section>
             <ul id="postsList" class="posts-list"></ul>
           </main>
           
@@ -47,20 +52,22 @@ const createPage = () => {
   const section = rootElement.querySelector('.feed-logout');
   const navigateProfile = rootElement.querySelector('#goProfile');
 
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    links.forEach((link) => {
-      link.classList.toggle('fade');
-    });
-  });
+  
 
+  //   rootElement.querySelector('#postsList').addEventListener('click', (e) => {
+  //     console.log(e.target.parentNode.parentNode)
+  // })
+
+  // const postsCollection = firebase.firestore().collection("posts");
+  // console.log(postsCollection);
+  
   rootElement.querySelector('#postForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    const textPost = document.querySelector('#postText').value;
+    const textPost = rootElement.querySelector('#postText').value;
     firebase.createPost(textPost);
+    // rootElement.querySelector('#postsList').innerHTML = '';
+    // firebase.loadPosts()
   });
-
-  firebase.loadPosts();
 
   // NAV LINKS
   navigateProfile.addEventListener('click', () => {
@@ -70,17 +77,17 @@ const createPage = () => {
   // LOGOUT COMPONENT
   section.appendChild(profile());
 
+  //MENU HAMBURGUER
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    links.forEach((link) => {
+      link.classList.toggle('fade');
+    });
+  });
+  
+  firebase.loadPosts();
   return rootElement;
 };
 
 export default createPage;
-
-
-
-  //  <div class="post-feed-item">
-  //               <img src="http://placehold.it/100x100" alt="user avatar">
-  //               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-  //               <i class="fas fa-heart" id="heart"></i>
-  //           </div>
-
 
