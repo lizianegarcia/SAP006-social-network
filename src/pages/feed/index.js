@@ -38,7 +38,6 @@ const createPage = () => {
                 <button id="publishBtn" class="post-btn">Publicar</button>
             </form>
 
-            <section class="loading-posts"></section>
             <ul id="postsList" class="posts-list"></ul>
           </main>
           
@@ -53,6 +52,11 @@ const createPage = () => {
   const navigateProfile = rootElement.querySelector('#goProfile');
 
   
+
+  //   rootElement.querySelector('#postsList').addEventListener('click', (e) => {
+  //     console.log(e.target.parentNode.parentNode)
+  // })
+
   // const postsCollection = firebase.firestore().collection("posts");
   // console.log(postsCollection);
   
@@ -60,9 +64,9 @@ const createPage = () => {
     e.preventDefault();
     const textPost = rootElement.querySelector('#postText').value;
     firebase.createPost(textPost);
+    // rootElement.querySelector('#postsList').innerHTML = '';
+    // firebase.loadPosts()
   });
-
-
 
   // NAV LINKS
   navigateProfile.addEventListener('click', () => {
