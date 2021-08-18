@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import { changePage } from '../../routes/changePage.js';
-=======
->>>>>>> e2b12e59cdf9110911f20b14588a34b852fdd4e2
 import firebase from '../../services/firebase.js';
 
 const createPage = () => {
