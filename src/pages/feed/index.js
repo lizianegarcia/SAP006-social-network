@@ -30,7 +30,7 @@ const createPage = () => {
           </header>
           <main class="feed-container">
             <section class="greet-user">
-            <img src='${user.photoURL}' alt="User Photo" class="user-feed-photo" id="feedPhoto">
+            <img src='${user.photoURL}' alt="User Photo" class="user-feed-photo" id="user-feed-photo">
               <p>Bem vinda, ${user.displayName}</p>
             </section>
         
@@ -51,7 +51,7 @@ const createPage = () => {
   const links = rootElement.querySelectorAll('.navbar-links li');
   const section = rootElement.querySelector('.feed-logout');
   const navigateProfile = rootElement.querySelector('#goProfile');
-  const userPhoto = rootElement.querySelector('#feedPhoto');
+  const userPhoto = rootElement.querySelector('#user-feed-photo');
 
   //   rootElement.querySelector('#postsList').addEventListener('click', (e) => {
   //     console.log(e.target.parentNode.parentNode)
@@ -84,11 +84,12 @@ const createPage = () => {
     });
   });
 
-  firebase.logUser((User) => {
-    if (User != null) {
-      userPhoto.src = User.photoURL || '../../img/profile/user-default.png';
-    }
-  });
+  // Pega a imagem do usuário ou coloca um avatar
+  // firebase.logUser((User) => {
+  //   if (User != null) {
+  //     userPhoto.src = User.photoURL || '../../img/profile/user-default.png';
+  //   }
+  // });
 
   firebase.loadPosts();
   return rootElement;

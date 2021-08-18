@@ -11,7 +11,7 @@ import { changePage } from '../../routes/changePage.js';
 
 const createPage = () => {
   const usuario = firebase.auth().currentUser;
-  console.log(usuario);
+  // console.log(usuario);
   firebase
     .firestore()
     .collection('checkbox')

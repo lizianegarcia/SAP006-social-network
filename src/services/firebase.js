@@ -2,7 +2,7 @@ const waitAuthState = () => new Promise((resolve) => firebase.auth().onAuthState
 
 const getUser = () => firebase.auth().currentUser;
 
-const logUser = () => firebase.auth().onAuthStateChanged;
+const logUser = () => firebase.auth().onAuthStateChanged();
 
 const updateUser = async (name) => {
   const user = await getUser();
@@ -33,12 +33,11 @@ const signUp = async (name, email, password) => {
 
 const forgotYourPassword = (email) => firebase.auth().sendPasswordResetEmail(email);
 
-
 // FEED
 
 const loadPosts = () => {
   const postsCollection = firebase.firestore().collection('posts');
-  postsCollection.orderBy('data','desc').get().then((snap) => {
+  postsCollection.orderBy('data', 'desc').get().then((snap) => {
     document.querySelector('.posts-list').innerHTML = '';
     snap.forEach((post) => {
       addPosts(post);
@@ -50,7 +49,7 @@ const addPosts = (post) => {
   const postTemplate = `
     <li id="${post.data().userId}" data-template class="post-container">
         <div class="user-info-container">
-          <!-- <img src="https://i.pravatar.cc/100?img=48" alt="User Photo" class="user-post-photo"> -->
+          <img src="${post.data().photoURL}" alt="User Photo" class="user-post-photo">
           <p class="user-name">@${post.data().userName}</p>
           <p class="post-date" id="">${post.data().data}</p>
         </div>
@@ -76,69 +75,69 @@ const addPosts = (post) => {
    `;
 
   document.querySelector('#postsList').innerHTML += postTemplate;
-  
+
   const postsListContainer = document.querySelector('#postsList');
 
-  //função editar post
+  // função editar post
   postsListContainer.addEventListener('click', (e) => {
     const { target } = e;
     const editPostButton = target.dataset.edit;
-    const cancelEditionButton = target.dataset.cancel; 
+    const cancelEditionButton = target.dataset.cancel;
     const saveEditionButton = target.dataset.save;
 
-    //Open edit
-    if(editPostButton) {
-      const editPostContainer = target.parentNode.parentNode.querySelector('.edit-container')
-      const userPost = target.parentNode.parentNode.querySelector('.user-post')
+    // Open edit
+    if (editPostButton) {
+      const editPostContainer = target.parentNode.parentNode.querySelector('.edit-container');
+      const userPost = target.parentNode.parentNode.querySelector('.user-post');
       editPostContainer.classList.toggle('display-none');
       userPost.classList.toggle('display-none');
     }
-    //cancel edit
-    if(cancelEditionButton) {
-      console.log(cancelEditionButton)
+    // cancel edit
+    if (cancelEditionButton) {
+      console.log(cancelEditionButton);
       const cancelEdit = target.parentNode.parentNode;
       const userPost = target.parentNode.parentNode.parentNode.parentNode;
-      cancelEdit.classList.toggle('display-none')
+      cancelEdit.classList.toggle('display-none');
       userPost.querySelector('.user-post').classList.toggle('display-none');
     }
-    //save edit
-    if(saveEditionButton){
-      console.log(saveEditionButton)
+    // save edit
+    if (saveEditionButton) {
+      console.log(saveEditionButton);
       // const editId = e.target.dataset.edit
       // const newText = document.querySelector(`[data-text="${editId}"]`).value;
       // console.log(newText)
-      console.log(target.parentNode)
+      console.log(target.parentNode);
 
-      editPost(newText, postID)
+      editPost(newText, postID);
       document.querySelector('#postsList').innerHTML = '';
-      loadPosts()
+      loadPosts();
     }
   });
- 
-  //função excluir posts
-  const deleteButtons = document.querySelectorAll('.delete-btn')
+
+  // função excluir posts
+  const deleteButtons = document.querySelectorAll('.delete-btn');
   for (const button of deleteButtons) {
     button.addEventListener('click', (e) => {
-      e.preventDefault()
-      deletePost(e.currentTarget.parentNode.id)
-      document.querySelector('#postsList').innerHTML = ''
+      e.preventDefault();
+      deletePost(e.currentTarget.parentNode.id);
+      document.querySelector('#postsList').innerHTML = '';
     });
-  };
+  }
 
-  //função like posts
+  // função like posts
   const likeButtons = document.querySelectorAll('.like-btn');
   for (const button of likeButtons) {
     button.addEventListener('click', (e) => {
-      e.preventDefault()
-      likePosts(e.currentTarget.parentNode.id)      
-      document.querySelector('#postsList').innerHTML = ''
+      e.preventDefault();
+      likePosts(e.currentTarget.parentNode.id);
+      document.querySelector('#postsList').innerHTML = '';
     });
   }
 };
 
 const editPost = (newText, postID) => {
-  console.log(newText)
-  console.log(postID)
+  console.log(newText);
+  console.log(postID);
   firebase.firestore().collection('posts').doc(postID).update({ text: newText });
 };
 
@@ -151,38 +150,35 @@ const deletePost = (postId) => {
 };
 
 const likePosts = (postId) => {
-  const postsCollection = firebase.firestore().collection("posts");
+  const postsCollection = firebase.firestore().collection('posts');
   const promisseResult = postsCollection.doc(postId).get()
-      .then((post => {
-        console.log(postId)
-        console.log(post.data())
-        const countLikes = post.data().likes;
-        if(countLikes >= 1) {
-            postsCollection.doc(postId).update({
-              likes: post.data().likes - 1
-            })
-            .then(() => {
-              loadPosts();
-            });
-        } else {
-          postsCollection.doc(postId).update({
-            likes: post.data().likes + 1
-          })
+    .then(((post) => {
+      console.log(postId);
+      console.log(post.data());
+      const countLikes = post.data().likes;
+      if (countLikes >= 1) {
+        postsCollection.doc(postId).update({
+          likes: post.data().likes - 1,
+        })
           .then(() => {
             loadPosts();
           });
-        }
-      }))
-      return promisseResult.then();
+      } else {
+        postsCollection.doc(postId).update({
+          likes: post.data().likes + 1,
+        })
+          .then(() => {
+            loadPosts();
+          });
+      }
+    }));
+  return promisseResult.then();
 };
-
-
 
 const postData = () => {
   const data = new Date();
   return data.toLocaleString('pt-BR');
 };
-
 
 const createPost = (textPost) => {
   const user = firebase.auth().currentUser;
@@ -191,6 +187,7 @@ const createPost = (textPost) => {
     userId: user.uid,
     userName: user.displayName,
     userEmail: user.email,
+    photoURL: user.photoURL,
     likes: 0,
     comments: [],
     data: postData(),
