@@ -30,8 +30,8 @@ export const addPosts = async (post) => {
               <button id="like-btn" class="manage-post-btn like-btn"><i class="fas fa-heart" id="heart"></i></button>
               <p class="likes-number" id="${post.id}">${post.data().likes}</p>
             </div>
-            <button class="manage-post-btn edit-btn"><i data-edit="${post.id}" class="fas fa-pencil-alt"></i></button>
-            <button class="manage-post-btn delete-btn"><i class="fas fa-trash-alt"></i></button>}
+            ${post.data().userId === currentUserId ? `<button class="manage-post-btn edit-btn"><i data-edit="${post.id}" class="fas fa-pencil-alt"></i></button>
+            <button class="manage-post-btn delete-btn"><i class="fas fa-trash-alt"></i></button>` : ''}
           </div>
 
           <div class="modal-wrapper">
