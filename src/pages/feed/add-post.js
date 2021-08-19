@@ -2,7 +2,7 @@ import firebase from '../../services/firebase.js';
 
 export const addPosts = (post) => {
   const postTemplate = `
-      <li id="${post.data().userId}" data-template class="post-container">
+      <li id="post-${post.id}" data-template class="post-container">
   
           <div class="user-info-container">
             <!-- <img src="https://i.pravatar.cc/100?img=48" alt="User Photo" class="user-post-photo"> -->
@@ -78,19 +78,22 @@ export const addPosts = (post) => {
   // função excluir posts
   const deleteButtons = document.querySelectorAll('.delete-btn');
   for (const button of deleteButtons) {
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', async (e) => {
       e.preventDefault();
-      firebase.deletePost(e.currentTarget.parentNode.id);
-      document.querySelector('#postsList').innerHTML = '';
+      const postId = e.currentTarget.parentNode.id;
+      await firebase.deletePost(postId);
+      document.querySelector(`#post-${postId}`).remove();
     });
   }
 
   // função like posts
   const likeButtons = document.querySelectorAll('.like-btn');
   for (const button of likeButtons) {
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', async (e) => {
       e.preventDefault();
-      firebase.likePosts(e.currentTarget.parentNode.id);
+      const postId = e.currentTarget.parentNode.id;
+      await firebase.likePosts(postId);
+
       document.querySelector('#postsList').innerHTML = '';
     });
   }

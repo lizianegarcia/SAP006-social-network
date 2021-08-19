@@ -44,18 +44,13 @@ const editPost = (newText, postID) => {
 
 const deletePost = (postId) => {
   const postsCollection = firebase.firestore().collection('posts');
-  postsCollection.doc(postId).delete().then(() => {
-    console.log('Deleted!!!!!');
-    loadPosts();
-  });
+  return postsCollection.doc(postId).delete();
 };
 
 const likePosts = (postId) => {
   const postsCollection = firebase.firestore().collection('posts');
   const promisseResult = postsCollection.doc(postId).get()
     .then(((post) => {
-      console.log(postId);
-      console.log(post.data());
       const countLikes = post.data().likes;
       if (countLikes >= 1) {
         postsCollection.doc(postId).update({
