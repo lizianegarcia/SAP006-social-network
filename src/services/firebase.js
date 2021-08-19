@@ -38,37 +38,28 @@ const loadPosts = () => {
   return postsCollection.orderBy('data', 'desc').get();
 };
 
-const editPost = (newText, postID) => {
-  firebase.firestore().collection('posts').doc(postID).update({ text: newText });
-};
+const editPost = (newText, postID) => firebase.firestore().collection('posts').doc(postID).update({ text: newText });
 
 const deletePost = (postId) => {
   const postsCollection = firebase.firestore().collection('posts');
   return postsCollection.doc(postId).delete();
 };
 
-const likePosts = (postId) => {
+const likePosts = async (postId) => {
   const postsCollection = firebase.firestore().collection('posts');
-  const promisseResult = postsCollection.doc(postId).get()
-    .then(((post) => {
-      const countLikes = post.data().likes;
-      if (countLikes >= 1) {
-        postsCollection.doc(postId).update({
-          likes: post.data().likes - 1,
-        })
-          .then(() => {
-            loadPosts();
-          });
-      } else {
-        postsCollection.doc(postId).update({
-          likes: post.data().likes + 1,
-        })
-          .then(() => {
-            loadPosts();
-          });
-      }
-    }));
-  return promisseResult.then();
+
+  const post = await postsCollection.doc(postId).get();
+  const countLikes = post.data().likes;
+
+  if (countLikes >= 1) {
+    return postsCollection.doc(postId).update({
+      likes: post.data().likes - 1,
+    });
+  }
+
+  return postsCollection.doc(postId).update({
+    likes: post.data().likes + 1,
+  });
 };
 
 const postData = () => {

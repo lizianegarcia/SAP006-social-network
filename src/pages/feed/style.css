@@ -416,6 +416,53 @@
     margin: 0 .6rem 1rem 0;
 }
 
+/*Modal - excluir post*/
+
+.modal-wrapper {
+    display: none;
+    background: rgba(0, 0, 0, .5);
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .modal {
+    font-family: inherit;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 10% auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 4px 3px 38px 1px rgb(18 18 16 / 79%);
+    -webkit-box-shadow: 4px 3px 38px 1px rgb(18 18 16 / 79%);
+    -moz-box-shadow: 4px 3px 38px 1px rgb(18 18 16 / 79%);
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 5%;
+  }
+  
+  .modal-content button {
+    color: white;
+    background-color: var(--teal);
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+  }
+
+
 
 @media screen and (min-width: 660px) {
     .user-post-photo{

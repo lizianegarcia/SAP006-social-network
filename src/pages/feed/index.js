@@ -79,9 +79,6 @@ const createPage = () => {
       .then(firebase.loadPosts)
       .then(insertPostList);
     inputPost.value = '';
-
-    // rootElement.querySelector('#postsList').innerHTML = '';
-    // firebase.loadPosts()
   });
 
   // NAV LINKS
