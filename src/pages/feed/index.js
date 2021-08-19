@@ -72,13 +72,13 @@ const createPage = () => {
 
   rootElement.querySelector('#postForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    const textPost = rootElement.querySelector('#postText').value;
+    const inputPost = rootElement.querySelector('#postText');
+    const textPost = inputPost.value;
     firebase
       .createPost(textPost)
       .then(firebase.loadPosts)
       .then(insertPostList);
-    // rootElement.querySelector('#postsList').innerHTML = '';
-    // firebase.loadPosts()
+    inputPost.value = '';
   });
 
   // NAV LINKS
