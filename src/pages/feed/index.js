@@ -1,11 +1,12 @@
 import profile from '../../components/profile/profile.js';
 import { changePage } from '../../routes/changePage.js';
 import firebase from '../../services/firebase.js';
+import { addPosts } from './add-post.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
   const user = firebase.getUser();
- 
+
   // if (!user) {
   //   logout();
   // }
@@ -52,19 +53,31 @@ const createPage = () => {
   const section = rootElement.querySelector('.feed-logout');
   const navigateProfile = rootElement.querySelector('#goProfile');
 
-  
-
   //   rootElement.querySelector('#postsList').addEventListener('click', (e) => {
   //     console.log(e.target.parentNode.parentNode)
   // })
 
   // const postsCollection = firebase.firestore().collection("posts");
   // console.log(postsCollection);
-  
+
+  const clearPostList = () => {
+    rootElement.querySelector('.posts-list').innerHTML = '';
+  };
+
+  const insertPostList = (snap) => {
+    clearPostList();
+    snap.forEach((post) => {
+      addPosts(post);
+    });
+  };
+
   rootElement.querySelector('#postForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const textPost = rootElement.querySelector('#postText').value;
-    firebase.createPost(textPost);
+    firebase
+      .createPost(textPost)
+      .then(firebase.loadPosts)
+      .then(insertPostList);
     // rootElement.querySelector('#postsList').innerHTML = '';
     // firebase.loadPosts()
   });
@@ -77,17 +90,17 @@ const createPage = () => {
   // LOGOUT COMPONENT
   section.appendChild(profile());
 
-  //MENU HAMBURGUER
+  // MENU HAMBURGUER
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
     links.forEach((link) => {
       link.classList.toggle('fade');
     });
   });
-  
-  firebase.loadPosts();
+
+  firebase.loadPosts().then(insertPostList);
+
   return rootElement;
 };
 
 export default createPage;
-
