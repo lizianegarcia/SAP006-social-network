@@ -27,8 +27,8 @@ export const addPosts = async (post) => {
   
           <div class="manage-post" id=${post.id}>
             <div class="post-likes" id="${post.id}">
-              <button id="like-btn" class="manage-post-btn like-btn"><i data-like="${post.id}" class="fas fa-heart" id="heart"></i></button>
-              <p class="likes-number" id="${post.id}">${post.data().likes}</p>
+              <button id="like-btn" class="manage-post-btn like-btn"><i data-like="${post.id}" class="${post.data().likes.includes(currentUserId) ? 'fas' : 'far'} fa-heart" id="heart"></i></button>
+              <p class="likes-number" id="${post.id}">${post.data().likes.length}</p>
             </div>
             ${post.data().userId === currentUserId ? `<button class="manage-post-btn edit-btn"><i data-edit="${post.id}" class="fas fa-pencil-alt"></i></button>
             <button class="manage-post-btn delete-btn"><i data-delete="${post.id}" class="fas fa-trash-alt"></i></button>` : ''}
@@ -108,7 +108,7 @@ export const addPosts = async (post) => {
 
     if (likeButton) {
       const postId = likeButton;
-      await firebase.likePosts(postId);
+      await firebase.likePosts(postId, currentUserId);
       const posts = await firebase.loadPosts();
       insertPostList(posts);
     }
