@@ -2,6 +2,7 @@ import firebase from '../../services/firebase.js';
 
 export const addPosts = async (post) => {
   const currentUserId = await firebase.getUser().uid;
+  const isLiked = post.data().likes.includes(currentUserId);
 
   const postTemplate = `
       <li id="post-${post.id}" data-template class="post-container">
@@ -27,7 +28,7 @@ export const addPosts = async (post) => {
   
           <div class="manage-post" id=${post.id}>
             <div class="post-likes" id="${post.id}">
-              <button id="like-btn" class="manage-post-btn like-btn"><i data-like="${post.id}" class="${post.data().likes.includes(currentUserId) ? 'fas' : 'far'} fa-heart" id="heart"></i></button>
+              <button id="like-btn" class="manage-post-btn like-btn"><i data-like="${post.id}" class="${isLiked ? 'fas' : 'far'} fa-heart" id="heart"></i></button>
               <p class="likes-number" id="${post.id}">${post.data().likes.length}</p>
             </div>
             ${post.data().userId === currentUserId ? `<button class="manage-post-btn edit-btn"><i data-edit="${post.id}" class="fas fa-pencil-alt"></i></button>
