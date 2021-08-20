@@ -99,5 +99,4 @@ export default {
   editPost,
   deletePost,
   likePosts,
-
 };
