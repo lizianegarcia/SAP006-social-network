@@ -462,7 +462,13 @@
     cursor: pointer;
   }
 
+  .fa-heart.far {
+      color: var(--medium-gray);
+  }
 
+  .fa-heart.fas {
+      color: var(--ultra-pink);
+  }
 
 @media screen and (min-width: 660px) {
     .user-post-photo{
