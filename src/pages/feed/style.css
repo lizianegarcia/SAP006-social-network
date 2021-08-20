@@ -173,7 +173,6 @@
     justify-content: center;
 }
 
-
 .post-text,
 .post-btn  {
     margin-bottom: 3rem;
@@ -411,6 +410,7 @@
     color: red;
     transition: all .2s ease;
 }
+
 
 .likes-number {
     margin: 0 .6rem 1rem 0;
