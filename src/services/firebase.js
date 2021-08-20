@@ -45,20 +45,19 @@ const deletePost = (postId) => {
   return postsCollection.doc(postId).delete();
 };
 
-const likePosts = async (postId) => {
+const likePosts = async (postId, currentUserId) => {
   const postsCollection = firebase.firestore().collection('posts');
 
   const post = await postsCollection.doc(postId).get();
-  const countLikes = post.data().likes;
 
-  if (countLikes >= 1) {
+  if (post.data().likes.includes(currentUserId)) {
     return postsCollection.doc(postId).update({
-      likes: post.data().likes - 1,
+      likes: firebase.firestore.FieldValue.arrayRemove(currentUserId),
     });
   }
 
   return postsCollection.doc(postId).update({
-    likes: post.data().likes + 1,
+    likes: firebase.firestore.FieldValue.arrayUnion(currentUserId),
   });
 };
 
@@ -74,7 +73,7 @@ const createPost = (textPost) => {
     userId: user.uid,
     userName: user.displayName,
     userEmail: user.email,
-    likes: 0,
+    likes: [],
     comments: [],
     data: postData(),
   };
