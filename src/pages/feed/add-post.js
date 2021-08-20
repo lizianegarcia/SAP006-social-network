@@ -27,11 +27,11 @@ export const addPosts = async (post) => {
   
           <div class="manage-post" id=${post.id}>
             <div class="post-likes" id="${post.id}">
-              <button id="like-btn" class="manage-post-btn like-btn"><i class="fas fa-heart" id="heart"></i></button>
+              <button id="like-btn" class="manage-post-btn like-btn"><i data-like="${post.id}" class="fas fa-heart" id="heart"></i></button>
               <p class="likes-number" id="${post.id}">${post.data().likes}</p>
             </div>
             ${post.data().userId === currentUserId ? `<button class="manage-post-btn edit-btn"><i data-edit="${post.id}" class="fas fa-pencil-alt"></i></button>
-            <button class="manage-post-btn delete-btn"><i class="fas fa-trash-alt"></i></button>` : ''}
+            <button class="manage-post-btn delete-btn"><i data-delete="${post.id}" class="fas fa-trash-alt"></i></button>` : ''}
           </div>
 
           <div class="modal-wrapper">
@@ -49,8 +49,6 @@ export const addPosts = async (post) => {
 
   document.querySelector('#postsList').innerHTML += postTemplate;
 
-  const postsListContainer = document.querySelector('#postsList');
-
   const clearPostList = () => {
     document.querySelector('.posts-list').innerHTML = '';
   };
@@ -62,12 +60,16 @@ export const addPosts = async (post) => {
     });
   };
 
+  const postsListContainer = document.querySelector('#postsList');
+
   // função editar post
   postsListContainer.addEventListener('click', async (e) => {
     const { target } = e;
     const editPostButton = target.dataset.edit;
     const cancelEditionButton = target.dataset.cancel;
     const saveEditionButton = target.dataset.save;
+    const deleteButton = target.dataset.delete;
+    const likeButton = target.dataset.like;
 
     // Open edit
     if (editPostButton) {
@@ -97,30 +99,41 @@ export const addPosts = async (post) => {
       const posts = await firebase.loadPosts();
       insertPostList(posts);
     }
-  });
 
-  // função excluir posts
-  const deleteButtons = document.querySelectorAll('.delete-btn');
-  for (const button of deleteButtons) {
-    button.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const postId = e.currentTarget.parentNode.id;
+    if (deleteButton) {
+      const postId = deleteButton;
       await firebase.deletePost(postId);
       document.querySelector(`#post-${postId}`).remove();
-    });
-  }
+    }
 
-  // função like posts
-  const likeButtons = document.querySelectorAll('.like-btn');
-  for (const button of likeButtons) {
-    button.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const postId = e.currentTarget.parentNode.id;
+    if (likeButton) {
+      const postId = likeButton;
       await firebase.likePosts(postId);
       const posts = await firebase.loadPosts();
       insertPostList(posts);
-    });
-  }
+    }
+  });
+
+  // função excluir posts
+  // const deleteButtons = document.querySelectorAll('.delete-btn');
+  // for (const button of deleteButtons) {
+  //   button.addEventListener('click', async (e) => {
+  //     e.preventDefault();
+  //     const postId = e.currentTarget.parentNode.id;
+  //     await firebase.deletePost(postId);
+  //     document.querySelector(`#post-${postId}`).remove();
+  //   });
+  // }
+
+  // função like posts
+  // const likeButton = document.querySelectorAll('#like-btn');
+  // likeButtons.forEach.addEventListener('click', async (e) => {
+  //   e.preventDefault();
+  //   const postId = e.currentTarget.parentNode.id;
+  //   await firebase.likePosts(postId);
+  //   const posts = await firebase.loadPosts();
+  //   insertPostList(posts);
+  // });
 
   // função excluir posts
 
