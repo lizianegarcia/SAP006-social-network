@@ -39,8 +39,8 @@ export const addPosts = async (post) => {
               <div class="modal-close">x</div>
                   <div class="modal-content">
                       <h2 class="modal-text">Tem certeza que deseja excluir o post?</h2>
-                      <button  class="modal-yes" data-yes="confirm" id="yes-delete">Confirmar</button>
-                      <button class="modal-no" id="no-delete">Cancelar</button>
+                      <button  class="modal-yes" data-confirmdelete="${post.id}" id="yes-delete">Confirmar</button>
+                      <button class="modal-no" data-closemodal="${post.id}" id="no-delete">Cancelar</button>
                   </div>
            </div>
          </div>     
@@ -70,6 +70,8 @@ export const addPosts = async (post) => {
     const saveEditionButton = target.dataset.save;
     const deleteButton = target.dataset.delete;
     const likeButton = target.dataset.like;
+    const confirmDelete = target.dataset.confirmdelete;
+    const closeModal = target.dataset.closemodal;
 
     // Open edit
     if (editPostButton) {
@@ -99,13 +101,28 @@ export const addPosts = async (post) => {
       const posts = await firebase.loadPosts();
       insertPostList(posts);
     }
-
+    //abrir modal para excluir post
     if (deleteButton) {
-      const postId = deleteButton;
+      const liElement = target.parentNode.parentNode.parentNode;
+      const modal = liElement.querySelector('.modal-wrapper');
+      modal.style.display = 'block';
+    }
+    //cancelar o excluir post
+    if (closeModal) {
+      const liElement = target.parentNode.parentNode.parentNode.parentNode;
+      const modal = liElement.querySelector('.modal-wrapper');
+      modal.style.display = 'none';
+    }
+    //confirmar excluir post
+    if (confirmDelete) {
+      const liElement = target.parentNode.parentNode.parentNode.parentNode;
+      const modal = liElement.querySelector('.modal-wrapper');
+      const postId = confirmDelete
       await firebase.deletePost(postId);
       document.querySelector(`#post-${postId}`).remove();
+      modal.style.display = 'none';
     }
-
+    
     if (likeButton) {
       const postId = likeButton;
       await firebase.likePosts(postId);
@@ -113,69 +130,4 @@ export const addPosts = async (post) => {
       insertPostList(posts);
     }
   });
-
-  // função excluir posts
-  // const deleteButtons = document.querySelectorAll('.delete-btn');
-  // for (const button of deleteButtons) {
-  //   button.addEventListener('click', async (e) => {
-  //     e.preventDefault();
-  //     const postId = e.currentTarget.parentNode.id;
-  //     await firebase.deletePost(postId);
-  //     document.querySelector(`#post-${postId}`).remove();
-  //   });
-  // }
-
-  // função like posts
-  // const likeButton = document.querySelectorAll('#like-btn');
-  // likeButtons.forEach.addEventListener('click', async (e) => {
-  //   e.preventDefault();
-  //   const postId = e.currentTarget.parentNode.id;
-  //   await firebase.likePosts(postId);
-  //   const posts = await firebase.loadPosts();
-  //   insertPostList(posts);
-  // });
-
-  // função excluir posts
-
-  // const deleteButtons = document.querySelectorAll('.delete-btn')
-
-  // for (const button of deleteButtons) {
-  //   button.addEventListener('click', (e) => {
-  //     e.preventDefault()
-
-  //     const postId = post.id
-  //     console.log(postId)
-  //     const target = e.target.parentNode
-  //     console.log(target)
-  //     const targetDataset = target.dataset.delete
-  //     console.log(targetDataset)
-
-  //     if (targetDataset == "delete") {
-  //       const liElement = target.parentNode.parentNode.parentNode.parentNode;
-  //       console.log(liElement)
-  //       console.log('Chegou aqui')
-  //       //const modal = liElement.querySelector('.modal-wrapper');
-  //       // const confirmDelete =
-  //       // const cancelDelete =
-  //       // modal.style.display = "block"
-
-  //       // confirmDelete.addEventListener("click", () => {
-  //       //   deletePost(postId)
-  //       //     .then(() => {
-  //       //       divDelete.style.display = "none"
-  //       //       post.remove()
-  //       //     })
-  //       //     .catch(e => {
-  //       //       console.log("erro")
-  //       //     })
-  //       // })
-  //       // cancelDelete.addEventListener("click", () => {
-  //       //   divDelete.style.display = "none"
-  //       // })
-  //     }
-
-  //     // deletePost(e.currentTarget.parentNode.id)
-  //     // document.querySelector('#postsList').innerHTML = ''
-  //   });
-  // };
 };

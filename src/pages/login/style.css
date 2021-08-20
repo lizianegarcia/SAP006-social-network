@@ -2,7 +2,7 @@
 .container {
   position: relative;
   width: 100%;
-  background-color: #fff;
+  background-color: white;
   min-height: 100vh;
   overflow: hidden;
 }
@@ -55,14 +55,14 @@
 
 .title {
   font-size: 1.7rem;
-  color: #444;
+  color: var(--dark-gray);
   margin-bottom: 10px;
 }
 
 .input-field {
   max-width: 380px;
   width: 100%;
-  background-color: #f0f0f0;
+  background-color: var(--light-gray);
   margin: 10px 0;
   height: 55px;
   border-radius: 55px;
@@ -75,7 +75,7 @@
 .input-field i {
   text-align: center;
   line-height: 55px;
-  color: #acacac;
+  color: var(--medium-gray);
   transition: 0.5s;
   font-size: 1.1rem;
 }
@@ -87,11 +87,11 @@
   line-height: 1;
   font-weight: 600;
   font-size: 1.1rem;
-  color: #333;
+  color: var(--dark-gray);
 }
 
 .input-field input::placeholder {
-  color: #aaa;
+  color: var(--medium-gray);
   font-weight: 500;
 }
 
@@ -132,7 +132,7 @@
   justify-content: center;
   align-items: center;
   margin: 0 0.45rem;
-  color: #333;
+  color: var(--dark-gray);
   border-radius: 50%;
   border: 1px solid #333;
   text-decoration: none;
@@ -141,18 +141,18 @@
 }
 
 .social-icon:hover {
-  color: #00BFA6;
-  border-color: #00BFA6;
+  color: var(--teal);
+  border-color: var(--teal);
 }
 
 .btn {
   width: 150px;
-  background-color: #00BFA6;
+  background-color: var(--teal);
   border: none;
   outline: none;
   height: 49px;
   border-radius: 49px;
-  color: #fff;
+  color: white;
   text-transform: uppercase;
   font-weight: 600;
   margin: 10px 0;
@@ -161,7 +161,7 @@
 }
 
 .btn:hover {
-  background-color: #00BFA6;
+  background-color: var(--teal);
 }
 .panels-container {
   position: absolute;
@@ -213,7 +213,7 @@
 }
 
 .panel .content {
-  color: #fff;
+  color: white;
   transition: transform 0.9s ease-in-out;
   transition-delay: 0.6s;
 }
