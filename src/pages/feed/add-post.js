@@ -34,7 +34,6 @@ export const addPosts = async (post) => {
             ${post.data().userId === currentUserId ? `<button class="manage-post-btn edit-btn"><i data-edit="${post.id}" class="fas fa-pencil-alt"></i></button>
             <button class="manage-post-btn delete-btn"><i data-delete="${post.id}" class="fas fa-trash-alt"></i></button>` : ''}
           </div>
-
           <div class="modal-wrapper">
           <div class="modal">
               <div class="modal-close">x</div>
@@ -102,28 +101,28 @@ export const addPosts = async (post) => {
       const posts = await firebase.loadPosts();
       insertPostList(posts);
     }
-    //abrir modal para excluir post
+    // abrir modal para excluir post
     if (deleteButton) {
       const liElement = target.parentNode.parentNode.parentNode;
       const modal = liElement.querySelector('.modal-wrapper');
       modal.style.display = 'block';
     }
-    //cancelar o excluir post
+    // cancelar o excluir post
     if (closeModal) {
       const liElement = target.parentNode.parentNode.parentNode.parentNode;
       const modal = liElement.querySelector('.modal-wrapper');
       modal.style.display = 'none';
     }
-    //confirmar excluir post
+    // confirmar excluir post
     if (confirmDelete) {
       const liElement = target.parentNode.parentNode.parentNode.parentNode;
       const modal = liElement.querySelector('.modal-wrapper');
-      const postId = confirmDelete
+      const postId = confirmDelete;
       await firebase.deletePost(postId);
       document.querySelector(`#post-${postId}`).remove();
       modal.style.display = 'none';
     }
-    
+
     if (likeButton) {
       const postId = likeButton;
       await firebase.likePosts(postId, currentUserId);
