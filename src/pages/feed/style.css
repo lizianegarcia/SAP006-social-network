@@ -173,7 +173,6 @@
     justify-content: center;
 }
 
-
 .post-text,
 .post-btn  {
     margin-bottom: 3rem;
@@ -412,6 +411,7 @@
     transition: all .2s ease;
 }
 
+
 .likes-number {
     margin: 0 .6rem 1rem 0;
 }
@@ -462,7 +462,13 @@
     cursor: pointer;
   }
 
+  .fa-heart.far {
+      color: var(--medium-gray);
+  }
 
+  .fa-heart.fas {
+      color: var(--ultra-pink);
+  }
 
 @media screen and (min-width: 660px) {
     .user-post-photo{

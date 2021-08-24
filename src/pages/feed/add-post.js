@@ -34,14 +34,13 @@ export const addPosts = async (post) => {
             ${post.data().userId === currentUserId ? `<button class="manage-post-btn edit-btn"><i data-edit="${post.id}" class="fas fa-pencil-alt"></i></button>
             <button class="manage-post-btn delete-btn"><i data-delete="${post.id}" class="fas fa-trash-alt"></i></button>` : ''}
           </div>
-
           <div class="modal-wrapper">
           <div class="modal">
               <div class="modal-close">x</div>
                   <div class="modal-content">
                       <h2 class="modal-text">Tem certeza que deseja excluir o post?</h2>
-                      <button  class="modal-yes" data-yes="confirm" id="yes-delete">Confirmar</button>
-                      <button class="modal-no" id="no-delete">Cancelar</button>
+                      <button  class="modal-yes" data-confirmdelete="${post.id}" id="yes-delete">Confirmar</button>
+                      <button class="modal-no" data-closemodal="${post.id}" id="no-delete">Cancelar</button>
                   </div>
            </div>
          </div>     

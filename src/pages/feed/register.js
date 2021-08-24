@@ -26,6 +26,8 @@ const register = async () => {
     const saveEditionButton = target.dataset.save;
     const deleteButton = target.dataset.delete;
     const likeButton = target.dataset.like;
+    const confirmDelete = target.dataset.confirmdelete;
+    const closeModal = target.dataset.closemodal;
 
     // Open edit
     if (editPostButton) {
@@ -56,11 +58,33 @@ const register = async () => {
       await insertPostList(posts);
     }
 
+    // abrir modal para excluir post
     if (deleteButton) {
-      const postId = deleteButton;
+      const liElement = target.parentNode.parentNode.parentNode;
+      const modal = liElement.querySelector('.modal-wrapper');
+      modal.style.display = 'block';
+    }
+    // cancelar o excluir post
+    if (closeModal) {
+      const liElement = target.parentNode.parentNode.parentNode.parentNode;
+      const modal = liElement.querySelector('.modal-wrapper');
+      modal.style.display = 'none';
+    }
+    // confirmar excluir post
+    if (confirmDelete) {
+      const liElement = target.parentNode.parentNode.parentNode.parentNode;
+      const modal = liElement.querySelector('.modal-wrapper');
+      const postId = confirmDelete;
       await firebase.deletePost(postId);
       document.querySelector(`#post-${postId}`).remove();
+      modal.style.display = 'none';
     }
+
+    // if (deleteButton) {
+    //   const postId = deleteButton;
+    //   await firebase.deletePost(postId);
+    //   document.querySelector(`#post-${postId}`).remove();
+    // }
 
     if (likeButton) {
       const postId = likeButton;
