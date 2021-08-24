@@ -2,14 +2,11 @@ import profile from '../../components/profile/profile.js';
 import { changePage } from '../../routes/changePage.js';
 import firebase from '../../services/firebase.js';
 import { addPosts } from './add-post.js';
+import register from './register.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
   const user = firebase.getUser();
-
-  // if (!user) {
-  //   logout();
-  // }
 
   const contentnewElement = `        
           <header>
@@ -53,22 +50,16 @@ const createPage = () => {
   const section = rootElement.querySelector('.feed-logout');
   const navigateProfile = rootElement.querySelector('#goProfile');
 
-  //   rootElement.querySelector('#postsList').addEventListener('click', (e) => {
-  //     console.log(e.target.parentNode.parentNode)
-  // })
-
-  // const postsCollection = firebase.firestore().collection("posts");
-  // console.log(postsCollection);
-
   const clearPostList = () => {
     rootElement.querySelector('.posts-list').innerHTML = '';
   };
 
-  const insertPostList = (snap) => {
+  const insertPostList = async (snap) => {
     clearPostList();
     snap.forEach((post) => {
       addPosts(post);
     });
+    await register();
   };
 
   rootElement.querySelector('#postForm').addEventListener('submit', (e) => {
