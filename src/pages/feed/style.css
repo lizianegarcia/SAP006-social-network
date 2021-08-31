@@ -13,7 +13,7 @@
     left: 5%;
     top: 50%;
     transform: translate(-5%, -50%);
-    z-index: 3;
+    z-index: 5;
 }
 
 /* Menu Hamburguer */
@@ -30,7 +30,7 @@
     right: 5%;
     top: 50%;
     transform: translate(-5%, -50%);
-    z-index: 3;
+    z-index: 5;
 }
 
 
@@ -53,6 +53,7 @@
     -webkit-clip-path: circle(100px at 90% -20%);
     transition: all 1s ease-out;
     pointer-events: none;
+    z-index: 4;
 }
 
 
@@ -60,7 +61,7 @@
     clip-path: circle(1500px at 90% -10%);
     -webkit-clip-path: circle(1500px at 90% -20%);
     pointer-events: all;
-   
+    
 }
 
 .navbar-links .li-items a {
@@ -172,6 +173,7 @@
     align-items: center;
     justify-content: center;
 }
+
 
 .post-text,
 .post-btn  {
@@ -411,9 +413,17 @@
     transition: all .2s ease;
 }
 
-
 .likes-number {
     margin: 0 .6rem 1rem 0;
+}
+
+
+.fa-heart.far {
+    color: var(--medium-gray);
+}
+
+.fa-heart.fas {
+    color: var(--ultra-pink);
 }
 
 /*Modal - excluir post*/
@@ -462,13 +472,7 @@
     cursor: pointer;
   }
 
-  .fa-heart.far {
-      color: var(--medium-gray);
-  }
 
-  .fa-heart.fas {
-      color: var(--ultra-pink);
-  }
 
 @media screen and (min-width: 660px) {
     .user-post-photo{

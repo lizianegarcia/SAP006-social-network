@@ -1,7 +1,17 @@
+.profile-content-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .profile-area {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
   padding: 15px 30px;
+  margin: 3em 0;
 }
 
 .name-profile-area {
@@ -19,9 +29,9 @@
 }
 
 .user-photo {
-  width: 63px;
-  height: 63px;
-  border-radius: 34px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
   /* width: 120px;
   height: 120px;
   border-radius: 60px; */
@@ -42,17 +52,39 @@
 .profile-area-interests {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .profile-interests {
-  display: flex;
+  display: grid;
+  grid-template-columns: 150px 150px;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
   align-items: center;
+  justify-content: center;
   padding-top: 0px;
-  flex-wrap: wrap;
   color: #444444;
   width: 600px;
   font-size: 0.2 rem;
   margin: 10px;
+  text-align: center;
+  vertical-align: middle;
+
+}
+
+.personal-interest {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+
+.interest-checkbox {
+  position: absolute;
+  top: 64px;
+  left: 67px;
 }
 
 .img {
@@ -68,8 +100,37 @@
   height:0
 }
 
-.interest {
-  margin-right: 30px;
+.btn-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.profile-save-btn {
+  width: 150px;
+    background-color: var(--teal);
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: rgb(255 255 255);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 500px) {
+  .profile-interests {
+    grid-template-columns: 150px 150px 150px;
+    grid-column-gap: 1.5em;
+    grid-row-gap: 1.5em;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -78,10 +139,8 @@
     height: 300px;
     border: 2px solid gray;
     border-radius: 4px;
-    width: 60%;
-    margin-top: 10px;
+    width: 65%;
     padding: 0px;
-    margin-left: 250px;
   }
 
   .profile-area-theme {
@@ -117,9 +176,13 @@
     height: 350px;
     border: 2px solid gray;
     border-radius: 4px;
-    width: 60%;
-    margin-top: 10px;
+    width: 65%;
     padding: 0px;
-    margin-left: 250px;
+  }
+
+  .profile-interests {
+    grid-template-columns: 150px 150px 150px 150px 150px;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
   }
 }
