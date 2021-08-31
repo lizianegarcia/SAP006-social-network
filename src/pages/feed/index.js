@@ -7,14 +7,6 @@ import register from './register.js';
 const createPage = () => {
   const rootElement = document.createElement('div');
   const user = firebase.getUser();
-<<<<<<< HEAD
-
-  // if (!user) {
-  //   logout();
-  // }
-  // eslint-disable-next-line no-use-before-define
-=======
->>>>>>> 072f00621e27ef921a865baaafc3a342fec2ddb3
 
   const contentnewElement = `
           <header>
