@@ -17,7 +17,6 @@ const createPage = () => {
                       <div class="hamburger-line"></div>
                       <div class="hamburger-line"></div>
                   </div>
-
                   <ul class="navbar-links" id="navbar-links">
                       <li class="li-items" id="navigate-profile"><a href="#" id="goProfile">Perfil</a></li>
                       <li class="li-items" id="navigate-feed"><a href="#">Feed</a></li>
@@ -35,11 +34,9 @@ const createPage = () => {
                 <input type="text" name="postText" id="postText" class="post-text" autocomplete="off" placeholder="No que você está pensando?" required>
                 <button id="publishBtn" class="post-btn">Publicar</button>
             </form>
-
             <ul id="postsList" class="posts-list"></ul>
           </main>
           
-
     `;
 
   rootElement.innerHTML = contentnewElement;
