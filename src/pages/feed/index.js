@@ -8,7 +8,7 @@ const createPage = () => {
   const rootElement = document.createElement('div');
   const user = firebase.getUser();
 
-  const contentnewElement = `
+  const contentnewElement = `        
           <header>
               <nav class="feed-navbar">
                   <img class="feed-logo" src="./img/Amitié2.png" alt="">
@@ -17,7 +17,6 @@ const createPage = () => {
                       <div class="hamburger-line"></div>
                       <div class="hamburger-line"></div>
                   </div>
-
                   <ul class="navbar-links" id="navbar-links">
                       <li class="li-items" id="navigate-profile"><a href="#" id="goProfile">Perfil</a></li>
                       <li class="li-items" id="navigate-feed"><a href="#">Feed</a></li>
@@ -27,7 +26,7 @@ const createPage = () => {
           </header>
           <main class="feed-container">
             <section class="greet-user">
-            <img src='${user.photoURL}' alt="User Photo" class="user-feed-photo" id="user-feed-photo">
+            <img src="https://i.pravatar.cc/100?img=16" alt="User Photo" class="user-feed-photo">
               <p>Bem vinda, ${user.displayName}</p>
             </section>
         
@@ -35,11 +34,9 @@ const createPage = () => {
                 <input type="text" name="postText" id="postText" class="post-text" autocomplete="off" placeholder="No que você está pensando?" required>
                 <button id="publishBtn" class="post-btn">Publicar</button>
             </form>
-
             <ul id="postsList" class="posts-list"></ul>
           </main>
           
-
     `;
 
   rootElement.innerHTML = contentnewElement;
@@ -49,14 +46,10 @@ const createPage = () => {
   const links = rootElement.querySelectorAll('.navbar-links li');
   const section = rootElement.querySelector('.feed-logout');
   const navigateProfile = rootElement.querySelector('#goProfile');
-<<<<<<< HEAD
-  const userPhoto = rootElement.querySelector('#user-feed-photo');
-=======
 
   const clearPostList = () => {
     rootElement.querySelector('.posts-list').innerHTML = '';
   };
->>>>>>> 072f00621e27ef921a865baaafc3a342fec2ddb3
 
   const insertPostList = async (snap) => {
     clearPostList();
@@ -66,12 +59,6 @@ const createPage = () => {
     await register();
   };
 
-<<<<<<< HEAD
-  // const postsCollection = firebase.firestore().collection("posts");
-  // console.log(postsCollection);
-
-=======
->>>>>>> 072f00621e27ef921a865baaafc3a342fec2ddb3
   rootElement.querySelector('#postForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const inputPost = rootElement.querySelector('#postText');
@@ -99,19 +86,8 @@ const createPage = () => {
     });
   });
 
-<<<<<<< HEAD
-  // Pega a imagem do usuário ou coloca um avatar
-  // firebase.logUser((User) => {
-  //   if (User != null) {
-  //     userPhoto.src = User.photoURL || '../../img/profile/user-default.png';
-  //   }
-  // });
-
-  firebase.loadPosts();
-=======
   firebase.loadPosts().then(insertPostList);
 
->>>>>>> 072f00621e27ef921a865baaafc3a342fec2ddb3
   return rootElement;
 };
 
