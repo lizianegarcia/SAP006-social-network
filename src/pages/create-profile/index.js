@@ -19,7 +19,6 @@ const createInterestsSection = (interests) => {
         <img class='img' src="../../img/profile/viagens.png">
         Viagens
       </label>
-
       <input type="checkbox" value="Natureza" id="Natureza" name="Interest">
       <label for="Natureza">
         <img class='img' src="../../img/profile/natureza.png">
@@ -31,37 +30,31 @@ const createInterestsSection = (interests) => {
         <img class='img' src="../../img/profile/filmes.png">
         Filmes e Séries
       </label>
-
       <input type="checkbox" value="Culinária" id="Culinária" name="Interest">
       <label for="Culinária">
         <img class='img' src="../../img/profile/culinaria.png">
         Culinária
       </label>
-
       <input type="checkbox" value="Astrologia" id="Astrologia" name="Interest">
       <label for="Astrologia">
         <img class='img' src="../../img/profile/astrologia.png">
         Astrologia
       </label>
-
       <input type="checkbox" value="Games" id="Games" name="Interest">
       <label for="Games">
         <img class='img' src="../../img/profile/games.png">
         Games
       </label>
-
       <input type="checkbox" value="Fotografia" id="Fotografia" name="Interest">
       <label for="Fotografia">
         <img class='img' src="../../img/profile/fotografia.png">
         Fotografia
       </label>
-
       <input type="checkbox" value="Aprender novas línguas" id="Aprender novas línguas" name="Interest">
       <label for="Aprender novas línguas">
         <img class='img' src="../../img/profile/linguas.png">
         Aprender novas línguas
       </label>
-
       <input type="checkbox" value="Esportes" id="Esportes" name="Interest">
         <img class='img' src="../../img/profile/esportes.png">
         Esportes

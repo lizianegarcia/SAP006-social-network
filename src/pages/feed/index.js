@@ -1,15 +1,20 @@
 import profile from '../../components/profile/profile.js';
 import { changePage } from '../../routes/changePage.js';
 import firebase from '../../services/firebase.js';
+import { addPosts } from './add-post.js';
+import register from './register.js';
 
 const createPage = () => {
   const rootElement = document.createElement('div');
   const user = firebase.getUser();
+<<<<<<< HEAD
 
   // if (!user) {
   //   logout();
   // }
   // eslint-disable-next-line no-use-before-define
+=======
+>>>>>>> 072f00621e27ef921a865baaafc3a342fec2ddb3
 
   const contentnewElement = `
           <header>
@@ -42,6 +47,7 @@ const createPage = () => {
             <ul id="postsList" class="posts-list"></ul>
           </main>
           
+
     `;
 
   rootElement.innerHTML = contentnewElement;
@@ -51,21 +57,38 @@ const createPage = () => {
   const links = rootElement.querySelectorAll('.navbar-links li');
   const section = rootElement.querySelector('.feed-logout');
   const navigateProfile = rootElement.querySelector('#goProfile');
+<<<<<<< HEAD
   const userPhoto = rootElement.querySelector('#user-feed-photo');
+=======
 
-  //   rootElement.querySelector('#postsList').addEventListener('click', (e) => {
-  //     console.log(e.target.parentNode.parentNode)
-  // })
+  const clearPostList = () => {
+    rootElement.querySelector('.posts-list').innerHTML = '';
+  };
+>>>>>>> 072f00621e27ef921a865baaafc3a342fec2ddb3
 
+  const insertPostList = async (snap) => {
+    clearPostList();
+    snap.forEach((post) => {
+      addPosts(post);
+    });
+    await register();
+  };
+
+<<<<<<< HEAD
   // const postsCollection = firebase.firestore().collection("posts");
   // console.log(postsCollection);
 
+=======
+>>>>>>> 072f00621e27ef921a865baaafc3a342fec2ddb3
   rootElement.querySelector('#postForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    const textPost = rootElement.querySelector('#postText').value;
-    firebase.createPost(textPost);
-    // rootElement.querySelector('#postsList').innerHTML = '';
-    // firebase.loadPosts()
+    const inputPost = rootElement.querySelector('#postText');
+    const textPost = inputPost.value;
+    firebase
+      .createPost(textPost)
+      .then(firebase.loadPosts)
+      .then(insertPostList);
+    inputPost.value = '';
   });
 
   // NAV LINKS
@@ -84,6 +107,7 @@ const createPage = () => {
     });
   });
 
+<<<<<<< HEAD
   // Pega a imagem do usuário ou coloca um avatar
   // firebase.logUser((User) => {
   //   if (User != null) {
@@ -92,6 +116,10 @@ const createPage = () => {
   // });
 
   firebase.loadPosts();
+=======
+  firebase.loadPosts().then(insertPostList);
+
+>>>>>>> 072f00621e27ef921a865baaafc3a342fec2ddb3
   return rootElement;
 };
 
