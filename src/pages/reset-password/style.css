@@ -133,7 +133,7 @@
   z-index: 2;
 }
 
-.container.sign-up-mode form.reset-password {
+.container.sign-up-mode form.sign-in-form {
   opacity: 0;
   z-index: 1;
 }

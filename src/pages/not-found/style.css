@@ -12,12 +12,11 @@
 .not-found-glass {
     width: 80%;
     height: 80%;
-    background: #39BCAC;
+    background: #39BCAC inherit;
     position: relative;
     z-index: 1;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
     border-radius: 20px;
-    background: inherit;
     overflow: hidden;
 
 }

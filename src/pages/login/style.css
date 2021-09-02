@@ -358,6 +358,11 @@
     transition: 2s ease-in-out;
   }
 
+  .right-panel .image,
+  .right-panel .content {
+    transform: translateY(300px);
+  }
+
   .container.sign-up-mode:before {
     transform: translate(-50%, 100%);
     bottom: 32%;
@@ -374,10 +379,7 @@
     transform: translateY(0px);
   }
 
-  .right-panel .image,
-  .right-panel .content {
-    transform: translateY(300px);
-  }
+
 
   .container.sign-up-mode .signin-signup {
     top: 5%;

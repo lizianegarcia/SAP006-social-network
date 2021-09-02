@@ -32,6 +32,6 @@ describe('signIn', () => {
 
     form.dispatchEvent(new Event('submit'));
 
-    expect(signIn).toHaveBeenCalledWith(page, email, password);
+    expect(signIn).toHaveBeenCalledWith(email, password);
   });
 });
