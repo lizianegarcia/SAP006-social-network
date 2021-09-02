@@ -34,5 +34,8 @@
     "regenerator-runtime": "^0.13.7",
     "stylelint": "^13.13.1",
     "stylelint-config-recommended": "^5.0.0"
+  },
+  "dependencies": {
+    "@jest/globals": "^27.1.0"
   }
 }

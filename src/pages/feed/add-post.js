@@ -48,5 +48,4 @@ export const addPosts = async (post) => {
      `;
 
   document.querySelector('#postsList').innerHTML += postTemplate;
-  
 };

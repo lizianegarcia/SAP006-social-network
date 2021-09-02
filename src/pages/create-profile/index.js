@@ -105,11 +105,12 @@ const createPage = () => {
   const section = rootElement.querySelector('.feed-logout');
   const navigateFeed = rootElement.querySelector('#goFeed');
   const botao = rootElement.querySelector('#botao-check');
-  let interesse = rootElement.querySelectorAll('input[name="Interest"]');
-  let insterestChecked = [];
+  const interesse = rootElement.querySelectorAll('input[name="Interest"]');
+  const insterestChecked = [];
   const inputImg = rootElement.querySelector('#file-input');
   const userPhoto = rootElement.querySelector('#user-photo');
   const userName = rootElement.querySelector('#name-user');
+  const usuario = firebase.auth().currentUser;
 
   // NAV LINKS
   navigateFeed.addEventListener('click', () => {
@@ -122,13 +123,14 @@ const createPage = () => {
   // MENU
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
-    links.forEach(link => {
+    links.forEach((link) => {
       link.classList.toggle('fade');
     });
   });
 
   // Envio de interesses checked ao Firestore
   botao.addEventListener('click', () => {
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < interesse.length; i++) {
       if (interesse[i].checked) {
         insterestChecked.push(interesse[i].value);
@@ -144,25 +146,24 @@ const createPage = () => {
       .collection('checkbox')
       .doc(usuario.uid);
     console.log('foooooooi', collectionInterests);
-    collectionInterests.set(interests).then(res => {
+    // eslint-disable-next-line no-unused-vars
+    collectionInterests.set(interests).then((res) => {
       console.log('add no firebase');
     });
   });
 
-  const usuario = firebase.auth().currentUser;
   // console.log(usuario);
   firebase
     .firestore()
     .collection('checkbox')
     .doc(usuario.uid)
     .get()
-    .then(doc => {
+    .then((doc) => {
       console.log(doc.data().array);
     });
 
-
   // Pega a imagem do usuário ou coloca um avatar
-  firebase.auth().onAuthStateChanged(user => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user != null) {
       userPhoto.src = user.photoURL || '../../img/profile/user-default.png';
       userName.innerHTML = user.displayName;
@@ -174,19 +175,21 @@ const createPage = () => {
   const uid = firebase.database().ref().push().key;
   const sendImageToStorage = () => {
     const ref = firebase.storage().ref('User-images');
-    inputImg.onchange = event => {
+    inputImg.onchange = (event) => {
       const photo = event.target.files[0];
       reader.readAsDataURL(photo);
+      // eslint-disable-next-line func-names
       reader.onload = function () {
         const base64 = reader.result.split('base64,')[1];
         ref
           .child(uid)
           .putString(base64, 'base64', { contentType: 'image/png' })
-          .then(snapshot => {
+          // eslint-disable-next-line no-unused-vars
+          .then((snapshot) => {
             ref
               .child(uid)
               .getDownloadURL()
-              .then(url => {
+              .then((url) => {
                 userPhoto.src = url;
                 firebase.auth().currentUser.updateProfile({
                   photoURL: url,
