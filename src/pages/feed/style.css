@@ -3,7 +3,7 @@
 .feed-navbar {
     height: 10vh;
     background: var(--teal);
-    position: relative;
+    position: relative; 
 }
 
 .feed-logo {
@@ -49,13 +49,12 @@
     position: fixed;
     background: var(--teal);
     /* Menu hamburguer animação */
-    clip-path: circle(100px at 90% -10%);
+    clip-path: circle(100px at 90% -20%);
     -webkit-clip-path: circle(100px at 90% -20%);
     transition: all 1s ease-out;
     pointer-events: none;
     z-index: 4;
 }
-
 
 .navbar-links.open {
     clip-path: circle(1500px at 90% -10%);
@@ -162,16 +161,22 @@
 }
 
 .post-btn {
-    border: none;
-    color: white;
-    background-color: var(--teal);
-    padding: 0.7rem;
-    border-radius: 10px;
-    font-size: 1rem;
+  width: 100px;
+  background-color: var(--teal);
+  border: none;
+  outline: none;
+  height: 40px;
+  border-radius: 50px;
+  color: rgb(255 255 255);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -189,16 +194,16 @@
         padding: 1rem;
     }
     .post-btn {
-        padding: 1rem;
+        width: 150px;
+        background-color: var(--teal);
+        height: 49px;
+        border-radius: 49px;
+        color: rgb(255 255 255);
     }
 }
 
 @media screen and (min-width: 768px) {
    
-    .post-btn {
-        width: 85px;
-
-    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -206,7 +211,6 @@
         width: 80%;
         margin: 5rem auto;
     }
-
 
     .greet-user {
         margin-bottom: 10%;
@@ -217,10 +221,7 @@
     }
    
     .post-btn {
-        width: 100px;
-        padding: 1.3rem;
-        margin-left: 3rem;
-       
+        margin-left: 3rem;  
     }
 }
 
@@ -338,6 +339,8 @@
     font-family: inherit;
     font-size: 1rem;
     border-radius: 10px;
+    width: 75%;
+    margin-left: 2%;
 }
 
 .edit-container {
@@ -396,12 +399,18 @@
 }
 
 .manage-edit-btn {
-    color: white;
-    background-color: var(--teal);
-    padding: 0.5rem;
-    border: none;
-    border-radius: 10px;
-    margin: 0.5rem;
+  width: 80px;
+  background-color: var(--teal);
+  border: none;
+  outline: none;
+  height: 30px;
+  border-radius: 50px;
+  color: rgb(255 255 255);
+  cursor: pointer;
+  margin: 0 0 3% 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fa-pencil-alt:hover {
@@ -478,6 +487,10 @@
 @media screen and (min-width: 660px) {
     .user-post-photo{
         width: 100px;
+    }
+    .edit-post-textarea {
+        width: 100%;
+        margin-left: 0;
     }
 }
 @media screen and (min-width: 768px) {

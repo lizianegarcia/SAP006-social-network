@@ -1,11 +1,17 @@
 #logout {
+    width: 120px;
+    background-color: rgb(255 255 255);
     border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
     color: var(--teal);
-    background-color: white;
-    padding: 0.8rem;
-    border-radius: 10px;
-    font-size: 1.3rem;
-    width: 100px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+
     display: flex;
     align-items: center;
     justify-content: center;

@@ -17,6 +17,7 @@ const createPage = () => {
                       <div class="hamburger-line"></div>
                       <div class="hamburger-line"></div>
                   </div>
+
                   <ul class="navbar-links" id="navbar-links">
                       <li class="li-items" id="navigate-profile"><a href="#" id="goProfile">Perfil</a></li>
                       <li class="li-items" id="navigate-feed"><a href="#">Feed</a></li>
@@ -26,7 +27,7 @@ const createPage = () => {
           </header>
           <main class="feed-container">
             <section class="greet-user">
-            <img src="https://i.pravatar.cc/100?img=16" alt="User Photo" class="user-feed-photo">
+            <img src="${user.photoURL || '../../img/avatar.jpg'}" alt="User Photo" class="user-feed-photo">
               <p>Bem vinda, ${user.displayName}</p>
             </section>
         
@@ -34,9 +35,11 @@ const createPage = () => {
                 <input type="text" name="postText" id="postText" class="post-text" autocomplete="off" placeholder="No que você está pensando?" required>
                 <button id="publishBtn" class="post-btn">Publicar</button>
             </form>
+
             <ul id="postsList" class="posts-list"></ul>
           </main>
           
+
     `;
 
   rootElement.innerHTML = contentnewElement;
@@ -56,7 +59,6 @@ const createPage = () => {
     snap.forEach((post) => {
       addPosts(post);
     });
-    await register();
   };
 
   rootElement.querySelector('#postForm').addEventListener('submit', (e) => {
@@ -86,7 +88,7 @@ const createPage = () => {
     });
   });
 
-  firebase.loadPosts().then(insertPostList);
+  firebase.loadPosts().then((post) => {insertPostList(post); register()});
 
   return rootElement;
 };

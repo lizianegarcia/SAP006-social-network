@@ -13,11 +13,10 @@ const register = async () => {
     posts.forEach((eachPost) => {
       addPosts(eachPost);
     });
-    await register();
   };
 
   const postsListContainer = document.querySelector('#postsList');
-
+  
   // função editar post
   postsListContainer.addEventListener('click', async (e) => {
     const { target } = e;
@@ -33,7 +32,7 @@ const register = async () => {
     if (editPostButton) {
       const editPostContainer = target.parentNode.parentNode.parentNode.querySelector('.edit-container');
       const userPost = target.parentNode.parentNode.parentNode.querySelector('.user-post');
-
+  
       editPostContainer.classList.toggle('display-none');
       userPost.classList.toggle('display-none');
     }
@@ -79,12 +78,6 @@ const register = async () => {
       document.querySelector(`#post-${postId}`).remove();
       modal.style.display = 'none';
     }
-
-    // if (deleteButton) {
-    //   const postId = deleteButton;
-    //   await firebase.deletePost(postId);
-    //   document.querySelector(`#post-${postId}`).remove();
-    // }
 
     if (likeButton) {
       const postId = likeButton;
