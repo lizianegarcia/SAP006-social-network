@@ -16,7 +16,7 @@ const register = async () => {
   };
 
   const postsListContainer = document.querySelector('#postsList');
-  
+
   // função editar post
   postsListContainer.addEventListener('click', async (e) => {
     const { target } = e;
@@ -32,7 +32,7 @@ const register = async () => {
     if (editPostButton) {
       const editPostContainer = target.parentNode.parentNode.parentNode.querySelector('.edit-container');
       const userPost = target.parentNode.parentNode.parentNode.querySelector('.user-post');
-  
+
       editPostContainer.classList.toggle('display-none');
       userPost.classList.toggle('display-none');
     }

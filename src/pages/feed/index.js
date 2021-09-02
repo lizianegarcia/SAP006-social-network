@@ -88,7 +88,7 @@ const createPage = () => {
     });
   });
 
-  firebase.loadPosts().then((post) => {insertPostList(post); register()});
+  firebase.loadPosts().then((post) => { insertPostList(post); register(); });
 
   return rootElement;
 };
