@@ -2,7 +2,7 @@ const waitAuthState = () => new Promise((resolve) => firebase.auth().onAuthState
 
 const getUser = () => firebase.auth().currentUser;
 
-const logUser = () => firebase.auth().onAuthStateChanged();
+const logUser = () => firebase.auth().onAuthStateChanged;
 
 const updateUser = async (name) => {
   const user = await getUser();
