@@ -109,7 +109,7 @@ const createPage = () => {
 
   const signInBtn = rootElement.querySelector('#sign-in-btn');
   const signUpBtn = rootElement.querySelector('#sign-up-btn');
-  const ForgotPasswordBtn = rootElement.querySelector('#forgotPassword');
+  const forgotPasswordBtn = rootElement.querySelector('#forgotPassword');
   const container = rootElement.querySelector('.container');
   const togglePassword = rootElement.querySelectorAll('.toggle');
 
@@ -175,7 +175,7 @@ const createPage = () => {
       await firebase.signInSignUpWithGoogle();
       changePage('/');
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   });
 
@@ -185,7 +185,7 @@ const createPage = () => {
       await firebase.signInSignUpWithGoogle();
       changePage('/');
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   });
 
@@ -198,7 +198,7 @@ const createPage = () => {
     const email = emailInputIn.value;
     const password = passwordInputIn.value;
 
-    signIn(email, password);
+    signIn(rootElement, email, password);
   });
 
   // validacao cadastro
@@ -263,7 +263,7 @@ const createPage = () => {
       const email = emailInput.value;
       const password = passwordInput.value;
 
-      await signUp(name, email, password);
+      await signUp(rootElement, name, email, password);
     } else {
       msgError.style.display = 'block';
       msgError.setAttribute('style', 'color: red');
@@ -273,7 +273,7 @@ const createPage = () => {
     }
   });
 
-  ForgotPasswordBtn.addEventListener('click', () => {
+  forgotPasswordBtn.addEventListener('click', () => {
     changePage('/reset-password');
   });
 

@@ -1,8 +1,8 @@
 import { changePage } from '../../routes/changePage.js';
 import firebase from '../../services/firebase.js';
 
-export const signUp = async (name, email, password) => {
-  const signUpError = document.querySelector('#sign-up-error');
+export const signUp = async (page, name, email, password) => {
+  const signUpError = page.querySelector('#sign-up-error');
   signUpError.style.display = 'none';
 
   try {
