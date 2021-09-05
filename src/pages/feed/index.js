@@ -27,7 +27,7 @@ const createPage = () => {
           </header>
           <main class="feed-container">
             <section class="greet-user">
-            <img src="${user.photoURL || '../../img/avatar.jpg'}" alt="User Photo" class="user-feed-photo">
+            <img src="${user.photoURL || '../../img/profile/user-default.png'}" alt="User Photo" class="user-feed-photo">
               <p>Bem vinda, ${user.displayName}</p>
             </section>
         
