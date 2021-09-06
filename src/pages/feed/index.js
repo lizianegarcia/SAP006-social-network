@@ -38,7 +38,6 @@ const createPage = () => {
 
             <ul id="postsList" class="posts-list"></ul>
           </main>
-          
 
     `;
 
