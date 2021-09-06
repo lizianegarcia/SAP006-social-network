@@ -2,7 +2,7 @@ const waitAuthState = () => new Promise((resolve) => firebase.auth().onAuthState
 
 const getUser = () => firebase.auth().currentUser;
 
-const logUser = () => firebase.auth().onAuthStateChanged();
+const logUser = () => firebase.auth().onAuthStateChanged;
 
 const updateUser = async (name) => {
   const user = await getUser();
@@ -86,6 +86,11 @@ const createPost = (textPost) => {
   return postsCollection.add(post);
 };
 
+// PERFIL
+const sendImage = firebase.storage().ref('User-images');
+
+const uidUser = firebase.database().ref().push().key;
+
 export default {
   waitAuthState,
   logUser,
@@ -101,4 +106,6 @@ export default {
   editPost,
   deletePost,
   likePosts,
+  sendImage,
+  uidUser,
 };

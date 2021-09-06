@@ -1,11 +1,11 @@
-# Criando uma Rede Social
+<img src="assets/Amitié.png">
 
-## Índice
+## :round_pushpin: Índice
 
 - [1. Sobre o Projeto](#1-sobre-o-projeto)
 - [2. Nossos Usuários](#2-nossos-usuarios)
 - [3. Histórias de Usuário](#3-historias-de-usuario)
-- [4. Layout](#4-layout)
+- [4. Aplicação](#4-aplicação)
 - [5. Conteúdos Abordados](#5-conteudos-abordados)
 - [6. Desenvolvedoras](#6-desenvolvedoras)
 
@@ -30,44 +30,39 @@ Acreditamos <b>muito</b> que <b>_juntas somos sim mais fortes_.</b>:female_sign:
 
 O projeto Social Network foi realizado no  _bootcamp_ da [LABORATÓRIA](https://www.laboratoria.la/br).
 
-## 2. Nossos Usuários
+## 2. Nossos Usuários :dart:
 O desenvolvimento de produtos e interfaces digitais a partir de uma ótica voltada para UX Design, deve levar 
 em consideração os conceitos de Design Centrado no Usuário e, em seguida, estabelecer user personas que guiarão
 as tomadas de decisão dos projetos.
 Desta forma, criamos personas para melhor entendermos nossos usuários:
+<br>
+<br>
+<img src="assets/Persona 1.png">
+<img src="assets/Persona 2.png">
 
-<b>Foto persona 1
 
-Foto persona 2</b>
-
-
-## 3. Histórias de Usuário
+## 3. Histórias de Usuário :newspaper:
 
 Depois de entender as necessidades de seus usuários, escreva as Histórias de
 Usuário. Elas representam tudo o que ele precisa fazer/ver na Rede Social. Cada
 uma de suas histórias de usuário deve possuir:
 
-- **Critérios de aceitação:** tudo o que deve acontecer para satisfazer as
-  necessidades do usuário.
-
-- **Definição de pronto:** todos os aspectos técnicos que devem ser atendidos
-  para que, como equipe, saibam que essa história está finalizada e pronta para
-  ser publicada. **Todas** suas histórias de usuário (com exceções), devem
-  incluir esses aspectos em sua definição de pronto (além de tudo o que precisa
-  adicionar):
-
-  - Ser uma SPA.
-  - Ser _responsivo_.
-  - Receber _code review_ de pelo menos uma parceira de outra equipe.
-  - Fazer _tests_ unitários.
-  - Fazer testes manuais buscando erros e imperfeições simples.
-  - Fazer testes de usabilidade e incorporar o _feedback_ dos usuários como
-    melhorias.
-  - Fazer deploy do aplicativo e marcar a versão (git tag).
+<img src="assets/UserHistory1.png">
+<img src="assets/UserHistory2.png">
 
 
+## 4. Aplicação :iphone:
+<h2> :black_medium_square: Login e Cadastro </h2>
+<img src="assets/login.gif" width="60%">
+<h2> :black_medium_square: Esqueceu a Senha </h2>
+<img src="assets/password.gif" width="60%">
+<h2> :black_medium_square: Feed </h2>
+<img src="assets/feed.gif" width="60%">
+<h2> :black_medium_square: Perfil </h2>
+<img src="assets/perfil.gif" width="60%">
+<h2> :black_medium_square: Not Found </h2>
+<img src="assets/not-found.png" width="60%" height="100%">
 
-## 4. Layout
 
 ## 5. Conteúdos Abordados :trophy:
 

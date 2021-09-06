@@ -1,3 +1,8 @@
+section {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .profile-content-container {
   display: flex;
   align-items: center;
