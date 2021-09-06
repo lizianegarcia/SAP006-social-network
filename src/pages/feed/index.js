@@ -38,11 +38,6 @@ const createPage = () => {
 
             <ul id="postsList" class="posts-list"></ul>
           </main>
-          
-          <footer class="footer-feed">
-            <p>Feito por <a class="footer-links-feed" href="https://github.com/lanizia" target="_blank">Lana</a>, <a class="footer-links-feed" href="https://github.com/lathne" target="_blank">Laura</a> e <a class="footer-links-feed" href="https://github.com/lizianegarcia" target="_blank">Lizi</a> durante o bootcamp da <a class="footer-links-feed" href="https://www.laboratoria.la/" target="_blank">Laboratoria</a> SAP006 - 2021 </p>
-            
-          </footer>
 
     `;
 
