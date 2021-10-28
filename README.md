@@ -1,5 +1,10 @@
 <img src="assets/Amitié.png">
 
+| :bust_in_silhouette: Demo User :computer: |
+| --------------------- |
+| :e-mail: Email: amitie@teste.com |
+| :lock: Password: 123456 |
+
 ## :round_pushpin: Índice
 
 - [1. Sobre o Projeto](#1-sobre-o-projeto)
